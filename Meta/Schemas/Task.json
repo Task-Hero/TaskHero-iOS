@@ -1,0 +1,22 @@
+{
+    "name": "Server Deploy",
+    "description": "Deploy new version of code to server",
+    "estimated_time": 180,
+    "steps": [
+        {
+            "name": "Check diff",
+            "description": "
+                Check the diff between the currently deployed version and the
+                version that you wish to deploy
+                    `$ git diff server/master HEAD`
+            ",
+            "assignees": [
+                "_User1",
+                "_User2"
+            ],
+            "signoffs": [
+                "_User3"
+            ]
+        }
+    ]
+}

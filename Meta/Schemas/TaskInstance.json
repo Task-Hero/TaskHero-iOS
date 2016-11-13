@@ -1,0 +1,27 @@
+{
+    "task": { ... },
+    "task_id": "_Task1",
+    "chat_id": "_Chat1",
+    "steps_progress": [
+        {
+            "state": "complete",
+            "completed_by": "_User1",
+            "completed_at": "TIME"
+        },
+        {
+            "state": "in_progress",
+            "completed_by": null,
+            "completed_at": null
+        },
+        {
+            "state": "requires_signoff",
+            "completed_by": "_User2",
+            "completed_at": null
+        },
+        {
+            "state": "not_started",
+            "completed_by": null,
+            "completed_at": null
+        }
+    ]
+}

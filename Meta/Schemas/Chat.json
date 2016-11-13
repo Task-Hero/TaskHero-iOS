@@ -1,0 +1,10 @@
+{
+    "task_instance_id": "_TaskInstance1",
+    "messages": [
+        {
+            "user_id": "_User1",
+            "text": "Hey there",
+            "created_at": "TIME"
+        }
+    ]
+}
