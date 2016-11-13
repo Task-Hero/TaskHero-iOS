@@ -38,17 +38,7 @@ class LoginInputViewController: UIViewController {
     }
 
     @IBAction func onLoginButton(_ sender: UIButton) {
-        let gameScore = PFObject(className: "GameScore")
-        gameScore.setObject("Rob", forKey: "name")
-        gameScore.setObject(95, forKey: "scoreNumber")
-        gameScore.saveInBackground(block:
-            { (success, error) -> Void in
-            if (success) {
-                print("ya")
-            } else {
-                print("nope")
-            }
-        })
-        
+        let bottomBarViewController = BottomBarLoader.loadBottomBar()
+        self.present(bottomBarViewController, animated: true, completion: nil)
     }
 }
