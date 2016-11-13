@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44A3C9E97285B686A5282585 /* Pods_TaskHero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF39FDB9B705F8547F587B26 /* Pods_TaskHero.framework */; };
+		6FFBB4D61DD7EE3300BEC201 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FFBB4D51DD7EE3300BEC201 /* Login.storyboard */; };
+		6FFBB4D81DD7EF0600BEC201 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBB4D71DD7EF0600BEC201 /* LoginViewController.swift */; };
+		6FFBB4DC1DD7F76B00BEC201 /* LoginInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBB4DB1DD7F76B00BEC201 /* LoginInputViewController.swift */; };
+		6FFBB4E01DD8019C00BEC201 /* ParseAPIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBB4DF1DD8019C00BEC201 /* ParseAPIKey.swift */; };
 		F450E7301DC99E1C006B1EC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F450E72F1DC99E1C006B1EC2 /* AppDelegate.swift */; };
 		F450E7321DC99E1C006B1EC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F450E7311DC99E1C006B1EC2 /* ViewController.swift */; };
 		F450E7351DC99E1C006B1EC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F450E7331DC99E1C006B1EC2 /* Main.storyboard */; };
@@ -15,6 +20,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C9B051DF5F700B34CF21EF6 /* Pods-TaskHero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero.release.xcconfig"; sourceTree = "<group>"; };
+		6FFBB4D51DD7EE3300BEC201 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		6FFBB4D71DD7EF0600BEC201 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6FFBB4DB1DD7F76B00BEC201 /* LoginInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInputViewController.swift; sourceTree = "<group>"; };
+		6FFBB4DF1DD8019C00BEC201 /* ParseAPIKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPIKey.swift; sourceTree = "<group>"; };
+		91DCEFDF98244058CB0BBD64 /* Pods-TaskHero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero.debug.xcconfig"; sourceTree = "<group>"; };
 		F450E72C1DC99E1C006B1EC2 /* TaskHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F450E72F1DC99E1C006B1EC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F450E7311DC99E1C006B1EC2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +33,7 @@
 		F450E7361DC99E1C006B1EC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F450E7391DC99E1C006B1EC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F450E73B1DC99E1C006B1EC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF39FDB9B705F8547F587B26 /* Pods_TaskHero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskHero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +41,54 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44A3C9E97285B686A5282585 /* Pods_TaskHero.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		30D1D09F915A28BB298F56AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FF39FDB9B705F8547F587B26 /* Pods_TaskHero.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		311773B6E565A562931D39F8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				91DCEFDF98244058CB0BBD64 /* Pods-TaskHero.debug.xcconfig */,
+				6C9B051DF5F700B34CF21EF6 /* Pods-TaskHero.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6FFBB4D91DD7EF5000BEC201 /* view controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6FFBB4D71DD7EF0600BEC201 /* LoginViewController.swift */,
+				6FFBB4DB1DD7F76B00BEC201 /* LoginInputViewController.swift */,
+			);
+			name = "view controllers";
+			sourceTree = "<group>";
+		};
+		6FFBB4DA1DD7F6FD00BEC201 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				6FFBB4DF1DD8019C00BEC201 /* ParseAPIKey.swift */,
+			);
+			name = api;
+			sourceTree = "<group>";
+		};
 		F450E7231DC99E1C006B1EC2 = {
 			isa = PBXGroup;
 			children = (
 				F450E72E1DC99E1C006B1EC2 /* TaskHero */,
 				F450E72D1DC99E1C006B1EC2 /* Products */,
+				311773B6E565A562931D39F8 /* Pods */,
+				30D1D09F915A28BB298F56AD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,12 +103,15 @@
 		F450E72E1DC99E1C006B1EC2 /* TaskHero */ = {
 			isa = PBXGroup;
 			children = (
+				6FFBB4DA1DD7F6FD00BEC201 /* api */,
+				6FFBB4D91DD7EF5000BEC201 /* view controllers */,
 				F450E72F1DC99E1C006B1EC2 /* AppDelegate.swift */,
 				F450E7311DC99E1C006B1EC2 /* ViewController.swift */,
 				F450E7331DC99E1C006B1EC2 /* Main.storyboard */,
 				F450E7361DC99E1C006B1EC2 /* Assets.xcassets */,
 				F450E7381DC99E1C006B1EC2 /* LaunchScreen.storyboard */,
 				F450E73B1DC99E1C006B1EC2 /* Info.plist */,
+				6FFBB4D51DD7EE3300BEC201 /* Login.storyboard */,
 			);
 			path = TaskHero;
 			sourceTree = "<group>";
@@ -71,9 +123,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F450E73E1DC99E1C006B1EC2 /* Build configuration list for PBXNativeTarget "TaskHero" */;
 			buildPhases = (
+				F12337B7C896EC849C125FE6 /* [CP] Check Pods Manifest.lock */,
 				F450E7281DC99E1C006B1EC2 /* Sources */,
 				F450E7291DC99E1C006B1EC2 /* Frameworks */,
 				F450E72A1DC99E1C006B1EC2 /* Resources */,
+				83266EA073AA24B6FEB5ACEC /* [CP] Embed Pods Frameworks */,
+				ABF3B7FFDCE1430B21D4CD20 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -123,6 +178,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FFBB4D61DD7EE3300BEC201 /* Login.storyboard in Resources */,
 				F450E73A1DC99E1C006B1EC2 /* LaunchScreen.storyboard in Resources */,
 				F450E7371DC99E1C006B1EC2 /* Assets.xcassets in Resources */,
 				F450E7351DC99E1C006B1EC2 /* Main.storyboard in Resources */,
@@ -131,11 +187,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		83266EA073AA24B6FEB5ACEC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ABF3B7FFDCE1430B21D4CD20 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F12337B7C896EC849C125FE6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F450E7281DC99E1C006B1EC2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FFBB4E01DD8019C00BEC201 /* ParseAPIKey.swift in Sources */,
+				6FFBB4D81DD7EF0600BEC201 /* LoginViewController.swift in Sources */,
+				6FFBB4DC1DD7F76B00BEC201 /* LoginInputViewController.swift in Sources */,
 				F450E7321DC99E1C006B1EC2 /* ViewController.swift in Sources */,
 				F450E7301DC99E1C006B1EC2 /* AppDelegate.swift in Sources */,
 			);
@@ -258,6 +365,7 @@
 		};
 		F450E73F1DC99E1C006B1EC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91DCEFDF98244058CB0BBD64 /* Pods-TaskHero.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TaskHero/Info.plist;
@@ -270,6 +378,7 @@
 		};
 		F450E7401DC99E1C006B1EC2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6C9B051DF5F700B34CF21EF6 /* Pods-TaskHero.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TaskHero/Info.plist;
@@ -299,6 +408,7 @@
 				F450E7401DC99E1C006B1EC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
