@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Bottom Bar View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BottomBarViewController" id="BYZ-38-t0r" customClass="BottomBarViewController" customModule="TaskHero" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +20,155 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mXf-gp-pqB">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="607"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0d9-n8-TZW">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BarItemAddTask" translatesAutoresizingMaskIntoConstraints="NO" id="eJB-6M-OeL">
+                                        <rect key="frame" x="151.5" y="-20" width="72" height="72"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="72" id="lyI-dq-Ic7"/>
+                                            <constraint firstAttribute="width" constant="72" id="vgR-jh-gGw"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="JAu-ae-njt" appends="YES" id="ier-xz-BbM"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BarItemProgressView" translatesAutoresizingMaskIntoConstraints="NO" id="h0u-2K-mYB">
+                                        <rect key="frame" x="48" y="10" width="40" height="40"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="A3r-J1-LKV"/>
+                                            <constraint firstAttribute="height" constant="40" id="X9K-W4-5If"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="hAo-Jf-Yvo" appends="YES" id="q5G-gY-RVD"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BarItemTaskCatalog" translatesAutoresizingMaskIntoConstraints="NO" id="5cA-Zp-sA5">
+                                        <rect key="frame" x="287" y="10" width="40" height="40"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="gdp-l5-9Xr"/>
+                                            <constraint firstAttribute="height" constant="40" id="l2J-ox-SlS"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Cr5-6E-iAA" appends="YES" id="LZb-Va-FhW"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="TRS-ta-eNi"/>
+                                    <constraint firstItem="h0u-2K-mYB" firstAttribute="centerY" secondItem="0d9-n8-TZW" secondAttribute="centerY" id="YJF-xG-lbE"/>
+                                    <constraint firstItem="eJB-6M-OeL" firstAttribute="centerX" secondItem="0d9-n8-TZW" secondAttribute="centerX" id="ah7-R0-P0E"/>
+                                    <constraint firstAttribute="trailing" secondItem="5cA-Zp-sA5" secondAttribute="trailing" constant="48" id="bpr-pg-q61"/>
+                                    <constraint firstItem="h0u-2K-mYB" firstAttribute="leading" secondItem="0d9-n8-TZW" secondAttribute="leading" constant="48" id="d7m-Te-Q3Y"/>
+                                    <constraint firstItem="eJB-6M-OeL" firstAttribute="top" secondItem="0d9-n8-TZW" secondAttribute="top" constant="-20" id="rIv-vP-fg7"/>
+                                    <constraint firstItem="5cA-Zp-sA5" firstAttribute="centerY" secondItem="0d9-n8-TZW" secondAttribute="centerY" id="yhI-qx-rWo"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0d9-n8-TZW" secondAttribute="bottom" id="2w7-gP-QDY"/>
+                            <constraint firstItem="mXf-gp-pqB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="B8x-N4-AgO"/>
+                            <constraint firstAttribute="trailing" secondItem="mXf-gp-pqB" secondAttribute="trailing" id="FcR-NB-aeb"/>
+                            <constraint firstItem="mXf-gp-pqB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Hxo-Vz-2aL"/>
+                            <constraint firstItem="0d9-n8-TZW" firstAttribute="top" secondItem="mXf-gp-pqB" secondAttribute="bottom" id="KeN-jC-eQ5"/>
+                            <constraint firstAttribute="trailing" secondItem="0d9-n8-TZW" secondAttribute="trailing" id="kKS-vt-DVr"/>
+                            <constraint firstItem="0d9-n8-TZW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kuu-va-ifu"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="actionBarItemImageView" destination="eJB-6M-OeL" id="MQh-KE-Bud"/>
+                        <outlet property="contentView" destination="mXf-gp-pqB" id="4Wa-wY-Ss0"/>
+                        <outlet property="leftBarItemImageView" destination="h0u-2K-mYB" id="16d-gj-kaN"/>
+                        <outlet property="rightBarItemImageView" destination="5cA-Zp-sA5" id="mfS-mJ-S38"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="hAo-Jf-Yvo">
+                    <connections>
+                        <action selector="onBarItemTapped:" destination="BYZ-38-t0r" id="F1W-EQ-Zjq"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Cr5-6E-iAA">
+                    <connections>
+                        <action selector="onBarItemTapped:" destination="BYZ-38-t0r" id="DgC-kO-8ns"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="JAu-ae-njt">
+                    <connections>
+                        <action selector="onActionItemTapped:" destination="BYZ-38-t0r" id="ltq-fc-Yrv"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="zwx-b5-gdd">
+            <objects>
+                <viewController storyboardIdentifier="BlueViewController" id="x8H-yv-0Zj" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="F0S-mx-HoC"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ltd-rO-1Rc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DTa-xr-gpJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.1137254902" green="0.63137254899999995" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HkU-VY-4aM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1369" y="-181"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="H0q-Bu-Iy4">
+            <objects>
+                <viewController storyboardIdentifier="RedViewController" id="BVD-dj-b4L" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hei-Az-jCC"/>
+                        <viewControllerLayoutGuide type="bottom" id="BHp-dZ-JYq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tgZ-1x-2xd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.23848446170000001" blue="0.30796442000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sgk-eI-Ce2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="367" y="1205"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="b9c-b1-fgS">
+            <objects>
+                <viewController storyboardIdentifier="GreenViewController" id="OTV-qA-w54" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="r1e-x7-zY4"/>
+                        <viewControllerLayoutGuide type="bottom" id="Rud-o0-uOn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="02A-vo-9C8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.39966707350000003" green="1" blue="0.36742706689999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="orV-5L-2Qa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1367" y="527"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="BarItemAddTask" width="48" height="48"/>
+        <image name="BarItemProgressView" width="48" height="48"/>
+        <image name="BarItemTaskCatalog" width="48" height="48"/>
+    </resources>
 </document>

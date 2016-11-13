@@ -15,7 +15,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let bottomBarViewController = instantiateViewController(identifier: "BottomBarViewController") as! BottomBarViewController
+        
+        let actionViewController = instantiateViewController(identifier: "RedViewController")
+        actionViewController.tabBarItem.image = UIImage(named: "BarItemAddTask")
+        
+        let leftViewController = instantiateViewController(identifier: "GreenViewController")
+        leftViewController.tabBarItem.image = UIImage(named: "BarItemProgressView")
+        
+        let rightViewController = instantiateViewController(identifier: "BlueViewController")
+        rightViewController.tabBarItem.image = UIImage(named: "BarItemTaskCatalog")
+        
+        bottomBarViewController.actionViewController = actionViewController
+        bottomBarViewController.leftItemViewController = leftViewController
+        bottomBarViewController.rightItemViewController = rightViewController
+
+        setRootViewController(bottomBarViewController)
+        
         return true
     }
 
@@ -41,6 +57,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    private func setRootViewController(_ vc: UIViewController) {
+        window?.rootViewController = vc
+        window?.makeKeyAndVisible()
+    }
+    
+    private func instantiateViewController(identifier: String) -> UIViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: identifier)
+    }
 }
 
