@@ -17,6 +17,7 @@
 		F450E7351DC99E1C006B1EC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F450E7331DC99E1C006B1EC2 /* Main.storyboard */; };
 		F450E7371DC99E1C006B1EC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F450E7361DC99E1C006B1EC2 /* Assets.xcassets */; };
 		F450E73A1DC99E1C006B1EC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F450E7381DC99E1C006B1EC2 /* LaunchScreen.storyboard */; };
+		F4F68D091DD7F349008B0634 /* BottomBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F68D081DD7F349008B0634 /* BottomBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +34,10 @@
 		F450E7361DC99E1C006B1EC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F450E7391DC99E1C006B1EC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F450E73B1DC99E1C006B1EC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+
 		FF39FDB9B705F8547F587B26 /* Pods_TaskHero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskHero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4F68D081DD7F349008B0634 /* BottomBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarViewController.swift; sourceTree = "<group>"; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 				6FFBB4D91DD7EF5000BEC201 /* view controllers */,
 				F450E72F1DC99E1C006B1EC2 /* AppDelegate.swift */,
 				F450E7311DC99E1C006B1EC2 /* ViewController.swift */,
+				F4F68D081DD7F349008B0634 /* BottomBarViewController.swift */,
 				F450E7331DC99E1C006B1EC2 /* Main.storyboard */,
 				F450E7361DC99E1C006B1EC2 /* Assets.xcassets */,
 				F450E7381DC99E1C006B1EC2 /* LaunchScreen.storyboard */,
@@ -245,6 +250,7 @@
 				6FFBB4DC1DD7F76B00BEC201 /* LoginInputViewController.swift in Sources */,
 				F450E7321DC99E1C006B1EC2 /* ViewController.swift in Sources */,
 				F450E7301DC99E1C006B1EC2 /* AppDelegate.swift in Sources */,
+				F4F68D091DD7F349008B0634 /* BottomBarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
