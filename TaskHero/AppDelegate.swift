@@ -19,11 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.initialize(with: ParseAPIKey.config);
                 
-        if User.currentUser == true {
-            let bottomBarViewController = BottomBarLoader.loadBottomBar()
-            setRootViewController(bottomBarViewController)
-        } else {
+        if User.currentUser == nil {
             setRootViewController(loadLoginScreen())
+        } else {
+            setRootViewController(BottomBarLoader.loadBottomBar())
         }
         
         return true

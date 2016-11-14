@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 class LoginInputViewController: UIViewController {
 
@@ -38,7 +37,28 @@ class LoginInputViewController: UIViewController {
     }
 
     @IBAction func onLoginButton(_ sender: UIButton) {
-        let bottomBarViewController = BottomBarLoader.loadBottomBar()
-        self.present(bottomBarViewController, animated: true, completion: nil)
+        
+        if (emailTextField.text == "" || passwordTextField.text == "") {
+            showAlert()
+            return;
+        } else {
+            ParseClient.getUser(email: emailTextField.text!, success: {(user: User) -> () in
+                User.currentUser = user
+                let bottomBarViewController = BottomBarLoader.loadBottomBar()
+                self.present(bottomBarViewController, animated: true, completion: nil)
+                return;
+            }, failure: {() -> () in
+                print("failed")
+                return;
+            })
+        }
+        
     }
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "Error", message: "Username and Password can't be empty.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay.", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }

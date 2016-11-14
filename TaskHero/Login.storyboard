@@ -61,6 +61,9 @@
                                 <state key="normal" title="Signup">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="onSignupButton:" destination="HAP-jE-hjp" eventType="touchUpInside" id="njE-RE-lDN"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -103,9 +106,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xbP-ah-ubq">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xbP-ah-ubq">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mJ8-Mc-BCI">
                                 <rect key="frame" x="62" y="220" width="250" height="45"/>
@@ -142,12 +144,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="xbP-ah-ubq" secondAttribute="trailing" id="7t8-NN-sWZ"/>
                             <constraint firstItem="FHQ-xv-vRU" firstAttribute="leading" secondItem="mJ8-Mc-BCI" secondAttribute="leading" id="8VP-Uh-oqk"/>
+                            <constraint firstItem="xbP-ah-ubq" firstAttribute="top" secondItem="9fo-th-5Ho" secondAttribute="top" id="9CB-d3-nvC"/>
                             <constraint firstItem="mJ8-Mc-BCI" firstAttribute="top" secondItem="A5O-vt-icT" secondAttribute="bottom" constant="200" id="JXF-YW-PId"/>
                             <constraint firstItem="8zd-VD-hIe" firstAttribute="top" secondItem="FHQ-xv-vRU" secondAttribute="bottom" constant="40" id="KcR-Px-2O8"/>
+                            <constraint firstItem="xbP-ah-ubq" firstAttribute="leading" secondItem="9fo-th-5Ho" secondAttribute="leading" id="OyL-rj-6ai"/>
                             <constraint firstItem="FHQ-xv-vRU" firstAttribute="top" secondItem="mJ8-Mc-BCI" secondAttribute="bottom" constant="40" id="RTH-h2-9P7"/>
                             <constraint firstItem="8zd-VD-hIe" firstAttribute="leading" secondItem="mJ8-Mc-BCI" secondAttribute="leading" id="TX4-dM-nEk"/>
                             <constraint firstItem="8zd-VD-hIe" firstAttribute="centerX" secondItem="9fo-th-5Ho" secondAttribute="centerX" id="X9c-jm-wy4"/>
+                            <constraint firstItem="Tio-DR-kVN" firstAttribute="top" secondItem="xbP-ah-ubq" secondAttribute="bottom" id="cz1-fJ-tqF"/>
                             <constraint firstItem="8zd-VD-hIe" firstAttribute="trailing" secondItem="mJ8-Mc-BCI" secondAttribute="trailing" id="tdm-xm-Xbz"/>
                             <constraint firstItem="FHQ-xv-vRU" firstAttribute="trailing" secondItem="mJ8-Mc-BCI" secondAttribute="trailing" id="wZv-Ts-4BB"/>
                             <constraint firstItem="mJ8-Mc-BCI" firstAttribute="centerX" secondItem="9fo-th-5Ho" secondAttribute="centerX" id="zoy-hW-U9F"/>

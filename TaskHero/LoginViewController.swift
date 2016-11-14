@@ -48,4 +48,17 @@ class LoginViewController: UIViewController {
         loginButton.layer.cornerRadius = 6
     }
 
+    // TODO: (sahil) change appropriately
+    @IBAction func onSignupButton(_ sender: Any) {
+        ParseClient.getUser(email: "taskheroapp@gmail.com", success: {(user: User) -> () in
+            User.currentUser = user
+            let bottomBarViewController = BottomBarLoader.loadBottomBar()
+            self.present(bottomBarViewController, animated: true, completion: nil)
+            return;
+        }, failure: {() -> () in
+            print("failed")
+            return;
+        })
+        
+    }
 }
