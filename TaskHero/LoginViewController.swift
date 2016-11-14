@@ -22,16 +22,19 @@ class LoginViewController: UIViewController {
         backgroundImageView.image = UIImage.init(named: "loginBackground")
         logoImageView.image = UIImage.init(named: "logo")
         loadButtons()
-        animateBackground()
     }
     
-    func logoutNotification() {
-         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.animateBackground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+    override func viewDidDisappear(_ animated: Bool) {
+        backgroundImageView.transform = CGAffineTransform(scaleX: 1,y: 1)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        animateBackground()
     }
     
     func animateBackground() {
         UIView.animate(withDuration: 12.0, delay:0, options: [.repeat, .autoreverse], animations: {
-            self.backgroundImageView.transform = CGAffineTransform(scaleX: 3,y: 3)
+            self.backgroundImageView.transform = CGAffineTransform(scaleX: 2.5,y: 2.5)
         }, completion: nil)
     }
     
@@ -48,7 +51,7 @@ class LoginViewController: UIViewController {
         loginButton.layer.cornerRadius = 6
     }
 
-    // TODO: (sahil) change appropriately
+    // TODO: (sahil) change appropriately; right now, auto-logins
     @IBAction func onSignupButton(_ sender: Any) {
         ParseClient.getUser(email: "taskheroapp@gmail.com", success: {(user: User) -> () in
             User.currentUser = user
@@ -56,7 +59,7 @@ class LoginViewController: UIViewController {
             self.present(bottomBarViewController, animated: true, completion: nil)
             return;
         }, failure: {() -> () in
-            print("failed")
+            NSLog("Error signing in.")
             return;
         })
         

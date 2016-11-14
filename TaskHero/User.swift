@@ -11,7 +11,10 @@ import Parse
 
 class User: NSObject {
     
+    static let userDidLogoutNotification = "userDidLogout"
+    
     var pfObject: PFObject?
+    var objectId: String?
     var name: String?
     var team: String?
     var email: String?
@@ -19,6 +22,7 @@ class User: NSObject {
     
     init(pfObject: PFObject) {
         self.pfObject = pfObject
+        self.objectId = pfObject.objectId
         self.name = pfObject["name"] as? String
         self.team = pfObject["team"] as? String
         self.email = pfObject["email"] as? String
@@ -27,6 +31,7 @@ class User: NSObject {
     
     static private func convertPFObjectToDictionary(pfObject: PFObject) -> [String: String] {
         var dictionary: [String: String] = NSDictionary() as! [String : String]
+        dictionary["objectId"] = pfObject.objectId
         dictionary["name"] = pfObject["name"] as? String
         dictionary["team"] = pfObject["team"] as? String
         dictionary["email"] = pfObject["email"] as? String
@@ -36,6 +41,7 @@ class User: NSObject {
     
     static private func convertDictionaryToPFObject(dictionary: NSDictionary) -> PFObject {
         let pfObject = PFObject.init(className: "User")
+        pfObject.setObject(dictionary["objectId"] as! String, forKey: "objectId")
         pfObject.setObject(dictionary["name"] as! String, forKey: "name")
         pfObject.setObject(dictionary["team"] as! String, forKey: "team")
         pfObject.setObject(dictionary["email"] as! String, forKey: "email")

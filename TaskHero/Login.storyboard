@@ -126,7 +126,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8zd-VD-hIe">
                                 <rect key="frame" x="62" y="390" width="250" height="45"/>
@@ -141,12 +141,24 @@
                                     <action selector="onLoginButton:" destination="C8c-0t-VeT" eventType="touchUpInside" id="uOq-zD-UND"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70N-Gf-SGF">
+                                <rect key="frame" x="15" y="15" width="30" height="33"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="&lt;">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onBackButton:" destination="C8c-0t-VeT" eventType="touchUpInside" id="SFm-TG-cVb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="70N-Gf-SGF" firstAttribute="top" secondItem="9fo-th-5Ho" secondAttribute="top" constant="15" id="5kj-Wx-Kf3"/>
                             <constraint firstAttribute="trailing" secondItem="xbP-ah-ubq" secondAttribute="trailing" id="7t8-NN-sWZ"/>
                             <constraint firstItem="FHQ-xv-vRU" firstAttribute="leading" secondItem="mJ8-Mc-BCI" secondAttribute="leading" id="8VP-Uh-oqk"/>
                             <constraint firstItem="xbP-ah-ubq" firstAttribute="top" secondItem="9fo-th-5Ho" secondAttribute="top" id="9CB-d3-nvC"/>
+                            <constraint firstItem="70N-Gf-SGF" firstAttribute="leading" secondItem="9fo-th-5Ho" secondAttribute="leading" constant="15" id="A7q-g2-dEO"/>
                             <constraint firstItem="mJ8-Mc-BCI" firstAttribute="top" secondItem="A5O-vt-icT" secondAttribute="bottom" constant="200" id="JXF-YW-PId"/>
                             <constraint firstItem="8zd-VD-hIe" firstAttribute="top" secondItem="FHQ-xv-vRU" secondAttribute="bottom" constant="40" id="KcR-Px-2O8"/>
                             <constraint firstItem="xbP-ah-ubq" firstAttribute="leading" secondItem="9fo-th-5Ho" secondAttribute="leading" id="OyL-rj-6ai"/>

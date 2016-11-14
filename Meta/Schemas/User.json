@@ -1,8 +1,6 @@
 {
-    "_id": "_User1",
     "name": "Jonathan Como",
     "team": "CodePath 2016 Champs",
     "email": "jonathan.como@gmail.com",
     "password_hash": "hash",
-    "created_at": "TIME"
 }

@@ -42,18 +42,9 @@ class ParseClient: NSObject {
         })
     }
     
-    static func postSample() {
-        let gameScore = PFObject(className: "GameScore")
-        gameScore.setObject("Rob", forKey: "name")
-        gameScore.setObject(95, forKey: "scoreNumber")
-        gameScore.saveInBackground(block:
-            { (success, error) -> Void in
-                if (success) {
-                    print("ya")
-                } else {
-                    print("nope")
-                }
-        })
+    static func logout() {
+        User.currentUser = nil
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: User.userDidLogoutNotification), object: nil)
     }
 
 }

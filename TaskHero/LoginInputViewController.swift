@@ -19,14 +19,21 @@ class LoginInputViewController: UIViewController {
         super.viewDidLoad()
         
         backgroundImageView.image = UIImage.init(named: "loginBackground")
-        animateBackground()
         loadButtons()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        animateBackground()
     }
     
     func animateBackground() {
         UIView.animate(withDuration: 12.0, delay:0, options: [.repeat, .autoreverse], animations: {
-            self.backgroundImageView.transform = CGAffineTransform(scaleX: 3,y: 3)
+            self.backgroundImageView.transform = CGAffineTransform(scaleX: 2.5,y: 2.5)
         }, completion: nil)
+    }
+    
+    @IBAction func onBackButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     func loadButtons() {
@@ -39,24 +46,29 @@ class LoginInputViewController: UIViewController {
     @IBAction func onLoginButton(_ sender: UIButton) {
         
         if (emailTextField.text == "" || passwordTextField.text == "") {
-            showAlert()
+            showAlert(message: "Username and Password can't be empty")
             return;
         } else {
             ParseClient.getUser(email: emailTextField.text!, success: {(user: User) -> () in
-                User.currentUser = user
-                let bottomBarViewController = BottomBarLoader.loadBottomBar()
-                self.present(bottomBarViewController, animated: true, completion: nil)
-                return;
+                if (user.passwordHash == self.passwordTextField.text) {
+                    User.currentUser = user
+                    let bottomBarViewController = BottomBarLoader.loadBottomBar()
+                    self.present(bottomBarViewController, animated: true, completion: nil)
+                    return;
+                } else {
+                    self.showAlert(message: "Incorrect Username or Password")
+                    return;
+                }
             }, failure: {() -> () in
-                print("failed")
+                NSLog("Error signing in.")
                 return;
             })
         }
         
     }
     
-    func showAlert() {
-        let alert = UIAlertController(title: "Error", message: "Username and Password can't be empty.", preferredStyle: UIAlertControllerStyle.alert)
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Okay.", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

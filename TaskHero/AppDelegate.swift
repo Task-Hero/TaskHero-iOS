@@ -25,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             setRootViewController(BottomBarLoader.loadBottomBar())
         }
         
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: User.userDidLogoutNotification), object: nil, queue: OperationQueue.main, using: {(notification: Notification) -> Void in
+                self.setRootViewController(self.loadLoginScreen())
+        })
+        
         return true
     }
 
