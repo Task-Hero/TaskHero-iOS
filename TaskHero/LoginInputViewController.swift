@@ -50,7 +50,7 @@ class LoginInputViewController: UIViewController {
             return;
         } else {
             ParseClient.getUser(email: emailTextField.text!, success: {(user: User) -> () in
-                if (user.passwordHash == self.passwordTextField.text) {
+                if (user.samePassword(password: self.passwordTextField.text!)) {
                     User.currentUser = user
                     let bottomBarViewController = BottomBarLoader.loadBottomBar()
                     self.present(bottomBarViewController, animated: true, completion: nil)

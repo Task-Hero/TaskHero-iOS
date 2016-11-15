@@ -18,7 +18,7 @@ class User: NSObject {
     var name: String?
     var team: String?
     var email: String?
-    var passwordHash: String?
+    private var passwordHash: String?
     
     init(pfObject: PFObject) {
         self.pfObject = pfObject
@@ -27,6 +27,10 @@ class User: NSObject {
         self.team = pfObject["team"] as? String
         self.email = pfObject["email"] as? String
         self.passwordHash = pfObject["password_hash"] as? String
+    }
+    
+    func samePassword(password: String) -> Bool {
+        return self.passwordHash == password
     }
     
     static private func convertPFObjectToDictionary(pfObject: PFObject) -> [String: String] {

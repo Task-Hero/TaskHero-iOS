@@ -42,12 +42,12 @@ class ParseClient: NSObject {
         })
     }
     
-    static func createUser(user: User) {
+    static func createUser(user: User, password: String) {
         let userObject = PFObject(className: USER_COLLECTION)
         userObject.setObject(user.name!, forKey: "name")
         userObject.setObject(user.team!, forKey: "team")
         userObject.setObject(user.email!, forKey: "email")
-        userObject.setObject(user.passwordHash!, forKey: "password_hash")
+        userObject.setObject(password, forKey: "password_hash")
         userObject.saveInBackground(block:
             { (success, error) -> Void in
                 if (success) {

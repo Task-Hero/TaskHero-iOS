@@ -112,7 +112,7 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
-        <!--Home View Controller-->
+        <!--Work-->
         <scene sceneID="bF4-ra-cYQ">
             <objects>
                 <viewController storyboardIdentifier="HomeViewController" id="CJO-Vf-Iro" customClass="HomeViewController" customModule="TaskHero" customModuleProvider="target" sceneMemberID="viewController">
@@ -159,7 +159,13 @@
                             <constraint firstItem="0sI-l9-M31" firstAttribute="top" secondItem="Dlu-6n-2MX" secondAttribute="top" id="raY-se-K6D"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="0MG-oT-7Ga"/>
+                    <navigationItem key="navigationItem" title="Work" id="0MG-oT-7Ga">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="fh5-W2-Gmh">
+                            <connections>
+                                <action selector="logoutButton:" destination="CJO-Vf-Iro" id="bdv-hI-PXC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="0sI-l9-M31" id="ic8-b2-DD7"/>
                     </connections>

@@ -14,17 +14,17 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         loadTableView()
-        ParseClient.getTeam(team: (User.currentUser?.team)!, success: {(users: [User]) -> () in
-            for user in users {
-                print (user.name!)
-            }
-        }, failure: {() -> () in
-            //
-        })
-        
-        
+        loadNavigationBar()
+
+    }
+    
+    @IBAction func logoutButton(_ sender: UIBarButtonItem) {
+        ParseClient.logout()
+    }
+    
+    func loadNavigationBar() {
+        title = User.currentUser?.name
     }
 
 }
