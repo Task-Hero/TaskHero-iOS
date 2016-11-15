@@ -1,8 +1,8 @@
 # Group Project - *Task Hero*
 
-**Task Hero** is productivity tool. It enables a team to manage tasks and its progress with chat and notification.
+**Task Hero** is productivity tool. It enables a team to manage tasks and progress with chat and notification. A team can mange single task with multiple steps which are assigned to each team members.
 
-Time spent: **??** hours spent in total
+Time spent: **20** hours spent in total
 
 ## User Stories
 
