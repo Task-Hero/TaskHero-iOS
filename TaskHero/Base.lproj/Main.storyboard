@@ -339,6 +339,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="bOB-4y-fzO" firstAttribute="top" secondItem="apc-Et-Cvf" secondAttribute="bottom" constant="24" id="3In-qh-bIx"/>
                             <constraint firstItem="apc-Et-Cvf" firstAttribute="top" secondItem="QMS-DP-YPZ" secondAttribute="bottom" constant="61" id="AVh-G1-U1n"/>

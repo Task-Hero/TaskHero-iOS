@@ -61,19 +61,6 @@ class TaskCatalogViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
 
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
-
     // TODO: COnnect to the real data and remove this function.
     private func setTemporaryTaskData() -> [Task] {
         let tempTaskDictionary1:[String: AnyObject] = ["name": "Server Deploy" as AnyObject,

@@ -41,21 +41,6 @@ class TaskDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.reloadData()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: stepCellIdentifier, for: indexPath) as! StepCell
         cell.step = steps?[indexPath.row]
@@ -69,7 +54,7 @@ class TaskDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currentSelectedCellRowNum = indexPath.row
-        performSegue(withIdentifier: "TaskDetailToStepDetail", sender: nil) // send a task whihch selected
+        performSegue(withIdentifier: "TaskDetailToStepDetail", sender: self) // send a task which selected
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
