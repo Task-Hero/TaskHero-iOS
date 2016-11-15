@@ -13,6 +13,22 @@ class ParseClient: NSObject {
     
     static let USER_COLLECTION: String = "User"
     
+    static func getTeam(team: String, success: @escaping ([User]) -> (), failure: @escaping () -> ()) {
+        let query = PFQuery(className: USER_COLLECTION)
+        query.whereKey("team", equalTo: team)
+        query.findObjectsInBackground(block: { (objects, error) -> Void in
+            if (objects != nil ) {
+                var users: [User] = [User]()
+                for object in objects! {
+                    users.append(User.init(pfObject: object))
+                }
+                success(users)
+            } else {
+                failure()
+            }
+        })
+    }
+    
     static func getUser(email: String, success: @escaping (User) -> (), failure: @escaping () -> ()) {
         let query = PFQuery(className: USER_COLLECTION)
         query.whereKey("email", equalTo: email)
