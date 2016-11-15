@@ -13,7 +13,7 @@ class User: NSObject {
     
     static let userDidLogoutNotification = "userDidLogout"
     
-    var pfObject: PFObject?
+    private var pfObject: PFObject?
     var objectId: String?
     var name: String?
     var team: String?

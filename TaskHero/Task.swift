@@ -33,8 +33,9 @@ class Task: NSObject {
 
 
 class Step: NSObject {
-    dynamic var name:String!
-    dynamic var stepDescription:String!
+    dynamic var name: String!
+    dynamic var stepDescription: String!
+    dynamic var state: String!
     //    var assignees:[TeamMember]!
     //    var signoff:TeamMember!
     
@@ -44,8 +45,7 @@ class Step: NSObject {
         
         name = dictionary["name"] as! String
         stepDescription = dictionary["description"] as! String
-        
-        
+        state = dictionary["state"] as! String
     }
 }
 

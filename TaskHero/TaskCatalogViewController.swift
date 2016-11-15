@@ -28,7 +28,7 @@ class TaskCatalogViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.register(UINib(nibName: taskCardCellIdentifier, bundle: nil), forCellReuseIdentifier: taskCardCellIdentifier)
         
         // Use temporary data for now
-        tasks = dummyTaskData.getTaskData()
+        tasks = DummyTaskData.getTaskData()
         tableView.reloadData()
     }
 

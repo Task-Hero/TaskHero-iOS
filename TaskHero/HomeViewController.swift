@@ -9,14 +9,15 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-
+    
+    var tasks: [Task]?
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadTableView()
         loadNavigationBar()
-
+        getDummyData()
+        loadTableView()
     }
     
     @IBAction func logoutButton(_ sender: UIBarButtonItem) {
@@ -34,18 +35,25 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func loadTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 70
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTaskCardCell", for: indexPath) as! HomeTaskCardCell
-        cell.textLabel?.text = "YA"
+        let task = tasks?[indexPath.row]
+        cell.task = task
+        cell.loadData()
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return (tasks?.count)!
+    }
+    
+    func getDummyData() {
+        tasks = DummyTaskData.getTaskData()
     }
     
 }
