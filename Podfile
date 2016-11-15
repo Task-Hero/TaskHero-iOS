@@ -7,5 +7,8 @@ target 'TaskHero' do
 
   # Pods for TaskHero
   pod 'Parse'
+  pod 'THContactPicker', '~> 2.0'
+  pod 'AFNetworking', '~> 3.0'
+  pod 'MD5Digest', '~> 1.1'
 
 end

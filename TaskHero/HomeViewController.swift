@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
     }
     
     func loadNavigationBar() {
-        title = User.currentUser?.name
+        title = User.current?.name
     }
 
 }

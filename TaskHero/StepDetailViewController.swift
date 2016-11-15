@@ -19,7 +19,7 @@ class StepDetailViewController: UIViewController {
         super.viewDidLoad()
 
         stepName.text = step.name
-        stepDescription.text = step.stepDescription
+        stepDescription.text = step.details
     }
 
     override func didReceiveMemoryWarning() {

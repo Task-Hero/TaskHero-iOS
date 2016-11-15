@@ -31,13 +31,16 @@ class HomeTaskCardCell: UITableViewCell {
     func loadData() {
         let roundedPercent = round(getPercentComplete() * 100)
         percentCompleteLabel.text = "\(roundedPercent)%"
-        lastCompletedStepLabel.text = "Last completed: \(getLastCompletedStep().name!)"
         taskLabel.text = task?.name
         progressView.progress = Float(getPercentComplete())
+        
+        if let lastCompleted = getLastCompletedStep() {
+            lastCompletedStepLabel.text = lastCompleted.name
+        }
     }
     
     func getPercentComplete() -> Double {
-        let total_steps = task?.steps.count
+        let total_steps = task?.steps?.count
         var completed_steps = 0.0
         
         for step in (task?.steps)! {
@@ -51,8 +54,8 @@ class HomeTaskCardCell: UITableViewCell {
         return completed_steps / Double(total_steps!)
     }
     
-    func getLastCompletedStep() -> Step {
-        var last_completed_step_index = 0
+    func getLastCompletedStep() -> Step? {
+        var last_completed_step_index = -1
         
         for (index, step) in (task?.steps)!.enumerated() {
             if step.state == "Complete" {
@@ -60,8 +63,10 @@ class HomeTaskCardCell: UITableViewCell {
             }
         }
         
-        return (task?.steps[last_completed_step_index])!
+        if last_completed_step_index > -1 {
+            return task?.steps?[last_completed_step_index]
+        } else {
+            return nil
+        }
     }
-    
-
 }

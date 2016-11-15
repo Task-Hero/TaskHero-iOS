@@ -42,29 +42,40 @@ class LoginInputViewController: UIViewController {
         loginButton.layer.borderColor = UIColor.white.cgColor
         loginButton.layer.cornerRadius = 6
     }
-
+    
     @IBAction func onLoginButton(_ sender: UIButton) {
-        
-        if (emailTextField.text == "" || passwordTextField.text == "") {
+        let email = emailTextField.text!
+        let password = passwordTextField.text!
+
+        if (email == "" || password == "") {
             showAlert(message: "Username and Password can't be empty")
             return;
-        } else {
-            ParseClient.getUser(email: emailTextField.text!, success: {(user: User) -> () in
-                if (user.samePassword(password: self.passwordTextField.text!)) {
-                    User.currentUser = user
-                    let bottomBarViewController = BottomBarLoader.loadBottomBar()
-                    self.present(bottomBarViewController, animated: true, completion: nil)
-                    return;
-                } else {
-                    self.showAlert(message: "Incorrect Username or Password")
-                    return;
-                }
-            }, failure: {() -> () in
-                NSLog("Error signing in.")
-                return;
-            })
         }
-        
+
+        ParseClient.sharedInstance.signup(
+            name: "Test User",
+            email: email,
+            password: password,
+            success: { (user) in
+                self.transitionToApp()
+            },
+            failure: { (error) in
+                ParseClient.sharedInstance.login(
+                    email: email,
+                    password: password,
+                    success: { (user) in
+                        self.transitionToApp()
+                    }, failure: { (error) in
+                        print("Invalid credentials...we should do something about this later")
+                    }
+                )
+            }
+        )
+    }
+    
+    private func transitionToApp() {
+        let bottomBarViewController = BottomBarLoader.loadBottomBar()
+        self.present(bottomBarViewController, animated: true, completion: nil)
     }
     
     func showAlert(message: String) {

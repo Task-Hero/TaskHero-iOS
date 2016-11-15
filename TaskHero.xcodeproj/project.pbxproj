@@ -18,19 +18,29 @@
 		6FFC30441DD8305800597B7A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFC30431DD8305800597B7A /* User.swift */; };
 		6FFC30471DD8310200597B7A /* BottomBarLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFC30461DD8310200597B7A /* BottomBarLoader.swift */; };
 		6FFC30491DD8343B00597B7A /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFC30481DD8343B00597B7A /* ParseClient.swift */; };
-		A89AFB611DD8CAC500141EEB /* TaskCatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AFB601DD8CAC500141EEB /* TaskCatalogViewController.swift */; };
 		A89AFB631DD8CF0100141EEB /* TaskCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A89AFB621DD8CF0100141EEB /* TaskCardCell.xib */; };
 		A89AFB651DD8D34900141EEB /* TaskCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AFB641DD8D34900141EEB /* TaskCardCell.swift */; };
-		A89AFB671DD8D53D00141EEB /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AFB661DD8D53D00141EEB /* Task.swift */; };
 		A89AFB691DD9668000141EEB /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AFB681DD9668000141EEB /* TaskDetailViewController.swift */; };
-		A89AFB6B1DD9669400141EEB /* StepDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AFB6A1DD9669400141EEB /* StepDetailViewController.swift */; };
 		A89AFB6F1DD9720F00141EEB /* StepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A89AFB6E1DD9720F00141EEB /* StepCell.xib */; };
 		A89AFB711DD9722A00141EEB /* StepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AFB701DD9722A00141EEB /* StepCell.swift */; };
+		ABD390471DD93D9000F90197 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD390461DD93D9000F90197 /* CreateTaskViewController.swift */; };
+		ABD390491DD94BE700F90197 /* CreateStepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD390481DD94BE700F90197 /* CreateStepsViewController.swift */; };
+		ABD3904C1DD94C3E00F90197 /* EditStepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3904A1DD94C3E00F90197 /* EditStepCell.swift */; };
+		ABD3904D1DD94C3E00F90197 /* EditStepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD3904B1DD94C3E00F90197 /* EditStepCell.xib */; };
+		ABD3904F1DD94C9800F90197 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3904E1DD94C9800F90197 /* Task.swift */; };
+		ABD390511DD94C9F00F90197 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD390501DD94C9F00F90197 /* Step.swift */; };
+		ABD390541DD9649800F90197 /* UITableView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD390531DD9649800F90197 /* UITableView+Convenience.swift */; };
+		ABD390571DD977F800F90197 /* TaskCreationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD390561DD977F800F90197 /* TaskCreationDelegate.swift */; };
+		ABD390591DD9909C00F90197 /* UserPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD390581DD9909C00F90197 /* UserPickerViewController.swift */; };
+		ABD3905C1DD9951800F90197 /* UserPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3905A1DD9951800F90197 /* UserPickerCell.swift */; };
+		ABD3905D1DD9951800F90197 /* UserPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABD3905B1DD9951800F90197 /* UserPickerCell.xib */; };
+		F4388FDD1DDC0C9B00DD1B21 /* StepDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AFB6A1DD9669400141EEB /* StepDetailViewController.swift */; };
+		F4388FDE1DDC0E5600DD1B21 /* TaskCatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AFB601DD8CAC500141EEB /* TaskCatalogViewController.swift */; };
+		F4388FDF1DDC0EC700DD1B21 /* BottomBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F68D081DD7F349008B0634 /* BottomBarViewController.swift */; };
 		F450E7301DC99E1C006B1EC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F450E72F1DC99E1C006B1EC2 /* AppDelegate.swift */; };
 		F450E7351DC99E1C006B1EC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F450E7331DC99E1C006B1EC2 /* Main.storyboard */; };
 		F450E7371DC99E1C006B1EC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F450E7361DC99E1C006B1EC2 /* Assets.xcassets */; };
 		F450E73A1DC99E1C006B1EC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F450E7381DC99E1C006B1EC2 /* LaunchScreen.storyboard */; };
-		F4F68D091DD7F349008B0634 /* BottomBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F68D081DD7F349008B0634 /* BottomBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,11 +59,22 @@
 		A89AFB601DD8CAC500141EEB /* TaskCatalogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCatalogViewController.swift; sourceTree = "<group>"; };
 		A89AFB621DD8CF0100141EEB /* TaskCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCardCell.xib; sourceTree = "<group>"; };
 		A89AFB641DD8D34900141EEB /* TaskCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCardCell.swift; sourceTree = "<group>"; };
-		A89AFB661DD8D53D00141EEB /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		A89AFB681DD9668000141EEB /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		A89AFB6A1DD9669400141EEB /* StepDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepDetailViewController.swift; sourceTree = "<group>"; };
 		A89AFB6E1DD9720F00141EEB /* StepCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepCell.xib; sourceTree = "<group>"; };
 		A89AFB701DD9722A00141EEB /* StepCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepCell.swift; sourceTree = "<group>"; };
+		ABD390451DD935FF00F90197 /* TaskHero.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TaskHero.entitlements; sourceTree = "<group>"; };
+		ABD390461DD93D9000F90197 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
+		ABD390481DD94BE700F90197 /* CreateStepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStepsViewController.swift; sourceTree = "<group>"; };
+		ABD3904A1DD94C3E00F90197 /* EditStepCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStepCell.swift; sourceTree = "<group>"; };
+		ABD3904B1DD94C3E00F90197 /* EditStepCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditStepCell.xib; sourceTree = "<group>"; };
+		ABD3904E1DD94C9800F90197 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		ABD390501DD94C9F00F90197 /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
+		ABD390531DD9649800F90197 /* UITableView+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Convenience.swift"; sourceTree = "<group>"; };
+		ABD390561DD977F800F90197 /* TaskCreationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCreationDelegate.swift; sourceTree = "<group>"; };
+		ABD390581DD9909C00F90197 /* UserPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPickerViewController.swift; sourceTree = "<group>"; };
+		ABD3905A1DD9951800F90197 /* UserPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPickerCell.swift; sourceTree = "<group>"; };
+		ABD3905B1DD9951800F90197 /* UserPickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserPickerCell.xib; sourceTree = "<group>"; };
 		F450E72C1DC99E1C006B1EC2 /* TaskHero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskHero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F450E72F1DC99E1C006B1EC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F450E7341DC99E1C006B1EC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -103,6 +124,9 @@
 				A89AFB681DD9668000141EEB /* TaskDetailViewController.swift */,
 				A89AFB6A1DD9669400141EEB /* StepDetailViewController.swift */,
 				6F9417F11DDA8B9100FE1447 /* HomeViewController.swift */,
+				ABD390461DD93D9000F90197 /* CreateTaskViewController.swift */,
+				ABD390481DD94BE700F90197 /* CreateStepsViewController.swift */,
+				ABD390581DD9909C00F90197 /* UserPickerViewController.swift */,
 			);
 			name = "view controllers";
 			sourceTree = "<group>";
@@ -130,8 +154,9 @@
 			isa = PBXGroup;
 			children = (
 				6FFC30431DD8305800597B7A /* User.swift */,
-				A89AFB661DD8D53D00141EEB /* Task.swift */,
 				6F9417F51DDA9C1600FE1447 /* DummyTaskData.swift */,
+				ABD3904E1DD94C9800F90197 /* Task.swift */,
+				ABD390501DD94C9F00F90197 /* Step.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -145,8 +170,28 @@
 				A89AFB6E1DD9720F00141EEB /* StepCell.xib */,
 				A89AFB701DD9722A00141EEB /* StepCell.swift */,
 				6F9417F31DDA8DE600FE1447 /* HomeTaskCardCell.swift */,
+				ABD3904A1DD94C3E00F90197 /* EditStepCell.swift */,
+				ABD3904B1DD94C3E00F90197 /* EditStepCell.xib */,
+				ABD3905A1DD9951800F90197 /* UserPickerCell.swift */,
+				ABD3905B1DD9951800F90197 /* UserPickerCell.xib */,
 			);
 			name = views;
+			sourceTree = "<group>";
+		};
+		ABD390521DD9648900F90197 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ABD390531DD9649800F90197 /* UITableView+Convenience.swift */,
+			);
+			name = extensions;
+			sourceTree = "<group>";
+		};
+		ABD390551DD977EB00F90197 /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				ABD390561DD977F800F90197 /* TaskCreationDelegate.swift */,
+			);
+			name = protocols;
 			sourceTree = "<group>";
 		};
 		F450E7231DC99E1C006B1EC2 = {
@@ -170,6 +215,9 @@
 		F450E72E1DC99E1C006B1EC2 /* TaskHero */ = {
 			isa = PBXGroup;
 			children = (
+				ABD390451DD935FF00F90197 /* TaskHero.entitlements */,
+				ABD390551DD977EB00F90197 /* protocols */,
+				ABD390521DD9648900F90197 /* extensions */,
 				6FFC30451DD830E600597B7A /* views */,
 				6FFC30421DD8304D00597B7A /* models */,
 				6FFC30411DD82F0500597B7A /* storyboards */,
@@ -219,6 +267,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = GW6D535Q4U;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -247,9 +300,11 @@
 			files = (
 				6FFBB4D61DD7EE3300BEC201 /* Login.storyboard in Resources */,
 				A89AFB631DD8CF0100141EEB /* TaskCardCell.xib in Resources */,
+				ABD3904D1DD94C3E00F90197 /* EditStepCell.xib in Resources */,
 				F450E73A1DC99E1C006B1EC2 /* LaunchScreen.storyboard in Resources */,
 				A89AFB6F1DD9720F00141EEB /* StepCell.xib in Resources */,
 				F450E7371DC99E1C006B1EC2 /* Assets.xcassets in Resources */,
+				ABD3905D1DD9951800F90197 /* UserPickerCell.xib in Resources */,
 				F450E7351DC99E1C006B1EC2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,7 +354,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -309,22 +364,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A89AFB671DD8D53D00141EEB /* Task.swift in Sources */,
-				6FFBB4E01DD8019C00BEC201 /* ParseAPIKey.swift in Sources */,
-				6FFBB4D81DD7EF0600BEC201 /* LoginViewController.swift in Sources */,
-				6FFC30441DD8305800597B7A /* User.swift in Sources */,
+				F4388FDF1DDC0EC700DD1B21 /* BottomBarViewController.swift in Sources */,
+				F4388FDE1DDC0E5600DD1B21 /* TaskCatalogViewController.swift in Sources */,
+				F4388FDD1DDC0C9B00DD1B21 /* StepDetailViewController.swift in Sources */,
 				A89AFB651DD8D34900141EEB /* TaskCardCell.swift in Sources */,
 				6F9417F21DDA8B9100FE1447 /* HomeViewController.swift in Sources */,
 				A89AFB711DD9722A00141EEB /* StepCell.swift in Sources */,
 				6F9417F41DDA8DE600FE1447 /* HomeTaskCardCell.swift in Sources */,
-				6FFBB4DC1DD7F76B00BEC201 /* LoginInputViewController.swift in Sources */,
 				A89AFB691DD9668000141EEB /* TaskDetailViewController.swift in Sources */,
-				F450E7301DC99E1C006B1EC2 /* AppDelegate.swift in Sources */,
 				6F9417F61DDA9C1600FE1447 /* DummyTaskData.swift in Sources */,
-				F4F68D091DD7F349008B0634 /* BottomBarViewController.swift in Sources */,
+				ABD390491DD94BE700F90197 /* CreateStepsViewController.swift in Sources */,
+				ABD390571DD977F800F90197 /* TaskCreationDelegate.swift in Sources */,
+				ABD3905C1DD9951800F90197 /* UserPickerCell.swift in Sources */,
+				6FFBB4E01DD8019C00BEC201 /* ParseAPIKey.swift in Sources */,
+				6FFBB4D81DD7EF0600BEC201 /* LoginViewController.swift in Sources */,
+				6FFC30441DD8305800597B7A /* User.swift in Sources */,
+				ABD390591DD9909C00F90197 /* UserPickerViewController.swift in Sources */,
+				ABD3904F1DD94C9800F90197 /* Task.swift in Sources */,
+				ABD3904C1DD94C3E00F90197 /* EditStepCell.swift in Sources */,
+				6FFBB4DC1DD7F76B00BEC201 /* LoginInputViewController.swift in Sources */,
+				ABD390541DD9649800F90197 /* UITableView+Convenience.swift in Sources */,
+				F450E7301DC99E1C006B1EC2 /* AppDelegate.swift in Sources */,
+				ABD390471DD93D9000F90197 /* CreateTaskViewController.swift in Sources */,
 				6FFC30491DD8343B00597B7A /* ParseClient.swift in Sources */,
-				A89AFB611DD8CAC500141EEB /* TaskCatalogViewController.swift in Sources */,
-				A89AFB6B1DD9669400141EEB /* StepDetailViewController.swift in Sources */,
+				ABD390511DD94C9F00F90197 /* Step.swift in Sources */,
 				6FFC30471DD8310200597B7A /* BottomBarLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,6 +514,7 @@
 			baseConfigurationReference = 91DCEFDF98244058CB0BBD64 /* Pods-TaskHero.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TaskHero/TaskHero.entitlements;
 				DEVELOPMENT_TEAM = GW6D535Q4U;
 				INFOPLIST_FILE = TaskHero/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -465,6 +529,7 @@
 			baseConfigurationReference = 6C9B051DF5F700B34CF21EF6 /* Pods-TaskHero.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TaskHero/TaskHero.entitlements;
 				DEVELOPMENT_TEAM = GW6D535Q4U;
 				INFOPLIST_FILE = TaskHero/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -19,13 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.initialize(with: ParseAPIKey.config);
                 
-        if User.currentUser == nil {
-            setRootViewController(loadLoginScreen())
-        } else {
+        if User.current != nil {
             setRootViewController(BottomBarLoader.loadBottomBar())
+        } else {
+            setRootViewController(loadLoginScreen())
         }
         
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: User.userDidLogoutNotification), object: nil, queue: OperationQueue.main, using: {(notification: Notification) -> Void in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: User.didLogoutNotification), object: nil, queue: OperationQueue.main, using: {(notification: Notification) -> Void in
                 self.setRootViewController(self.loadLoginScreen())
         })
         

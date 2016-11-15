@@ -11,56 +11,88 @@ import Parse
 
 class ParseClient: NSObject {
     
-    static let USER_COLLECTION: String = "User"
+    static let sharedInstance = ParseClient()
     
-    static func getTeam(team: String, success: @escaping ([User]) -> (), failure: @escaping () -> ()) {
-        let query = PFQuery(className: USER_COLLECTION)
-        query.whereKey("team", equalTo: team)
-        query.findObjectsInBackground(block: { (objects, error) -> Void in
-            if (objects != nil ) {
-                var users: [User] = [User]()
-                for object in objects! {
-                    users.append(User.init(pfObject: object))
-                }
-                success(users)
+    func signup(name: String, email: String, password: String, success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
+        let user = PFUser()
+        user.username = email
+        user.email = email
+        user.password = password
+        user["name"] = name
+        
+        user.signUpInBackground { (isSuccess, error) in
+            if let error = error {
+                failure(error)
             } else {
-                failure()
+                let createdUser = User(user: user)
+                success(createdUser)
             }
-        })
+        }
     }
     
-    static func getUser(email: String, success: @escaping (User) -> (), failure: @escaping () -> ()) {
-        let query = PFQuery(className: USER_COLLECTION)
-        query.whereKey("email", equalTo: email)
-        query.getFirstObjectInBackground(block: { (response, error) -> Void in
-            if ((response) != nil) {
-                let user = User.init(pfObject: response!)
-                success(user)
+    func login(email: String, password: String, success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
+        PFUser.logInWithUsername(inBackground: email, password: password) { (user, error) in
+            if let error = error {
+                failure(error)
             } else {
-                failure()
+                let foundUser = User(user: user!)
+                success(foundUser)
             }
-        })
+        }
     }
     
-    static func createUser(user: User, password: String) {
-        let userObject = PFObject(className: USER_COLLECTION)
-        userObject.setObject(user.name!, forKey: "name")
-        userObject.setObject(user.team!, forKey: "team")
-        userObject.setObject(user.email!, forKey: "email")
-        userObject.setObject(password, forKey: "password_hash")
-        userObject.saveInBackground(block:
-            { (success, error) -> Void in
-                if (success) {
-                    NSLog("New user created.")
-                } else {
-                    NSLog("Error creating user.")
+    func getTeammates(success: @escaping ([User]) -> (), failure: @escaping (Error) -> ()) {
+        // TODO: this could easily be constrained to teams later on
+        let query = PFUser.query()
+        query?.order(byAscending: "name")
+        query?.findObjectsInBackground { (users, error) in
+            if let error = error {
+                failure(error)
+            } else {
+                let foundUsers = (users ?? []).map { User(user: $0) }
+                success(foundUsers)
+            }
+        }
+    }
+    
+    func createTask(task: Task, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        let u = PFUser()
+        u.objectId = User.current!.id
+        
+        let t = PFObject(className: "Task")
+        t["author"] = u
+        t["name"] = task.name
+        t["details"] = task.details
+    
+        if let steps = task.steps {
+            let stepsData = steps.map({ (step) -> [String : AnyObject] in
+                var assigneeIds: [String] = []
+                if let assignees = step.assignees {
+                    assigneeIds = assignees.map { user in user.id! }
                 }
-        })
+                
+                return [
+                    "name": step.name as AnyObject,
+                    "details": step.details as AnyObject,
+                    "assignees": assigneeIds as AnyObject
+                ]
+            })
+            
+            let data = try! JSONSerialization.data(withJSONObject: stepsData, options: [])
+            t["steps"] = String(data: data, encoding: .utf8)
+        }
+        
+        t.saveInBackground { (saved, error) in
+            if let error = error {
+                failure(error)
+            } else {
+                success()
+            }
+        }
     }
     
     static func logout() {
-        User.currentUser = nil
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: User.userDidLogoutNotification), object: nil)
+        PFUser.logOut()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: User.didLogoutNotification), object: nil)
     }
-
 }

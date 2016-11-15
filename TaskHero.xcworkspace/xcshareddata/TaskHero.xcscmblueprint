@@ -10,7 +10,7 @@
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "B3AEB483-6342-4A44-B491-FF480BC72BAC",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "1F013AAE553E88FD1FCBF5F7E337A3E8D9961008" : "..",
-    "D3A15A9DC92E1E31C80D5438CD4384BF5CB06C84" : "TaskHero-iOS\/"
+    "D3A15A9DC92E1E31C80D5438CD4384BF5CB06C84" : "TaskHero\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "TaskHero",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,

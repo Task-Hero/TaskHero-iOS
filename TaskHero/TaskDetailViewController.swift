@@ -29,7 +29,7 @@ class TaskDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
  
         taskName.text = task?.name
-        taskDescription.text = task?.taskDescription
+        taskDescription.text = task?.details
         estimatedTime.text = String(describing: (task?.estimatedTime)!)
         
         tableView.dataSource = self

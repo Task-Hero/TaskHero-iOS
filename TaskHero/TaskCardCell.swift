@@ -17,8 +17,8 @@ class TaskCardCell: UITableViewCell {
     var task:Task! {
         didSet{
             taskName.text = task.name
-            taskDescription.text = task.taskDescription
-            estimatedTime.text = String(task.estimatedTime)
+            taskDescription.text = task.details
+            estimatedTime.text = "\(task.estimatedTime!)"
         }
     }
     
