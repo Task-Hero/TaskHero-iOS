@@ -19,6 +19,7 @@ class ParseClient: NSObject {
         user.email = email
         user.password = password
         user["name"] = name
+        user["team"] = "codepath"
         
         user.signUpInBackground { (isSuccess, error) in
             if let error = error {

@@ -9,38 +9,32 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
+    @IBOutlet weak var appLogoLabel: UILabel!
+    @IBOutlet weak var appLogoTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var appnameLabel: UILabel!
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var buttonsView: UIView!
     @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var appnameLabel: UILabel!
-    @IBOutlet weak var logoImageView: UIImageView!
-    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var userInputView: UIView!
+    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var okButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        backgroundImageView.image = UIImage.init(named: "loginBackground")
-        logoImageView.image = UIImage.init(named: "logo")
-        loadButtons()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        backgroundImageView.transform = CGAffineTransform(scaleX: 1,y: 1)
+        buttonConfigs()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        animateBackground()
+        userInputView.isHidden = true
     }
     
-    func animateBackground() {
-        UIView.animate(withDuration: 12.0, delay:0, options: [.repeat, .autoreverse], animations: {
-            self.backgroundImageView.transform = CGAffineTransform(scaleX: 2.5,y: 2.5)
-        }, completion: nil)
-    }
-    
-    func loadButtons() {
+    func buttonConfigs() {
         signupButton.backgroundColor = UIColor.clear
         loginButton.backgroundColor = UIColor.clear
+        okButton.backgroundColor = UIColor.clear
         
         signupButton.layer.borderWidth = 2.0
         signupButton.layer.borderColor = UIColor.white.cgColor
@@ -49,5 +43,91 @@ class LoginViewController: UIViewController {
         loginButton.layer.borderWidth = 2.0
         loginButton.layer.borderColor = UIColor.white.cgColor
         loginButton.layer.cornerRadius = 6
+        
+        okButton.layer.borderWidth = 2.0
+        okButton.layer.borderColor = UIColor.white.cgColor
+        okButton.layer.cornerRadius = 6
     }
+    
+    @IBAction func onLoginTouch(_ sender: Any) {
+        animateInputFields()
+        usernameField.becomeFirstResponder()
+    }
+    
+    private func animateInputFields() {
+        self.appLogoTopConstraint.constant = 100
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            self.userInputView.alpha = 1
+            self.buttonsView.alpha = 0.1
+            self.appnameLabel.alpha = 0.1
+            self.view.layoutIfNeeded()
+        }, completion: { (finished) in
+            self.userInputView.isHidden = false
+            self.buttonsView.isHidden = true
+            self.appnameLabel.isHidden = true
+        })
+    }
+    
+    @IBAction func onSignupTouch(_ sender: Any) {
+        ParseClient.sharedInstance.login(
+            email: "taskheroapp@gmail.com",
+            password: "admin",
+            success: { (user) in
+                self.transitionToApp()
+        }, failure: { (error) in
+            self.showAlert(message: "Username or Password is not valid")
+        })
+    }
+    
+    @IBAction func onOkTouch(_ sender: Any) {
+        let username = usernameField.text!
+        let password = passwordField.text!
+        
+        if (username == "" || password == "") {
+            showAlert(message: "Username and Password can't be empty")
+            return;
+        }
+        
+        ParseClient.sharedInstance.login(
+            email: username,
+            password: password,
+            success: { (user) in
+                self.transitionToApp()
+        }, failure: { (error) in
+            self.showAlert(message: "Username or Password is not valid")
+            self.animateLoginSignupButtons()
+        })
+    }
+    
+    private func animateLoginSignupButtons() {
+        appLogoTopConstraint.constant = 160
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.userInputView.alpha = 0.1
+            self.buttonsView.alpha = 1
+            self.appnameLabel.alpha = 1
+            self.view.layoutIfNeeded()
+        }, completion: { (finished) in
+            self.userInputView.isHidden = true
+            self.buttonsView.isHidden = false
+            self.appnameLabel.isHidden = false
+        })
+        
+        // sahil: attempting to dismiss keyboard; doesn't dismiss as expected on simulator, untested on phone
+        usernameField.resignFirstResponder()
+        view.endEditing(true)
+    }
+    
+    private func transitionToApp() {
+        let bottomBarViewController = BottomBarLoader.loadBottomBar()
+        self.present(bottomBarViewController, animated: true, completion: nil)
+    }
+    
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }

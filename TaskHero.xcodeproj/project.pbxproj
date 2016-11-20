@@ -13,7 +13,6 @@
 		6F9417F61DDA9C1600FE1447 /* DummyTaskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9417F51DDA9C1600FE1447 /* DummyTaskData.swift */; };
 		6FFBB4D61DD7EE3300BEC201 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FFBB4D51DD7EE3300BEC201 /* Login.storyboard */; };
 		6FFBB4D81DD7EF0600BEC201 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBB4D71DD7EF0600BEC201 /* LoginViewController.swift */; };
-		6FFBB4DC1DD7F76B00BEC201 /* LoginInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBB4DB1DD7F76B00BEC201 /* LoginInputViewController.swift */; };
 		6FFBB4E01DD8019C00BEC201 /* ParseAPIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBB4DF1DD8019C00BEC201 /* ParseAPIKey.swift */; };
 		6FFC30441DD8305800597B7A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFC30431DD8305800597B7A /* User.swift */; };
 		6FFC30471DD8310200597B7A /* BottomBarLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFC30461DD8310200597B7A /* BottomBarLoader.swift */; };
@@ -40,7 +39,6 @@
 		F450E7301DC99E1C006B1EC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F450E72F1DC99E1C006B1EC2 /* AppDelegate.swift */; };
 		F450E7351DC99E1C006B1EC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F450E7331DC99E1C006B1EC2 /* Main.storyboard */; };
 		F450E7371DC99E1C006B1EC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F450E7361DC99E1C006B1EC2 /* Assets.xcassets */; };
-		F450E73A1DC99E1C006B1EC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F450E7381DC99E1C006B1EC2 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +48,6 @@
 		6F9417F51DDA9C1600FE1447 /* DummyTaskData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyTaskData.swift; sourceTree = "<group>"; };
 		6FFBB4D51DD7EE3300BEC201 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		6FFBB4D71DD7EF0600BEC201 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		6FFBB4DB1DD7F76B00BEC201 /* LoginInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInputViewController.swift; sourceTree = "<group>"; };
 		6FFBB4DF1DD8019C00BEC201 /* ParseAPIKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPIKey.swift; sourceTree = "<group>"; };
 		6FFC30431DD8305800597B7A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6FFC30461DD8310200597B7A /* BottomBarLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarLoader.swift; sourceTree = "<group>"; };
@@ -79,7 +76,6 @@
 		F450E72F1DC99E1C006B1EC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F450E7341DC99E1C006B1EC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F450E7361DC99E1C006B1EC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F450E7391DC99E1C006B1EC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F450E73B1DC99E1C006B1EC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4F68D081DD7F349008B0634 /* BottomBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarViewController.swift; sourceTree = "<group>"; };
 		FF39FDB9B705F8547F587B26 /* Pods_TaskHero.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskHero.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +115,6 @@
 			children = (
 				F4F68D081DD7F349008B0634 /* BottomBarViewController.swift */,
 				6FFBB4D71DD7EF0600BEC201 /* LoginViewController.swift */,
-				6FFBB4DB1DD7F76B00BEC201 /* LoginInputViewController.swift */,
 				A89AFB601DD8CAC500141EEB /* TaskCatalogViewController.swift */,
 				A89AFB681DD9668000141EEB /* TaskDetailViewController.swift */,
 				A89AFB6A1DD9669400141EEB /* StepDetailViewController.swift */,
@@ -143,7 +138,6 @@
 		6FFC30411DD82F0500597B7A /* storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				F450E7381DC99E1C006B1EC2 /* LaunchScreen.storyboard */,
 				6FFBB4D51DD7EE3300BEC201 /* Login.storyboard */,
 				F450E7331DC99E1C006B1EC2 /* Main.storyboard */,
 			);
@@ -301,7 +295,6 @@
 				6FFBB4D61DD7EE3300BEC201 /* Login.storyboard in Resources */,
 				A89AFB631DD8CF0100141EEB /* TaskCardCell.xib in Resources */,
 				ABD3904D1DD94C3E00F90197 /* EditStepCell.xib in Resources */,
-				F450E73A1DC99E1C006B1EC2 /* LaunchScreen.storyboard in Resources */,
 				A89AFB6F1DD9720F00141EEB /* StepCell.xib in Resources */,
 				F450E7371DC99E1C006B1EC2 /* Assets.xcassets in Resources */,
 				ABD3905D1DD9951800F90197 /* UserPickerCell.xib in Resources */,
@@ -354,7 +347,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -382,7 +375,6 @@
 				ABD390591DD9909C00F90197 /* UserPickerViewController.swift in Sources */,
 				ABD3904F1DD94C9800F90197 /* Task.swift in Sources */,
 				ABD3904C1DD94C3E00F90197 /* EditStepCell.swift in Sources */,
-				6FFBB4DC1DD7F76B00BEC201 /* LoginInputViewController.swift in Sources */,
 				ABD390541DD9649800F90197 /* UITableView+Convenience.swift in Sources */,
 				F450E7301DC99E1C006B1EC2 /* AppDelegate.swift in Sources */,
 				ABD390471DD93D9000F90197 /* CreateTaskViewController.swift in Sources */,
@@ -401,14 +393,6 @@
 				F450E7341DC99E1C006B1EC2 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		F450E7381DC99E1C006B1EC2 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F450E7391DC99E1C006B1EC2 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
