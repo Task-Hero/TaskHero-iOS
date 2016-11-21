@@ -44,7 +44,6 @@ class TaskCatalogViewController: UIViewController {
             taskDetailViewController.task = task
         }
     }
-
 }
 
 extension TaskCatalogViewController: UITableViewDelegate {
@@ -65,13 +64,7 @@ extension TaskCatalogViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks?.count ?? 0
     }
-    
 }
-
-
-
-
-
 
 
 

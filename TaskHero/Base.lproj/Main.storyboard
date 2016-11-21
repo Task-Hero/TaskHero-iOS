@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -243,7 +244,7 @@
             </objects>
             <point key="canvasLocation" x="2279" y="139"/>
         </scene>
-        <!--Task Detail View Controller-->
+        <!--Task Detail-->
         <scene sceneID="eFe-7l-kbU">
             <objects>
                 <viewController id="rcV-wD-8WO" customClass="TaskDetailViewController" customModule="TaskHero" customModuleProvider="target" sceneMemberID="viewController">
@@ -325,19 +326,26 @@
                             <constraint firstItem="gk8-yy-QEV" firstAttribute="bottom" secondItem="vo9-4M-g02" secondAttribute="top" id="zz2-cp-4Q8"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Task Detail" id="xcw-lA-fIR">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="KG1-PX-5Co">
+                            <connections>
+                                <action selector="onCancelTapped:" destination="rcV-wD-8WO" id="Wn5-hM-kEl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="estimatedTime" destination="CxY-9k-PTM" id="RTP-Mo-yDD"/>
                         <outlet property="tableView" destination="gk8-yy-QEV" id="sFz-DT-OZq"/>
                         <outlet property="taskDescription" destination="wbh-Nh-5m6" id="Rxj-U3-KD1"/>
                         <outlet property="taskName" destination="yhb-ZK-OQh" id="bh3-Rk-ynB"/>
-                        <segue destination="Hl7-AX-up1" kind="show" identifier="TaskDetailToStepDetail" action="showDetailViewController:sender:" id="dQ6-MJ-6lU"/>
+                        <segue destination="wDR-AG-dXM" kind="show" identifier="TaskDetailToStepDetail" action="showDetailViewController:sender:" id="dQ6-MJ-6lU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d8o-Tn-pQE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3231" y="-618"/>
         </scene>
-        <!--Step Detail View Controller-->
+        <!--Step Detail-->
         <scene sceneID="lwc-WT-7MC">
             <objects>
                 <viewController id="Hl7-AX-up1" customClass="StepDetailViewController" customModule="TaskHero" customModuleProvider="target" sceneMemberID="viewController">
@@ -396,6 +404,13 @@
                             <constraint firstItem="pyr-XQ-EQ8" firstAttribute="leading" secondItem="e0q-u3-9W9" secondAttribute="leadingMargin" id="wXz-Eb-aKE"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Step Detail" id="sJB-mC-Pvm">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="el9-eh-XWT">
+                            <connections>
+                                <action selector="onCancelTapped:" destination="Hl7-AX-up1" id="tDo-g7-tMe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="stepDescription" destination="bOB-4y-fzO" id="1jF-st-OTM"/>
                         <outlet property="stepName" destination="apc-Et-Cvf" id="t50-uX-B0P"/>
@@ -403,7 +418,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TD5-x0-ieK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4145" y="-618"/>
+            <point key="canvasLocation" x="5084" y="-618.44077961019491"/>
         </scene>
         <!--New Task-->
         <scene sceneID="H0q-Bu-Iy4">
@@ -539,11 +554,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Steps" id="ADF-KU-5sT">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Nxc-u8-6wc">
-                            <connections>
-                                <action selector="onCancelTapped:" destination="BC4-KT-VCb" id="FFp-9U-wP4"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Cancel" id="Nxc-u8-6wc">
+                                <connections>
+                                    <action selector="onCancelTapped:" destination="BC4-KT-VCb" id="FFp-9U-wP4"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" id="UHp-R3-0WE"/>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Done" id="1nl-wD-0ud">
                             <connections>
                                 <action selector="onDoneTapped:" destination="BC4-KT-VCb" id="OVb-gx-nqe"/>
@@ -686,6 +704,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qIk-VX-2pM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1340" y="139"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XNm-GR-2Bz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wDR-AG-dXM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lKy-Sp-zow">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Hl7-AX-up1" kind="relationship" relationship="rootViewController" id="exD-eW-7Ye"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wy5-vf-7m8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4144.8000000000002" y="-618.44077961019491"/>
         </scene>
     </scenes>
     <resources>

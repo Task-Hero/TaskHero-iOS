@@ -37,7 +37,6 @@ class HomeViewController: UIViewController {
             taskDetailViewController.task = task
         }
     }
-
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {

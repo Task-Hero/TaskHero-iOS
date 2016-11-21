@@ -40,12 +40,20 @@ class TaskDetailViewController: UIViewController {
         
         tableView.reloadData()
     }
-
+    
+    @IBAction func onCancelTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "TaskDetailToStepDetail" {
             let step = steps![currentSelectedCellRowNum]
-            let stepDetailViewController = segue.destination as! StepDetailViewController
-            stepDetailViewController.step = step
+            
+            if let navigationController = segue.destination as? UINavigationController {
+                if let viewController = navigationController.topViewController as? StepDetailViewController {
+                    viewController.step = step
+                }
+            }
         }
     }
 }
