@@ -29,12 +29,12 @@ class DummyTaskData: NSObject {
         
         let task1Step3 = Step()
         task1Step3.name = "Update documentation"
-        task1Step3.details = "Check change log and update documents"
+        task1Step3.details = "Check change log and update documents. Check change log and update documents. Check change log and update documents."
         task1Step3.state = "Not Started"
 
         let task2 = Task()
-        task2.name = "test task 02"
-        task2.details = "Deploy new version of code to server"
+        task2.name = "Relase new SDK on dashboard"
+        task2.details = "Deploy new version of code to server. Make sure that all document and links are updated."
         task2.estimatedTime = 100
         
         let task2Step1 = Step()
