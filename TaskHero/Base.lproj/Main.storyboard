@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -132,7 +132,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="99"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4xK-G9-r78" id="z3J-6J-QPP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hml-8M-U7D">
@@ -154,10 +154,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="16l-Bx-PzM">
-                                                    <rect key="frame" x="65" y="78" width="275" height="2"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="275" id="seI-C6-79T"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="58" y="78" width="297" height="2"/>
                                                 </progressView>
                                             </subviews>
                                             <constraints>
@@ -167,10 +164,11 @@
                                                 <constraint firstItem="Hml-8M-U7D" firstAttribute="leading" secondItem="z3J-6J-QPP" secondAttribute="leading" constant="8" id="Jry-fT-F3U"/>
                                                 <constraint firstItem="16l-Bx-PzM" firstAttribute="top" secondItem="K29-hD-W38" secondAttribute="bottom" constant="17" id="PxW-9p-KBT"/>
                                                 <constraint firstItem="Hml-8M-U7D" firstAttribute="top" secondItem="z3J-6J-QPP" secondAttribute="top" constant="8" id="VkW-19-rtZ"/>
+                                                <constraint firstItem="16l-Bx-PzM" firstAttribute="leading" secondItem="z3J-6J-QPP" secondAttribute="leadingMargin" constant="50" id="YbM-xa-uLn"/>
                                                 <constraint firstAttribute="bottom" secondItem="CfL-UM-ljI" secondAttribute="bottom" constant="8" id="gPR-Xo-QsQ"/>
                                                 <constraint firstItem="K29-hD-W38" firstAttribute="leading" secondItem="z3J-6J-QPP" secondAttribute="leading" constant="8" id="j2B-2c-7AB"/>
                                                 <constraint firstItem="CfL-UM-ljI" firstAttribute="leading" secondItem="z3J-6J-QPP" secondAttribute="leading" constant="8" id="jD3-uL-4Bf"/>
-                                                <constraint firstAttribute="trailing" secondItem="16l-Bx-PzM" secondAttribute="trailing" constant="35" id="jbf-Mz-qh4"/>
+                                                <constraint firstAttribute="trailing" secondItem="16l-Bx-PzM" secondAttribute="trailing" constant="20" id="jbf-Mz-qh4"/>
                                                 <constraint firstItem="CfL-UM-ljI" firstAttribute="top" secondItem="K29-hD-W38" secondAttribute="bottom" constant="8" id="nTx-ns-NTS"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="K29-hD-W38" secondAttribute="trailing" constant="8" id="oLJ-cm-rBZ"/>
                                             </constraints>
@@ -328,7 +326,7 @@
                     <navigationItem key="navigationItem" title="Task Detail" id="xcw-lA-fIR">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="KG1-PX-5Co">
                             <connections>
-                                <action selector="onCancelTapped:" destination="rcV-wD-8WO" id="Wn5-hM-kEl"/>
+                                <action selector="onBackButton:" destination="rcV-wD-8WO" id="9Zn-5I-Mcg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -337,7 +335,7 @@
                         <outlet property="tableView" destination="gk8-yy-QEV" id="sFz-DT-OZq"/>
                         <outlet property="taskDescription" destination="wbh-Nh-5m6" id="Rxj-U3-KD1"/>
                         <outlet property="taskName" destination="yhb-ZK-OQh" id="bh3-Rk-ynB"/>
-                        <segue destination="wDR-AG-dXM" kind="show" identifier="TaskDetailToStepDetail" action="showDetailViewController:sender:" id="dQ6-MJ-6lU"/>
+                        <segue destination="Hl7-AX-up1" kind="show" identifier="TaskDetailToStepDetail" id="7EM-kJ-3Nm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d8o-Tn-pQE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -406,7 +404,7 @@
                     <navigationItem key="navigationItem" title="Step Detail" id="sJB-mC-Pvm">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="el9-eh-XWT">
                             <connections>
-                                <action selector="onCancelTapped:" destination="Hl7-AX-up1" id="tDo-g7-tMe"/>
+                                <action selector="onBackButton:" destination="Hl7-AX-up1" id="kTo-lo-Fde"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -417,7 +415,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TD5-x0-ieK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5084" y="-618.44077961019491"/>
+            <point key="canvasLocation" x="4286" y="-618"/>
         </scene>
         <!--New Task-->
         <scene sceneID="H0q-Bu-Iy4">
@@ -700,24 +698,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qIk-VX-2pM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1340" y="139"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="XNm-GR-2Bz">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wDR-AG-dXM" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lKy-Sp-zow">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Hl7-AX-up1" kind="relationship" relationship="rootViewController" id="exD-eW-7Ye"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wy5-vf-7m8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4144.8000000000002" y="-618.44077961019491"/>
         </scene>
     </scenes>
     <resources>
