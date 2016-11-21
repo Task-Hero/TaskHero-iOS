@@ -8,9 +8,10 @@
 
 import UIKit
 import Parse
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -18,18 +19,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         Parse.initialize(with: ParseAPIKey.config);
-                
-        if User.current != nil {
-            setRootViewController(BottomBarLoader.loadBottomBar())
-        } else {
-            setRootViewController(loadLoginScreen())
+        
+        let center  = UNUserNotificationCenter.current()
+        center.delegate = self
+        center.requestAuthorization(options: [.sound,.alert,.badge]) { (granted, error) in
+            if granted {
+                application.registerForRemoteNotifications()
+            } else {
+                NSLog("error requesting push notification authorization")
+            }
         }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: User.didLogoutNotification), object: nil, queue: OperationQueue.main, using: {(notification: Notification) -> Void in
                 self.setRootViewController(self.loadLoginScreen())
         })
         
+        if User.current != nil {
+            setRootViewController(BottomBarLoader.loadBottomBar())
+        } else {
+            setRootViewController(loadLoginScreen())
+        }
+        
         return true
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        NSLog("Registration succeeded! Token: \(token)")
+        
+        let installation = PFInstallation.current()
+        installation?.setDeviceTokenFrom(deviceToken)
+        installation?.channels = ["global"]
+        installation?.saveInBackground()
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        NSLog("Push notifications registration failed; note that this feature not supported in the iOS Simulator, so use your phone if so.")
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,  willPresent notification: UNNotification, withCompletionHandler   completionHandler: @escaping (_ options:   UNNotificationPresentationOptions) -> Void) {
+        print("Handle push from foreground")
+        // custom code to handle push while app is in the foreground
+        print("\(notification.request.content.userInfo)")
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("Handle push from background or closed")
+        PFPush.handle(response.notification.request.content.userInfo)
+        print("\(response.notification.request.content.userInfo)")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

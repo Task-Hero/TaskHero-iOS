@@ -55,7 +55,7 @@ class LoginViewController: UIViewController {
     }
     
     private func animateInputFields() {
-        self.appLogoTopConstraint.constant = 100
+        self.appLogoTopConstraint.constant = 10
         
         UIView.animate(withDuration: 0.4, animations: {
             self.userInputView.alpha = 1
@@ -101,7 +101,7 @@ class LoginViewController: UIViewController {
     }
     
     private func animateLoginSignupButtons() {
-        appLogoTopConstraint.constant = 160
+        appLogoTopConstraint.constant = 120
         
         UIView.animate(withDuration: 0.3, animations: {
             self.userInputView.alpha = 0.1
@@ -114,7 +114,7 @@ class LoginViewController: UIViewController {
             self.appnameLabel.isHidden = false
         })
         
-        // sahil: attempting to dismiss keyboard; doesn't dismiss as expected on simulator, untested on phone
+        // TODO BUG - sahil: keyboard doesn't dismiss as expected after failed login / password attempt
         usernameField.resignFirstResponder()
         view.endEditing(true)
     }
