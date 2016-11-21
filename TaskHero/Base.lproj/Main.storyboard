@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -133,7 +132,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="99"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4xK-G9-r78" id="z3J-6J-QPP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hml-8M-U7D">
@@ -554,14 +553,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Steps" id="ADF-KU-5sT">
-                        <leftBarButtonItems>
-                            <barButtonItem title="Cancel" id="Nxc-u8-6wc">
-                                <connections>
-                                    <action selector="onCancelTapped:" destination="BC4-KT-VCb" id="FFp-9U-wP4"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Item" id="UHp-R3-0WE"/>
-                        </leftBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Nxc-u8-6wc">
+                            <connections>
+                                <action selector="onCancelTapped:" destination="BC4-KT-VCb" id="FFp-9U-wP4"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Done" id="1nl-wD-0ud">
                             <connections>
                                 <action selector="onDoneTapped:" destination="BC4-KT-VCb" id="OVb-gx-nqe"/>
