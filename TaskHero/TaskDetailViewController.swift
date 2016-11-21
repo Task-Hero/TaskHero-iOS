@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class TaskDetailViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var taskName: UILabel!
@@ -41,6 +41,23 @@ class TaskDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.reloadData()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "TaskDetailToStepDetail" {
+            let step = steps![currentSelectedCellRowNum]
+            let stepDetailViewController = segue.destination as! StepDetailViewController
+            stepDetailViewController.step = step
+        }
+    }
+}
+
+extension TaskDetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentSelectedCellRowNum = indexPath.row
+        performSegue(withIdentifier: "TaskDetailToStepDetail", sender: self) // send a task which selected
+    }
+}
+    
+extension TaskDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: stepCellIdentifier, for: indexPath) as! StepCell
         cell.step = steps?[indexPath.row]
@@ -51,18 +68,4 @@ class TaskDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return steps?.count ?? 0
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentSelectedCellRowNum = indexPath.row
-        performSegue(withIdentifier: "TaskDetailToStepDetail", sender: self) // send a task which selected
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "TaskDetailToStepDetail" {
-            let step = steps![currentSelectedCellRowNum]
-            let stepDetailViewController = segue.destination as! StepDetailViewController
-            stepDetailViewController.step = step
-        }
-    }
-    
 }

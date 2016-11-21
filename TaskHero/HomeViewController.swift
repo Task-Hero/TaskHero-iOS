@@ -11,6 +11,8 @@ import UIKit
 class HomeViewController: UIViewController {
     
     var tasks: [Task]?
+    var currentSelectedCellRowNum = -1
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -26,6 +28,14 @@ class HomeViewController: UIViewController {
     
     func loadNavigationBar() {
         title = User.current?.name
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "HomeToTaskDetail" {
+            let task = tasks![currentSelectedCellRowNum]
+            let taskDetailViewController = segue.destination as! TaskDetailViewController
+            taskDetailViewController.task = task
+        }
     }
 
 }
@@ -57,7 +67,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentSelectedCellRowNum = indexPath.row
         tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "HomeToTaskDetail", sender: self)
     }
     
 }
