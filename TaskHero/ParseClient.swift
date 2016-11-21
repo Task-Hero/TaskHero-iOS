@@ -92,6 +92,12 @@ class ParseClient: NSObject {
         }
     }
     
+    func connectCurrentUserAndInstallation() {
+        let installation = PFInstallation.current()
+        installation?["user"] = PFUser.current()
+        installation?.saveInBackground()
+    }
+    
     static func logout() {
         PFUser.logOut()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: User.didLogoutNotification), object: nil)

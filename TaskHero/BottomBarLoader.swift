@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class BottomBarLoader: NSObject {
     
@@ -27,6 +28,9 @@ class BottomBarLoader: NSObject {
         bottomBarViewController.actionViewController = actionViewController
         bottomBarViewController.leftItemViewController = leftViewController
         bottomBarViewController.rightItemViewController = rightViewController
+        
+        // save install and current user at loadtime
+        ParseClient.sharedInstance.connectCurrentUserAndInstallation()
         
         return bottomBarViewController
     }

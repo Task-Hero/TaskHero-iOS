@@ -95,6 +95,7 @@ class LoginViewController: UIViewController {
             success: { (user) in
                 self.transitionToApp()
         }, failure: { (error) in
+            self.view.endEditing(true)
             self.showAlert(message: "Username or Password is not valid")
             self.animateLoginSignupButtons()
         })
@@ -112,11 +113,7 @@ class LoginViewController: UIViewController {
             self.userInputView.isHidden = true
             self.buttonsView.isHidden = false
             self.appnameLabel.isHidden = false
-        })
-        
-        // TODO BUG - sahil: keyboard doesn't dismiss as expected after failed login / password attempt
-        usernameField.resignFirstResponder()
-        view.endEditing(true)
+        })        
     }
     
     private func transitionToApp() {
