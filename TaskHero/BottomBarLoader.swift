@@ -21,7 +21,7 @@ class BottomBarLoader: NSObject {
         let leftViewController = storyboard.instantiateViewController(withIdentifier: "HomeNavigationController")
         leftViewController.tabBarItem.image = UIImage(named: "BarItemProgressView")
         
-        let rightViewController = storyboard.instantiateViewController(withIdentifier: "TaskCatalogViewController")
+        let rightViewController = storyboard.instantiateViewController(withIdentifier: "TaskCatalogNavigationController")
         rightViewController.tabBarItem.image = UIImage(named: "BarItemTaskCatalog")
         
         bottomBarViewController.actionViewController = actionViewController

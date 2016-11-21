@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskCatalogViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TaskCatalogViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -36,22 +36,6 @@ class TaskCatalogViewController: UIViewController, UITableViewDelegate, UITableV
         super.didReceiveMemoryWarning()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: taskCardCellIdentifier, for: indexPath) as! TaskCardCell
-        cell.task = tasks?[indexPath.row]
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks?.count ?? 0
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentSelectedCellRowNum = indexPath.row
-        performSegue(withIdentifier: "TaskCatalogToTaskView", sender: nil)
-    }
-    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "TaskCatalogToTaskView" {
@@ -62,3 +46,33 @@ class TaskCatalogViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
 }
+
+extension TaskCatalogViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentSelectedCellRowNum = indexPath.row
+        performSegue(withIdentifier: "TaskCatalogToTaskView", sender: nil)
+    }
+}
+
+extension TaskCatalogViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: taskCardCellIdentifier, for: indexPath) as! TaskCardCell
+        cell.task = tasks?[indexPath.row]
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tasks?.count ?? 0
+    }
+    
+}
+
+
+
+
+
+
+
+
+
