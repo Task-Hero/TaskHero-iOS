@@ -5,7 +5,7 @@
     "steps": [
         {
             "name": "Check diff",
-            "description": "
+            "details": "
                 Check the diff between the currently deployed version and the
                 version that you wish to deploy
                     `$ git diff server/master HEAD`

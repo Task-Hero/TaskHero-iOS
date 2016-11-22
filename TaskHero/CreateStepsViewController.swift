@@ -45,7 +45,9 @@ class CreateStepsViewController: UIViewController {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let destroyAction = UIAlertAction(title: "Discard", style: .destructive) { (action) in
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true) {
+                self.resetNavigationStackToNewTask()
+            }
         }
         
         alertController.addAction(cancelAction)
@@ -56,7 +58,9 @@ class CreateStepsViewController: UIViewController {
     
     @IBAction func onDoneTapped(_ sender: Any) {
         ParseClient.sharedInstance.createTask(task: task, success: {}, failure: {error in print(error) })
+        
         dismiss(animated: true) {
+            self.resetNavigationStackToNewTask()
             self.delegate?.taskWasCreated(self.task)
         }
     }
@@ -86,6 +90,11 @@ class CreateStepsViewController: UIViewController {
         tableView.beginUpdates()
         tableView.deleteRows(at: [indexPath], with: .fade)
         tableView.endUpdates()
+    }
+    
+    private func resetNavigationStackToNewTask() {
+        let root = self.storyboard?.instantiateViewController(withIdentifier: "CreateTaskViewController")
+        self.navigationController?.viewControllers = [root!]
     }
 }
 

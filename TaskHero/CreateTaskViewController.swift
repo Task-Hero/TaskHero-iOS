@@ -42,7 +42,9 @@ class CreateTaskViewController: UIViewController {
     }
     
     @IBAction func onCancelTapped(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            self.resetNavigationStackToNewTask()
+        }
     }
     
     @IBAction func taskNameDidChange(_ sender: Any) {
@@ -63,6 +65,11 @@ class CreateTaskViewController: UIViewController {
         }
         
         return task
+    }
+    
+    private func resetNavigationStackToNewTask() {
+        let root = self.storyboard?.instantiateViewController(withIdentifier: "CreateTaskViewController")
+        self.navigationController?.viewControllers = [root!]
     }
 }
 

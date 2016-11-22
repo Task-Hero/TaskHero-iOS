@@ -93,7 +93,7 @@ class EditStepCell: UITableViewCell {
     }
     
     @objc fileprivate func onTap(sender: UITapGestureRecognizer) {
-        resignFirstResponder()
+        endEditing(true)
     }
     
     @objc fileprivate func onPan(sender: UIPanGestureRecognizer) {
