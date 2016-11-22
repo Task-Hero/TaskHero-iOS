@@ -69,7 +69,7 @@ class LoginViewController: UIViewController {
         })
     }
     
-    @IBAction func onSignupTouch(_ sender: Any) {
+    @IBAction func onSignupTouch(_ sender: Any) {        
         ParseClient.sharedInstance.login(
             email: "taskheroapp@gmail.com",
             password: "admin",

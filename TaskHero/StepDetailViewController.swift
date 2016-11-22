@@ -22,7 +22,7 @@ class StepDetailViewController: UIViewController {
     }
     
     @IBAction func onBackButton(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
 }
 

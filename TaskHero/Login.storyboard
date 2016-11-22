@@ -38,7 +38,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="stk-Dk-gVw">
-                                <rect key="frame" x="35" y="408" width="250" height="150"/>
+                                <rect key="frame" x="35" y="393" width="250" height="150"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ggk-Vb-tos">
                                         <rect key="frame" x="25" y="20" width="200" height="45"/>
@@ -138,7 +138,7 @@
                             <constraint firstItem="NuU-Ak-7iP" firstAttribute="top" secondItem="cbn-vk-hih" secondAttribute="bottom" constant="120" id="JrU-sd-nI1"/>
                             <constraint firstItem="QG2-30-ZQF" firstAttribute="top" secondItem="wCo-8j-IgC" secondAttribute="bottom" id="m6I-Qx-FXH"/>
                             <constraint firstItem="QG2-30-ZQF" firstAttribute="top" secondItem="9vs-N4-p0H" secondAttribute="bottom" constant="275" id="sgG-BO-G5I"/>
-                            <constraint firstAttribute="bottom" secondItem="stk-Dk-gVw" secondAttribute="bottom" constant="10" id="ter-Ev-8Ux"/>
+                            <constraint firstAttribute="bottom" secondItem="stk-Dk-gVw" secondAttribute="bottom" constant="25" id="ter-Ev-8Ux"/>
                             <constraint firstItem="9vs-N4-p0H" firstAttribute="centerX" secondItem="KHv-NG-j46" secondAttribute="centerX" id="w1U-Rp-mki"/>
                             <constraint firstItem="7qj-R1-JaP" firstAttribute="top" secondItem="NuU-Ak-7iP" secondAttribute="bottom" constant="80" id="w8L-5v-erV"/>
                             <constraint firstItem="7qj-R1-JaP" firstAttribute="centerX" secondItem="KHv-NG-j46" secondAttribute="centerX" id="xvu-fs-x7t"/>

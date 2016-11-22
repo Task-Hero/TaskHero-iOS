@@ -11,28 +11,15 @@ import Parse
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        Parse.initialize(with: ParseAPIKey.config);
-        
-        let center  = UNUserNotificationCenter.current()
-        center.delegate = self
-        center.requestAuthorization(options: [.sound,.alert,.badge]) { (granted, error) in
-            if granted {
-                application.registerForRemoteNotifications()
-            } else {
-                NSLog("error requesting push notification authorization")
-            }
-        }
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: User.didLogoutNotification), object: nil, queue: OperationQueue.main, using: {(notification: Notification) -> Void in
-                self.setRootViewController(self.loadLoginScreen())
-        })
+        Parse.initialize(with: ParseAPIKey.config)
+        setupNotifications(application)
+        registerForLogoutMessages()
         
         if User.current != nil {
             setRootViewController(BottomBarLoader.loadBottomBar())
@@ -41,32 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         return true
-    }
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        NSLog("Registration succeeded! Token: \(token)")
-        
-        let installation = PFInstallation.current()
-        installation?.setDeviceTokenFrom(deviceToken)
-        installation?.channels = ["global"]
-        installation?.saveInBackground()
-    }
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        NSLog("Push notifications registration failed; note that this feature not supported in the iOS Simulator, so use your phone if so.")
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter,  willPresent notification: UNNotification, withCompletionHandler   completionHandler: @escaping (_ options:   UNNotificationPresentationOptions) -> Void) {
-        print("Handle push from foreground")
-        // custom code to handle push while app is in the foreground
-        print("\(notification.request.content.userInfo)")
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("Handle push from background or closed")
-        PFPush.handle(response.notification.request.content.userInfo)
-        print("\(response.notification.request.content.userInfo)")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -84,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        clearBadges()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -101,5 +62,65 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
     }
     
+    private func registerForLogoutMessages() {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: User.didLogoutNotification), object: nil, queue: OperationQueue.main, using: {(notification: Notification) -> Void in
+            self.setRootViewController(self.loadLoginScreen())
+        })
+    }
+    
+}
+
+// MARK: functions related to push
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func clearBadges() {
+        let installation = PFInstallation.current()
+        installation?.badge = 0
+        installation?.saveInBackground { (success, error) -> Void in
+            if success {
+                UIApplication.shared.applicationIconBadgeNumber = 0
+            }
+            else {
+                NSLog("Failed to clear badges")
+            }
+        }
+    }
+    
+    func setupNotifications(_ application: UIApplication) {
+        let center  = UNUserNotificationCenter.current()
+        center.delegate = self
+        center.requestAuthorization(options: [.sound,.alert,.badge]) { (granted, error) in
+            if granted {
+                application.registerForRemoteNotifications()
+            } else {
+                NSLog("Error requesting push notification authorization")
+            }
+        }
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        NSLog("Registration succeeded! Token: \(token)")
+        
+        let installation = PFInstallation.current()
+        installation?.setDeviceTokenFrom(deviceToken)
+        installation?.channels = ["global"]
+        installation?.saveInBackground()
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        NSLog("Push notifications registration failed; note that this feature not supported in the iOS Simulator, so use your phone if so.")
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,  willPresent notification: UNNotification, withCompletionHandler   completionHandler: @escaping (_ options:   UNNotificationPresentationOptions) -> Void) {
+            PFPush.handle(notification.request.content.userInfo)
+            print("\(notification.request.content.userInfo)")
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+            PFPush.handle(response.notification.request.content.userInfo)
+            print("\(response.notification.request.content.userInfo)")
+    }
 }
 

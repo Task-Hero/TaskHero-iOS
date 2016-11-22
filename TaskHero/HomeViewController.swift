@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class HomeViewController: UIViewController {
     
@@ -65,7 +66,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         tasks = DummyTaskData.getTaskData()
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
         currentSelectedCellRowNum = indexPath.row
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "HomeToTaskDetail", sender: self)
