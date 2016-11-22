@@ -109,13 +109,6 @@ extension ParseClient {
         
         PFCloud.callFunction(inBackground: "sendPushToUser", withParameters: request as [NSObject : Any])
     }
-
-    func sendPushTo(pfUser: PFUser, message: String) {
-        let data = ["alert": message, "badge": "Increment", "sound": "1"]
-        let request = ["user": pfUser.objectId!, "data": data] as [String : Any]
-        
-        PFCloud.callFunction(inBackground: "sendPushToUser", withParameters: request as [NSObject : Any])
-    }
     
     func connectCurrentUserAndInstallation() {
         let installation = PFInstallation.current()

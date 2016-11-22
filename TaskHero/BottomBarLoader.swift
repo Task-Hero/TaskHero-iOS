@@ -29,9 +29,6 @@ class BottomBarLoader: NSObject {
         bottomBarViewController.leftItemViewController = leftViewController
         bottomBarViewController.rightItemViewController = rightViewController
         
-        // save install and current user at loadtime
-        ParseClient.sharedInstance.connectCurrentUserAndInstallation()
-        
         return bottomBarViewController
     }
 
