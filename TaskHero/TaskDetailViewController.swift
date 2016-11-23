@@ -41,31 +41,27 @@ class TaskDetailViewController: UIViewController {
         tableView.reloadData()
     }
     
-    @IBAction func onCancelTapped(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "TaskDetailToStepDetail" {
             let step = steps![currentSelectedCellRowNum]
             
-            if let navigationController = segue.destination as? UINavigationController {
-                if let viewController = navigationController.topViewController as? StepDetailViewController {
-                    viewController.step = step
-                }
-            }
+            let vc = segue.destination as? StepDetailViewController
+            vc?.step = step
         }
     }
+    
+    @IBAction func onBackButton(_ sender: Any) {
+        _ = navigationController?.popViewController(animated: true)
+    }    
+    
 }
 
-extension TaskDetailViewController: UITableViewDelegate {
+extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currentSelectedCellRowNum = indexPath.row
         performSegue(withIdentifier: "TaskDetailToStepDetail", sender: self) // send a task which selected
     }
-}
-    
-extension TaskDetailViewController: UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: stepCellIdentifier, for: indexPath) as! StepCell
         cell.step = steps?[indexPath.row]
@@ -77,3 +73,4 @@ extension TaskDetailViewController: UITableViewDataSource {
         return steps?.count ?? 0
     }
 }
+

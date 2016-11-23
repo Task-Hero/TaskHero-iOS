@@ -13,48 +13,6 @@ class ParseClient: NSObject {
     
     static let sharedInstance = ParseClient()
     
-    func signup(name: String, email: String, password: String, success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
-        let user = PFUser()
-        user.username = email
-        user.email = email
-        user.password = password
-        user["name"] = name
-        
-        user.signUpInBackground { (isSuccess, error) in
-            if let error = error {
-                failure(error)
-            } else {
-                let createdUser = User(user: user)
-                success(createdUser)
-            }
-        }
-    }
-    
-    func login(email: String, password: String, success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
-        PFUser.logInWithUsername(inBackground: email, password: password) { (user, error) in
-            if let error = error {
-                failure(error)
-            } else {
-                let foundUser = User(user: user!)
-                success(foundUser)
-            }
-        }
-    }
-    
-    func getTeammates(success: @escaping ([User]) -> (), failure: @escaping (Error) -> ()) {
-        // TODO: this could easily be constrained to teams later on
-        let query = PFUser.query()
-        query?.order(byAscending: "name")
-        query?.findObjectsInBackground { (users, error) in
-            if let error = error {
-                failure(error)
-            } else {
-                let foundUsers = (users ?? []).map { User(user: $0) }
-                success(foundUsers)
-            }
-        }
-    }
-    
     func createTask(task: Task, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         let u = PFUser()
         u.objectId = User.current!.id
@@ -91,8 +49,70 @@ class ParseClient: NSObject {
         }
     }
     
+    func getTeammates(success: @escaping ([User]) -> (), failure: @escaping (Error) -> ()) {
+        // TODO: this could easily be constrained to teams later on
+        let query = PFUser.query()
+        query?.order(byAscending: "name")
+        query?.findObjectsInBackground { (users, error) in
+            if let error = error {
+                failure(error)
+            } else {
+                let foundUsers = (users ?? []).map { User(user: $0) }
+                success(foundUsers)
+            }
+        }
+    }
+
+    func login(email: String, password: String, success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
+        PFUser.logInWithUsername(inBackground: email, password: password) { (user, error) in
+            if let error = error {
+                failure(error)
+            } else {
+                let foundUser = User(user: user!)
+                success(foundUser)
+            }
+        }
+    }
+    
     static func logout() {
         PFUser.logOut()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: User.didLogoutNotification), object: nil)
+    }
+    
+    func signup(name: String, email: String, password: String, success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
+        let user = PFUser()
+        user.username = email
+        user.email = email
+        user.password = password
+        user["name"] = name
+        user["team"] = "codepath"
+        
+        user.signUpInBackground { (isSuccess, error) in
+            if let error = error {
+                failure(error)
+            } else {
+                let createdUser = User(user: user)
+                success(createdUser)
+            }
+        }
+    }
+    
+}
+
+// MARK: functions related to push
+
+extension ParseClient {
+    
+    func sendPushTo(user: User, message: String) {
+        let data = ["alert": message, "badge": "Increment", "sound": "1"]
+        let request = ["user": user.id!, "data": data] as [String : Any]
+        
+        PFCloud.callFunction(inBackground: "sendPushToUser", withParameters: request as [NSObject : Any])
+    }
+    
+    func connectCurrentUserAndInstallation() {
+        let installation = PFInstallation.current()
+        installation?["user"] = PFUser.current()
+        installation?.saveInBackground()
     }
 }
