@@ -260,7 +260,7 @@
 					F450E72B1DC99E1C006B1EC2 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = FWRJ4KS4D6;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -507,6 +507,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.taskheroapp.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e169a453-b19f-4e9a-8632-d54e9234fed9";
+				PROVISIONING_PROFILE_SPECIFIER = "task hero app dev";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -517,7 +519,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TaskHero/TaskHero.entitlements;
-				DEVELOPMENT_TEAM = FWRJ4KS4D6;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TaskHero/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.taskheroapp.ios;
