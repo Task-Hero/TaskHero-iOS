@@ -13,6 +13,39 @@ class ParseClient: NSObject {
     
     static let sharedInstance = ParseClient()
     
+    func getAllTaskInstances(sucess: @escaping ([Task]) -> (), failure: @escaping (Error) -> ()) {
+        let query = PFQuery(className: "TaskInstances")        
+        query.findObjectsInBackground(block: { (objects, error) -> Void in
+            if (error == nil) {
+                var tasks: [Task] = []
+                for object in objects! {
+                    let task = Task.init(task: object)
+                    tasks.append(task)
+                }
+                sucess(tasks
+                )
+            } else {
+                failure(error!)
+            }
+        })
+    }
+    
+    func getAllTasks(sucess: @escaping ([Task]) -> (), failure: @escaping (Error) -> ()) {
+        let query = PFQuery(className: "Task")
+        
+        query.findObjectsInBackground(block: { (objects, error) -> Void in
+            if (error == nil) {
+                var tasks: [Task] = []
+                for object in objects! {
+                    tasks.append(Task.init(task: object))
+                }
+                sucess(tasks)
+            } else {
+                failure(error!)
+            }
+        })
+    }
+    
     func createTask(task: Task, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         let u = PFUser()
         u.objectId = User.current!.id
@@ -21,6 +54,7 @@ class ParseClient: NSObject {
         t["author"] = u
         t["name"] = task.name
         t["details"] = task.details
+        t["estimated_time"] = task.estimatedTime
     
         if let steps = task.steps {
             let stepsData = steps.map({ (step) -> [String : AnyObject] in
@@ -61,6 +95,18 @@ class ParseClient: NSObject {
                 success(foundUsers)
             }
         }
+    }
+    
+    func getUser(userId: String, success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
+        let query = PFUser.query()
+        query?.getObjectInBackground(withId: userId, block: { (userObject, error) -> Void in
+            if let error = error {
+                failure(error)
+            } else {
+                let user = User(user: userObject!)
+                success(user)
+            }
+        })
     }
 
     func login(email: String, password: String, success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
@@ -106,7 +152,6 @@ extension ParseClient {
     func sendPushTo(user: User, message: String) {
         let data = ["alert": message, "badge": "Increment", "sound": "1"]
         let request = ["user": user.id!, "data": data] as [String : Any]
-        
         PFCloud.callFunction(inBackground: "sendPushToUser", withParameters: request as [NSObject : Any])
     }
     

@@ -11,16 +11,25 @@ import UIKit
 class HomeViewController: UIViewController {
     
     var tasks: [Task]?
-    var currentSelectedCellRowNum = -1
-    
+    var selectedCell = -1
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadNavigationBar()
-        getDummyData()
         loadTableView()
+        loadTasks()
     }
+    
+    func loadTasks() {
+        ParseClient.sharedInstance.getAllTasks(sucess: {(tasks) -> () in
+            self.tasks = tasks
+            self.tableView.reloadData()
+        }, failure: {(error) -> () in
+            NSLog("Error: \(error)")
+        })
+    }
+    
     
     @IBAction func logoutButton(_ sender: UIBarButtonItem) {
         ParseClient.logout()
@@ -32,7 +41,7 @@ class HomeViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "HomeToTaskDetail" {
-            let task = tasks![currentSelectedCellRowNum]
+            let task = tasks![selectedCell]
             let taskDetailViewController = segue.destination as! TaskDetailViewController
             taskDetailViewController.task = task
         }
@@ -46,7 +55,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.dataSource = self
         tableView.estimatedRowHeight = 70
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,7 +66,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (tasks?.count)!
+        return tasks == nil ? 0 : (tasks?.count)!
     }
     
     func getDummyData() {
@@ -66,7 +74,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
-        currentSelectedCellRowNum = indexPath.row
+        selectedCell = indexPath.row
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "HomeToTaskDetail", sender: self)
     }
