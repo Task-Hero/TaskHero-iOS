@@ -19,6 +19,11 @@ class HomeViewController: UIViewController {
         loadNavigationBar()
         loadTableView()
         loadTasks()
+        reloadTableOnNotification()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
     
     func loadTasks() {
@@ -29,7 +34,6 @@ class HomeViewController: UIViewController {
             NSLog("Error: \(error)")
         })
     }
-    
     
     @IBAction func logoutButton(_ sender: UIBarButtonItem) {
         ParseClient.logout()
@@ -53,14 +57,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func loadTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.estimatedRowHeight = 70
+        tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.separatorStyle = .none
+        tableView.registerNib(with: "TaskInstanceCellTableViewCell")
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTaskCardCell", for: indexPath) as! HomeTaskCardCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskInstanceCellTableViewCell", for: indexPath) as! TaskInstanceCellTableViewCell
         let task = tasks?[indexPath.row]
         cell.task = task
+        cell.maxWidth = view.frame.width
         cell.loadData()
         return cell
     }
@@ -69,14 +76,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return tasks == nil ? 0 : (tasks?.count)!
     }
     
-    func getDummyData() {
-        tasks = DummyTaskData.getTaskData()
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
         selectedCell = indexPath.row
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "HomeToTaskDetail", sender: self)
+    }
+    
+    func reloadTableOnNotification() {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Step.assigneeLoadedNotification), object: nil, queue: OperationQueue.main, using: {(notification: Notification) -> Void in
+                self.tableView.reloadData()
+        })
     }
     
 }

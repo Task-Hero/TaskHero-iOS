@@ -14,16 +14,15 @@ class ParseClient: NSObject {
     static let sharedInstance = ParseClient()
     
     func getAllTaskInstances(sucess: @escaping ([Task]) -> (), failure: @escaping (Error) -> ()) {
-        let query = PFQuery(className: "TaskInstances")        
+        let query = PFQuery(className: "TaskInstances")
+        
         query.findObjectsInBackground(block: { (objects, error) -> Void in
             if (error == nil) {
                 var tasks: [Task] = []
                 for object in objects! {
-                    let task = Task.init(task: object)
-                    tasks.append(task)
+                    tasks.append(Task.init(task: object))
                 }
-                sucess(tasks
-                )
+                sucess(tasks)
             } else {
                 failure(error!)
             }
@@ -99,6 +98,7 @@ class ParseClient: NSObject {
     
     func getUser(userId: String, success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
         let query = PFUser.query()
+        
         query?.getObjectInBackground(withId: userId, block: { (userObject, error) -> Void in
             if let error = error {
                 failure(error)

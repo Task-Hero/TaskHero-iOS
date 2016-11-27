@@ -13,7 +13,6 @@ protocol TaskCardCellDelegate {
     
 }
 
-
 class TaskCardCell: UITableViewCell {
 
     @IBOutlet weak var cardView: UIView!
@@ -21,7 +20,7 @@ class TaskCardCell: UITableViewCell {
     @IBOutlet weak var taskDescription: UILabel!
     @IBOutlet weak var estimatedTime: UILabel!
     
-//    weak var delegate:TaskCardCellDelegate?
+//  weak var delegate:TaskCardCellDelegate?
     
     var task:Task! {
         didSet{
@@ -65,11 +64,6 @@ class TaskCardCell: UITableViewCell {
     @objc fileprivate func onTaskPan(sender: UIPanGestureRecognizer) {
         print("---- on Pan")
     }
-    
-    
-    
-    
-    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

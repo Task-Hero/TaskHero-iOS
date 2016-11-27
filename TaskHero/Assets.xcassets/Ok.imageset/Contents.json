@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "Ok-98.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Ok-97.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "office-view.jpg",
+      "filename" : "Ok-96.png",
       "scale" : "3x"
     }
   ],

@@ -17,6 +17,8 @@ class Step: NSObject {
     var completedBy: User?
     var completedAt: TimeInterval?
     
+    static var assigneeLoadedNotification = "assignedLoaded"
+    
     override init() {
         super.init()
     }
@@ -52,6 +54,7 @@ class Step: NSObject {
                 } else {
                     self.assignees?.append(user)
                 }
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: Step.assigneeLoadedNotification), object: nil)
             }, failure: { error in
                 NSLog("Error getting users, error: \(error)")
             })
