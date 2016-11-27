@@ -22,8 +22,7 @@ class ParseClient: NSObject {
                     let task = Task.init(task: object)
                     tasks.append(task)
                 }
-                sucess(tasks
-                )
+                sucess(tasks)
             } else {
                 failure(error!)
             }
@@ -55,7 +54,48 @@ class ParseClient: NSObject {
         t["name"] = task.name
         t["details"] = task.details
         t["estimated_time"] = task.estimatedTime
+        
+        // TODO: Generate Task ID
     
+        if let steps = task.steps {
+            let stepsData = steps.map({ (step) -> [String : AnyObject] in
+                var assigneeIds: [String] = []
+                if let assignees = step.assignees {
+                    assigneeIds = assignees.map { user in user.id! }
+                }
+                
+                return [
+                    "name": step.name as AnyObject,
+                    "details": step.details as AnyObject,
+                    "assignees": assigneeIds as AnyObject
+                ]
+            })
+            
+            let data = try! JSONSerialization.data(withJSONObject: stepsData, options: [])
+            t["steps"] = String(data: data, encoding: .utf8)
+        }
+        
+        t.saveInBackground { (saved, error) in
+            if let error = error {
+                failure(error)
+            } else {
+                success()
+            }
+        }
+    }
+    
+    func createTaskInstance(task: Task, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        let u = PFUser()
+        u.objectId = User.current!.id
+        
+        let t = PFObject(className: "TaskInstances")
+        t["author"] = u
+        t["name"] = task.name
+        t["details"] = task.details
+        t["estimated_time"] = task.estimatedTime
+        
+        // TODO: Generate Task ID
+        
         if let steps = task.steps {
             let stepsData = steps.map({ (step) -> [String : AnyObject] in
                 var assigneeIds: [String] = []

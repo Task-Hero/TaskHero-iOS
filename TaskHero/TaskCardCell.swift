@@ -65,6 +65,7 @@ class TaskCardCell: UITableViewCell {
     
     @objc fileprivate func onTaskPan(sender: UIPanGestureRecognizer) {
         print("---- on Pan")
+        // TODO: add delete task functionality here.
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -21,17 +21,22 @@ class TaskCatalogViewController: UIViewController {
 
         tableView.dataSource = self
         tableView.delegate = self
-        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160
-        
         tableView.register(UINib(nibName: taskCardCellIdentifier, bundle: nil), forCellReuseIdentifier: taskCardCellIdentifier)
         
-        // Use temporary data for now
-        tasks = DummyTaskData.getTaskData()
-        tableView.reloadData()
+        loadTasks()
     }
 
+    func loadTasks() {
+        ParseClient.sharedInstance.getAllTasks(sucess: {(tasks) -> () in
+            self.tasks = tasks
+            self.tableView.reloadData()
+        }, failure: {(error) -> () in
+            NSLog("Error: \(error)")
+        })
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -74,7 +79,26 @@ extension TaskCatalogViewController: TaskCardCellDelegate {
         performSegue(withIdentifier: "TaskCatalogToTaslCatalogDetail", sender: nil)
     }
     
-    func taskLongPressed(_ taskCell:TaskCardCell) {   
+    func taskLongPressed(_ taskCell:TaskCardCell) {
+        let indexPath = tableView.indexPath(for: taskCell)
+        currentSelectedCellRowNum = indexPath!.row
+        
+        let alertController = UIAlertController(title: "Start this task?", message: nil, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let startTaskAction = UIAlertAction(title: "Start", style: .default, handler: { (action) in
+            self.dismiss(animated: true, completion: nil)
+
+            let task = self.tasks![self.currentSelectedCellRowNum]
+            ParseClient.sharedInstance.createTaskInstance(task: task, success: {}, failure: {error in print(error) })
+            
+            // TODO: Go back to Homescreen
+        })
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(startTaskAction)
+        
+        present(alertController, animated: true, completion: nil)
+        
         
     }
 }
