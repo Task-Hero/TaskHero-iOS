@@ -9,10 +9,10 @@
 import UIKit
 
 protocol TaskCardCellDelegate {
-    func taskCellWasRemoved(_ taskCell:TaskCardCell)
-    
+//    func taskCellWasRemoved(_ taskCell:TaskCardCell)
+    func taskTapped(_ taskCell:TaskCardCell)
+    func taskLongPressed(_ taskCell:TaskCardCell)
 }
-
 
 class TaskCardCell: UITableViewCell {
 
@@ -21,7 +21,7 @@ class TaskCardCell: UITableViewCell {
     @IBOutlet weak var taskDescription: UILabel!
     @IBOutlet weak var estimatedTime: UILabel!
     
-//    weak var delegate:TaskCardCellDelegate?
+    var delegate:TaskCardCellDelegate?
     
     var task:Task! {
         didSet{
@@ -51,26 +51,22 @@ class TaskCardCell: UITableViewCell {
         let taskPan = UIPanGestureRecognizer()
         taskPan.addTarget(self, action: #selector(onTaskPan))
         addGestureRecognizer(taskPan)
-        
     }
     
     @objc fileprivate func onTaskTap(sender: UITapGestureRecognizer) {
         print("---- on TaskTapped")
+        delegate?.taskTapped(self)
     }
     
     @objc fileprivate func onTaskLongPress(sender: UILongPressGestureRecognizer) {
         print("---- on LongPress")
+        delegate?.taskLongPressed(self)
     }
     
     @objc fileprivate func onTaskPan(sender: UIPanGestureRecognizer) {
         print("---- on Pan")
     }
     
-    
-    
-    
-    
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

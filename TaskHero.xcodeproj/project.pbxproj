@@ -17,6 +17,7 @@
 		6FFC30441DD8305800597B7A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFC30431DD8305800597B7A /* User.swift */; };
 		6FFC30471DD8310200597B7A /* BottomBarLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFC30461DD8310200597B7A /* BottomBarLoader.swift */; };
 		6FFC30491DD8343B00597B7A /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFC30481DD8343B00597B7A /* ParseClient.swift */; };
+		A8383A591DEA9B34009C9FCA /* TaskCatalogDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8383A581DEA9B34009C9FCA /* TaskCatalogDetailViewController.swift */; };
 		A89AFB631DD8CF0100141EEB /* TaskCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A89AFB621DD8CF0100141EEB /* TaskCardCell.xib */; };
 		A89AFB651DD8D34900141EEB /* TaskCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AFB641DD8D34900141EEB /* TaskCardCell.swift */; };
 		A89AFB691DD9668000141EEB /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AFB681DD9668000141EEB /* TaskDetailViewController.swift */; };
@@ -53,6 +54,7 @@
 		6FFC30461DD8310200597B7A /* BottomBarLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarLoader.swift; sourceTree = "<group>"; };
 		6FFC30481DD8343B00597B7A /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		91DCEFDF98244058CB0BBD64 /* Pods-TaskHero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero.debug.xcconfig"; sourceTree = "<group>"; };
+		A8383A581DEA9B34009C9FCA /* TaskCatalogDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCatalogDetailViewController.swift; sourceTree = "<group>"; };
 		A89AFB601DD8CAC500141EEB /* TaskCatalogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCatalogViewController.swift; sourceTree = "<group>"; };
 		A89AFB621DD8CF0100141EEB /* TaskCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCardCell.xib; sourceTree = "<group>"; };
 		A89AFB641DD8D34900141EEB /* TaskCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCardCell.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				ABD390461DD93D9000F90197 /* CreateTaskViewController.swift */,
 				ABD390481DD94BE700F90197 /* CreateStepsViewController.swift */,
 				ABD390581DD9909C00F90197 /* UserPickerViewController.swift */,
+				A8383A581DEA9B34009C9FCA /* TaskCatalogDetailViewController.swift */,
 			);
 			name = "view controllers";
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				ABD390491DD94BE700F90197 /* CreateStepsViewController.swift in Sources */,
 				ABD390571DD977F800F90197 /* TaskCreationDelegate.swift in Sources */,
 				ABD3905C1DD9951800F90197 /* UserPickerCell.swift in Sources */,
+				A8383A591DEA9B34009C9FCA /* TaskCatalogDetailViewController.swift in Sources */,
 				6FFBB4E01DD8019C00BEC201 /* ParseAPIKey.swift in Sources */,
 				6FFBB4D81DD7EF0600BEC201 /* LoginViewController.swift in Sources */,
 				6FFC30441DD8305800597B7A /* User.swift in Sources */,

@@ -38,18 +38,18 @@ class TaskCatalogViewController: UIViewController {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "TaskCatalogToTaskView" {
+        if segue.identifier == "TaskCatalogToTaslCatalogDetail" {
             let task = tasks![currentSelectedCellRowNum]
-            let taskDetailViewController = segue.destination as! TaskDetailViewController
-            taskDetailViewController.task = task
+            let taskCatalogDetailViewController = segue.destination as! TaskCatalogDetailViewController
+            taskCatalogDetailViewController.task = task
         }
     }
 }
 
 extension TaskCatalogViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentSelectedCellRowNum = indexPath.row
-        performSegue(withIdentifier: "TaskCatalogToTaskView", sender: nil)
+//        currentSelectedCellRowNum = indexPath.row
+//        performSegue(withIdentifier: "TaskCatalogToTaskView", sender: nil)
     }
 }
 
@@ -57,12 +57,25 @@ extension TaskCatalogViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: taskCardCellIdentifier, for: indexPath) as! TaskCardCell
         cell.task = tasks?[indexPath.row]
+        cell.delegate = self
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks?.count ?? 0
+    }
+}
+
+extension TaskCatalogViewController: TaskCardCellDelegate {
+    func taskTapped(_ taskCell:TaskCardCell) {
+        let indexPath = tableView.indexPath(for: taskCell)
+        currentSelectedCellRowNum = indexPath!.row
+        performSegue(withIdentifier: "TaskCatalogToTaslCatalogDetail", sender: nil)
+    }
+    
+    func taskLongPressed(_ taskCell:TaskCardCell) {   
+        
     }
 }
 
