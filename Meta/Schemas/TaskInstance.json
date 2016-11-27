@@ -1,35 +1,25 @@
 {
-    "task": { ... },
-    "task_id": "_Task1",
-    "chat_id": "_Chat1",
-    "steps_progress": [
+    "name": "Server Deploy",
+    "description": "Deploy new version of code to server",
+    "estimated_time": 180,
+    "steps": [
         {
-            "name": "name",
-            "description": "description",            
-            "state": "complete",
-            "completed_by": "_User1",
-            "completed_at": "TIME"
-        },
-        {
-            "name": "name",
-            "description": "description",
+            "name": "Check diff",
+            "details": "
+                Check the diff between the currently deployed version and the
+                version that you wish to deploy
+                    `$ git diff server/master HEAD`
+            ",
             "state": "in_progress",
-            "completed_by": null,
-            "completed_at": null
-        },
-        {
-            "name": "name",
-            "description": "description",
-            "state": "requires_signoff",
-            "completed_by": "_User2",
-            "completed_at": null
-        },
-        {
-            "name": "name",
-            "description": "description",
-            "state": "not_started",
-            "completed_by": null,
-            "completed_at": null
+            "completed_by": "_User4",
+            "completed_at": null,
+            "assignees": [
+                "_User1",
+                "_User2"
+            ],
+            "signoff": "_User3",
         }
-    ]
+    ],
+    "task_id": "_Task1",
+    "chat_id": "_Chat1"
 }
