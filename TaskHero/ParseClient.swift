@@ -54,8 +54,6 @@ class ParseClient: NSObject {
         t["name"] = task.name
         t["details"] = task.details
         t["estimated_time"] = task.estimatedTime
-        
-        // TODO: Generate Task ID
     
         if let steps = task.steps {
             let stepsData = steps.map({ (step) -> [String : AnyObject] in
@@ -94,8 +92,7 @@ class ParseClient: NSObject {
         t["details"] = task.details
         t["estimated_time"] = task.estimatedTime
         t["chat_id"] = "test_chat_id"
-        
-        // TODO: Generate Task ID
+        t["task_id"] = task.taskPFObject
         
         if let steps = task.steps {
             let stepsData = steps.map({ (step) -> [String : AnyObject] in

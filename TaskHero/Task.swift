@@ -16,6 +16,7 @@ class Task: NSObject {
     var steps: [Step]?
     var taskId: String?
     var chatId: String?
+    var taskPFObject: PFObject?
     
     override init() {
         super.init()
@@ -40,6 +41,8 @@ class Task: NSObject {
         if let chatId = task["chatId"] {
             self.chatId = chatId as? String
         }
+        
+        self.taskPFObject = task
     }
 
     private func getSteps(steps: String) {
