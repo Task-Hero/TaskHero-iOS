@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="151" id="KGk-i7-Jjw" customClass="MyMessageCell" customModule="TaskHero" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="370" height="151"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="370" height="150.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aWR-wR-jGb">
+                        <rect key="frame" x="334" y="114.5" width="28" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="7os-ne-tGl"/>
+                            <constraint firstAttribute="width" constant="28" id="Xrg-Se-c2s"/>
+                        </constraints>
+                    </imageView>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ELR-W5-ddQ">
+                        <rect key="frame" x="179" y="110" width="147" height="32.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message text etc etc" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOr-Re-zWh">
+                                <rect key="frame" x="8" y="8" width="131" height="16.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.85097042124321332" green="0.92503939127292556" blue="0.95251953125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="lOr-Re-zWh" secondAttribute="trailing" constant="8" id="9S0-xB-r7N"/>
+                            <constraint firstItem="lOr-Re-zWh" firstAttribute="top" secondItem="ELR-W5-ddQ" secondAttribute="top" constant="8" id="GSf-KR-aW9"/>
+                            <constraint firstAttribute="bottom" secondItem="lOr-Re-zWh" secondAttribute="bottom" constant="8" id="Mil-eM-5S7"/>
+                            <constraint firstItem="lOr-Re-zWh" firstAttribute="leading" secondItem="ELR-W5-ddQ" secondAttribute="leading" constant="8" id="Ot6-pH-ACB"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ELR-W5-ddQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="22g-T6-sSP"/>
+                    <constraint firstItem="aWR-wR-jGb" firstAttribute="leading" secondItem="ELR-W5-ddQ" secondAttribute="trailing" constant="8" id="6Pd-VS-8ns"/>
+                    <constraint firstItem="ELR-W5-ddQ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="GPr-yz-jgj"/>
+                    <constraint firstItem="aWR-wR-jGb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="NNz-5r-VBp"/>
+                    <constraint firstAttribute="trailing" secondItem="aWR-wR-jGb" secondAttribute="trailing" constant="8" id="V5w-fO-byo"/>
+                    <constraint firstItem="aWR-wR-jGb" firstAttribute="bottom" secondItem="ELR-W5-ddQ" secondAttribute="bottom" id="WXe-ei-myb"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="aWR-wR-jGb" secondAttribute="bottom" id="rLl-PY-j7N"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="messageTextLabel" destination="lOr-Re-zWh" id="N8K-5v-avl"/>
+                <outlet property="messageView" destination="ELR-W5-ddQ" id="sr6-za-zzW"/>
+                <outlet property="profileImageView" destination="aWR-wR-jGb" id="7tC-wM-Gug"/>
+            </connections>
+            <point key="canvasLocation" x="133" y="107.5"/>
+        </tableViewCell>
+    </objects>
+</document>
