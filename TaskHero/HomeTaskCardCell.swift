@@ -44,9 +44,9 @@ class HomeTaskCardCell: UITableViewCell {
         var completed_steps = 0.0
         
         for step in (task?.steps)! {
-            if step.state == "Complete" {
+            if step.state == StepState.Completed {
                 completed_steps += 1
-            } else if step.state == "IP" {
+            } else if step.state == StepState.InProgress {
                 completed_steps += 0.25
             }
         }
@@ -58,7 +58,7 @@ class HomeTaskCardCell: UITableViewCell {
         var last_completed_step_index = -1
         
         for (index, step) in (task?.steps)!.enumerated() {
-            if step.state == "Complete" {
+            if step.state == StepState.Completed {
                 last_completed_step_index = index
             }
         }
