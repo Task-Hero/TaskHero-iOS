@@ -20,10 +20,9 @@ class TaskCatalogViewController: UIViewController {
         super.viewDidLoad()
 
         tableView.dataSource = self
-        tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160
-        tableView.register(UINib(nibName: taskCardCellIdentifier, bundle: nil), forCellReuseIdentifier: taskCardCellIdentifier)
+        tableView.registerNib(with: taskCardCellIdentifier)
         
         loadTasks()
     }
@@ -43,18 +42,11 @@ class TaskCatalogViewController: UIViewController {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "TaskCatalogToTaslCatalogDetail" {
+        if segue.identifier == "TaskCatalogToTaskCatalogDetail" {
             let task = tasks![currentSelectedCellRowNum]
             let taskCatalogDetailViewController = segue.destination as! TaskCatalogDetailViewController
             taskCatalogDetailViewController.task = task
         }
-    }
-}
-
-extension TaskCatalogViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        currentSelectedCellRowNum = indexPath.row
-//        performSegue(withIdentifier: "TaskCatalogToTaskView", sender: nil)
     }
 }
 
@@ -76,7 +68,7 @@ extension TaskCatalogViewController: TaskCardCellDelegate {
     func taskTapped(_ taskCell:TaskCardCell) {
         let indexPath = tableView.indexPath(for: taskCell)
         currentSelectedCellRowNum = indexPath!.row
-        performSegue(withIdentifier: "TaskCatalogToTaslCatalogDetail", sender: nil)
+        performSegue(withIdentifier: "TaskCatalogToTaskCatalogDetail", sender: nil)
     }
     
     func taskLongPressed(_ taskCell:TaskCardCell) {

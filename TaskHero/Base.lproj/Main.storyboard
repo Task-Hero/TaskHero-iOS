@@ -235,7 +235,7 @@
                     <navigationItem key="navigationItem" title="Task Catalog" id="btD-fu-2QJ"/>
                     <connections>
                         <outlet property="tableView" destination="u4m-Cn-wiB" id="mAM-2x-n3I"/>
-                        <segue destination="4Bh-kx-Ib5" kind="show" identifier="TaskCatalogToTaslCatalogDetail" id="fKX-f3-GN2"/>
+                        <segue destination="4Bh-kx-Ib5" kind="show" identifier="TaskCatalogToTaskCatalogDetail" id="fKX-f3-GN2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HkU-VY-4aM" userLabel="First Responder" sceneMemberID="firstResponder"/>

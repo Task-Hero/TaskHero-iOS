@@ -53,7 +53,7 @@ class TaskCatalogDetailViewController: UIViewController {
 extension TaskCatalogDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currentSelectedCellRowNum = indexPath.row
-        performSegue(withIdentifier: "TaskCatalogToTaslCatalogDetail", sender: nil)
+        performSegue(withIdentifier: "TaskCatalogToTaskCatalogDetail", sender: nil)
     }
 }
 

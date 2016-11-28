@@ -93,6 +93,7 @@ class ParseClient: NSObject {
         t["name"] = task.name
         t["details"] = task.details
         t["estimated_time"] = task.estimatedTime
+        t["chat_id"] = "test_chat_id"
         
         // TODO: Generate Task ID
         
@@ -106,7 +107,11 @@ class ParseClient: NSObject {
                 return [
                     "name": step.name as AnyObject,
                     "details": step.details as AnyObject,
-                    "assignees": assigneeIds as AnyObject
+                    "assignees": assigneeIds as AnyObject,
+                    "state": "not_started"  as AnyObject,
+                    "completed_at": "" as AnyObject,
+                    "completed_by": "" as AnyObject,
+                    "sign_off_by": "" as AnyObject
                 ]
             })
             
