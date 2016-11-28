@@ -40,11 +40,10 @@ class TaskDetailViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "TaskDetailToStepDetail" {
-            let step = steps![currentSelectedCellRowNum]
-            
-            let vc = segue.destination as? StepDetailViewController
-            vc?.step = step
+        if let vc = segue.destination as? StepDetailViewController {
+            vc.step = steps[currentSelectedCellRowNum]
+        } else if let vc = segue.destination as? ChatViewController {
+            vc.task = task
         }
     }
     

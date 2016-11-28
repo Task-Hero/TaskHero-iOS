@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -242,6 +242,79 @@
             </objects>
             <point key="canvasLocation" x="2279" y="139"/>
         </scene>
+        <!--Chat-->
+        <scene sceneID="9xf-hm-KYC">
+            <objects>
+                <viewController id="CFx-c1-7Ax" customClass="ChatViewController" customModule="TaskHero" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="e0A-d9-zQS"/>
+                        <viewControllerLayoutGuide type="bottom" id="AYM-C4-Cm7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="osK-9L-tQI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KCF-yB-KTi">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DuV-YW-2Nc">
+                                <rect key="frame" x="0.0" y="619" width="375" height="48"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Say something" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cL7-JF-lcM">
+                                        <rect key="frame" x="8" y="9" width="315" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="onTextChanged:" destination="CFx-c1-7Ax" eventType="editingChanged" id="O4G-aG-p0o"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Clr-0r-c9Y">
+                                        <rect key="frame" x="331" y="9" width="36" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="36" id="H5f-J6-HHh"/>
+                                        </constraints>
+                                        <state key="normal" title="Send"/>
+                                        <connections>
+                                            <action selector="onSendTapped:" destination="CFx-c1-7Ax" eventType="touchUpInside" id="zMc-6G-suc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="cL7-JF-lcM" firstAttribute="centerY" secondItem="DuV-YW-2Nc" secondAttribute="centerY" id="5Mt-xn-i5f"/>
+                                    <constraint firstItem="Clr-0r-c9Y" firstAttribute="centerY" secondItem="cL7-JF-lcM" secondAttribute="centerY" id="D2h-Wx-6ag"/>
+                                    <constraint firstItem="cL7-JF-lcM" firstAttribute="leading" secondItem="DuV-YW-2Nc" secondAttribute="leading" constant="8" id="Dv6-xb-bmg"/>
+                                    <constraint firstAttribute="trailing" secondItem="Clr-0r-c9Y" secondAttribute="trailing" constant="8" id="Icv-Qo-w6M"/>
+                                    <constraint firstAttribute="height" constant="48" id="Sau-mo-3Fq"/>
+                                    <constraint firstItem="Clr-0r-c9Y" firstAttribute="leading" secondItem="cL7-JF-lcM" secondAttribute="trailing" constant="8" id="lQo-A4-OAu"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KCF-yB-KTi" firstAttribute="leading" secondItem="osK-9L-tQI" secondAttribute="leading" id="1sv-CS-3hg"/>
+                            <constraint firstAttribute="trailing" secondItem="KCF-yB-KTi" secondAttribute="trailing" id="5xi-Ds-sID"/>
+                            <constraint firstAttribute="trailing" secondItem="DuV-YW-2Nc" secondAttribute="trailing" id="Xfg-1P-oSi"/>
+                            <constraint firstAttribute="bottom" secondItem="DuV-YW-2Nc" secondAttribute="bottom" id="m7o-cp-pZb"/>
+                            <constraint firstItem="KCF-yB-KTi" firstAttribute="top" secondItem="osK-9L-tQI" secondAttribute="top" id="wqU-ZP-fiD"/>
+                            <constraint firstItem="DuV-YW-2Nc" firstAttribute="top" secondItem="KCF-yB-KTi" secondAttribute="bottom" id="zbX-YE-5ro"/>
+                            <constraint firstItem="DuV-YW-2Nc" firstAttribute="leading" secondItem="osK-9L-tQI" secondAttribute="leading" id="zzO-vV-TQd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Chat" id="2uD-JM-ncN"/>
+                    <connections>
+                        <outlet property="messageEntryBottomConstraint" destination="m7o-cp-pZb" id="v4m-1B-L1Y"/>
+                        <outlet property="messageSendButton" destination="Clr-0r-c9Y" id="qAG-21-ADx"/>
+                        <outlet property="messageTextField" destination="cL7-JF-lcM" id="J57-u9-3sX"/>
+                        <outlet property="tableView" destination="KCF-yB-KTi" id="c5y-cN-E4k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Acf-ie-waa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3765.5999999999999" y="138.98050974512745"/>
+        </scene>
         <!--Task Detail-->
         <scene sceneID="SgG-oe-vLh">
             <objects>
@@ -421,6 +494,11 @@
                         <barButtonItem key="leftBarButtonItem" title="Back" id="KG1-PX-5Co">
                             <connections>
                                 <action selector="onBackButton:" destination="rcV-wD-8WO" id="9Zn-5I-Mcg"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Chat" id="UPq-gN-x36">
+                            <connections>
+                                <segue destination="CFx-c1-7Ax" kind="show" identifier="TaskDetailToChat" id="Qre-Dq-Cj7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

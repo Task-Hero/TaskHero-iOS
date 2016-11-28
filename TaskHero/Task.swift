@@ -10,13 +10,12 @@ import Foundation
 import Parse
 
 class Task: NSObject {
+    var id: String?
     var name: String?
     var details: String?
     var estimatedTime: TimeInterval?
     var steps: [Step]?
     var taskId: String?
-    var chatId: String?
-    var taskPFObject: PFObject?
     
     override init() {
         super.init()
@@ -25,6 +24,7 @@ class Task: NSObject {
     init(task: PFObject) {
         super.init()
     
+        self.id = task.objectId
         self.name = task["name"] as? String
         self.details = task["details"] as? String
         self.getSteps(steps: (task["steps"] as? String)!)
@@ -34,14 +34,10 @@ class Task: NSObject {
         } else {
             self.estimatedTime = 0.0
         }
-        if let taskId = task["taskId"] {
-            self.taskId = taskId as? String
-        }
-        if let chatId = task["chatId"] {
-            self.chatId = chatId as? String
-        }
         
-        self.taskPFObject = task
+        if let task = task["task"] as? PFObject {
+            self.taskId = task.objectId
+        }
     }
 
     private func getSteps(steps: String) {

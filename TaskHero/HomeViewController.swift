@@ -22,7 +22,7 @@ class HomeViewController: UIViewController {
     }
     
     func loadTasks() {
-        ParseClient.sharedInstance.getAllTasks(sucess: {(tasks) -> () in
+        ParseClient.sharedInstance.getAllTaskInstances(sucess: {(tasks) -> () in
             self.tasks = tasks
             self.tableView.reloadData()
         }, failure: {(error) -> () in
@@ -67,10 +67,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks == nil ? 0 : (tasks?.count)!
-    }
-    
-    func getDummyData() {
-        tasks = DummyTaskData.getTaskData()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
