@@ -14,7 +14,6 @@ class TaskInstance: NSObject {
     var details: String?
     var estimatedTime: TimeInterval?
     var steps: [Step]?
-    var taskId: String?
     var chatId: String?
     
     init(taskInstance: PFObject) {
@@ -26,9 +25,8 @@ class TaskInstance: NSObject {
         
         if let estimatedTime = taskInstance["estimated_time"] {
             self.estimatedTime = estimatedTime as? TimeInterval
-        }
-        if let taskId = taskInstance["taskId"] {
-            self.taskId = taskId as? String
+        } else {
+            self.estimatedTime = 0.0
         }
         if let chatId = taskInstance["chatId"] {
             self.chatId = chatId as? String
@@ -54,9 +52,9 @@ class TaskInstance: NSObject {
         var completed_steps = 0.0
         
         for step in steps! {
-            if step.state == TaskInstanceState.complete {
+            if step.state == StepState.completed {
                 completed_steps += 1
-            } else if step.state == TaskInstanceState.inProgress {
+            } else if step.state == StepState.inProgress {
                 completed_steps += 0.25
             }
         }
@@ -68,7 +66,7 @@ class TaskInstance: NSObject {
         var last_completed_step_index = 0
         
         for (index, step) in (steps)!.enumerated() {
-            if step.state == TaskInstanceState.complete {
+            if step.state == StepState.completed {
                 last_completed_step_index = index
             }
         }

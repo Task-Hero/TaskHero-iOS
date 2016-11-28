@@ -50,7 +50,7 @@ class HomeViewController: UIViewController {
         if segue.identifier == "HomeToTaskDetail" {
             let task = tasks![selectedCell!]
             let taskDetailViewController = segue.destination as! TaskDetailViewController
-            taskDetailViewController.task = task
+            taskDetailViewController.taskInstance = task
         }
     }
     

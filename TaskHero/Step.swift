@@ -8,6 +8,12 @@
 
 import Foundation
 
+class StepState: NSObject {
+    static let notStarted = "not_started"
+    static let inProgress = "in_progress"
+    static let completed = "completed"
+}
+
 class Step: NSObject {
     var name: String?
     var details: String?

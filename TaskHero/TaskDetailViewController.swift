@@ -22,28 +22,27 @@ class TaskDetailViewController: UIViewController {
     @IBOutlet weak var percentLabel: UILabel!
     @IBOutlet weak var progressBarTrailingConstraint: NSLayoutConstraint!
     
-    var task: TaskInstance? {
+    var taskInstance: TaskInstance? {
         didSet {
-            steps = task?.steps
+            steps = taskInstance?.steps
         }
     }
     var steps: [Step]!
     var selectedCell: Int?
-    let stepCellIdentifier = "StepCell"
+    let stepCellIdentifier = "StepDetailCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
  
         loadTopView()
         loadTableView()
-        
         tableView.reloadData()
     }
     
     func loadTopView() {
-        taskNameLabel.text = (task!.name!)
-        taskDescriptionLabel.text = task?.details
-        setUserImages(users: (task?.getInvolvedUsers())!)
+        taskNameLabel.text = (taskInstance!.name!)
+        taskDescriptionLabel.text = taskInstance?.details
+        setUserImages(users: (taskInstance?.getInvolvedUsers())!)
         setPercentBarAndLabel()
     }
     
@@ -60,7 +59,7 @@ class TaskDetailViewController: UIViewController {
     }
     
     func setPercentBarAndLabel() {
-        let percentComplete = round((task?.getPercentComplete())! * 100)
+        let percentComplete = round((taskInstance?.getPercentComplete())! * 100)
         percentLabel.text = "\(percentComplete)%"
         progressBarContainerView.layer.borderWidth = 2
         progressBarContainerView.layer.borderColor = UIColor.black.cgColor
@@ -74,9 +73,8 @@ class TaskDetailViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "TaskDetailToStepDetail" {
-            let step = steps![selectedCell!]
-            
             let vc = segue.destination as? StepDetailViewController
+            let step = steps![selectedCell!]
             vc?.step = step
         }
     }
@@ -94,13 +92,16 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCell = indexPath.row
-        performSegue(withIdentifier: "TaskDetailToStepDetail", sender: self) // send a task which selected
+        performSegue(withIdentifier: "TaskDetailToStepDetail", sender: self)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: stepCellIdentifier, for: indexPath) as! StepCell
-        cell.step = steps?[indexPath.row]
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: stepCellIdentifier, for: indexPath) as! StepDetailCell
+        cell.step = steps?[indexPath.row]        
+        if taskInstance?.getLastCompletedStep() == steps?[indexPath.row] {
+            cell.nextStep = true
+        }
+        cell.setStateImageView()
         return cell
     }
     

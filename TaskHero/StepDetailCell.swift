@@ -1,5 +1,5 @@
 //
-//  StepCell.swift
+//  StepDetailCell.swift
 //  TaskHero
 //
 //  Created by Akifumi Shinagawa on 11/13/16.
@@ -8,13 +8,15 @@
 
 import UIKit
 
-class StepCell: UITableViewCell {
+class StepDetailCell: UITableViewCell {
 
     @IBOutlet weak var user1ImageView: UIImageView!
     @IBOutlet weak var user2ImageView: UIImageView!
     @IBOutlet weak var stateImageView: UIImageView!
     @IBOutlet weak var stepNameLabel: UILabel!
     @IBOutlet weak var stepView: UIView!
+    
+    var nextStep: Bool = false
     
     var step: Step! {
         didSet {
@@ -23,7 +25,6 @@ class StepCell: UITableViewCell {
             if (step.assignees?.count)! > 1 {
                 user2ImageView.setImageWith((step.assignees?[1].profileImageUrl)!)
             }
-            
         }
     }
     
@@ -38,13 +39,20 @@ class StepCell: UITableViewCell {
         user2ImageView.clipsToBounds = true
         user2ImageView.layer.cornerRadius = user1ImageView.bounds.width / 2
         stateImageView.clipsToBounds = true
-        stateImageView.layer.cornerRadius = user1ImageView.bounds.width / 2        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setStateImageView() {
+        if step.state == StepState.completed {
+            stateImageView.image = UIImage(named: "CheckMark")
+        } else if nextStep {
+            stateImageView.image = UIImage(named: "Attention")
+        }
     }
 
 }

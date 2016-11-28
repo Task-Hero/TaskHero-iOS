@@ -14,15 +14,15 @@ class ParseClient: NSObject {
     static let sharedInstance = ParseClient()
     
     func getAllTaskInstances(sucess: @escaping ([TaskInstance]) -> (), failure: @escaping (Error) -> ()) {
-        let query = PFQuery(className: "Task")
+        let query = PFQuery(className: "TaskInstances")
         
         query.findObjectsInBackground(block: { (objects, error) -> Void in
             if (error == nil) {
-                var tasks: [TaskInstance] = []
+                var tasksInstances: [TaskInstance] = []
                 for object in objects! {
-                    tasks.append(TaskInstance.init(taskInstance: object))
+                    tasksInstances.append(TaskInstance.init(taskInstance: object))
                 }
-                sucess(tasks)
+                sucess(tasksInstances)
             } else {
                 failure(error!)
             }
@@ -66,6 +66,46 @@ class ParseClient: NSObject {
                     "name": step.name as AnyObject,
                     "details": step.details as AnyObject,
                     "assignees": assigneeIds as AnyObject
+                ]
+            })
+            
+            let data = try! JSONSerialization.data(withJSONObject: stepsData, options: [])
+            t["steps"] = String(data: data, encoding: .utf8)
+        }
+        
+        t.saveInBackground { (saved, error) in
+            if let error = error {
+                failure(error)
+            } else {
+                success()
+            }
+        }
+    }
+    
+    func createTaskInstance(task: Task, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        let u = PFUser()
+        u.objectId = User.current!.id
+        
+        let t = PFObject(className: "TaskInstances")
+        t["author"] = u
+        t["name"] = task.name
+        t["details"] = task.details
+        t["estimated_time"] = task.estimatedTime
+        t["chat_id"] = "test_chat_id"
+        t["task"] = task.taskPFObject
+        
+        if let steps = task.steps {
+            let stepsData = steps.map({ (step) -> [String : AnyObject] in
+                var assigneeIds: [String] = []
+                if let assignees = step.assignees {
+                    assigneeIds = assignees.map { user in user.id! }
+                }
+                step.state = StepState.notStarted
+                return [
+                    "name": step.name as AnyObject,
+                    "details": step.details as AnyObject,
+                    "assignees": assigneeIds as AnyObject,
+                    "state": step.state as AnyObject
                 ]
             })
             
