@@ -82,7 +82,6 @@ extension TaskCatalogViewController: TaskCardCellDelegate {
 
             let task = self.tasks![self.currentSelectedCellRowNum]
             ParseClient.sharedInstance.createTaskInstance(task: task, success: {}, failure: {error in print(error) })
-            
             // TODO: Go back to Homescreen
         })
         
@@ -90,8 +89,6 @@ extension TaskCatalogViewController: TaskCardCellDelegate {
         alertController.addAction(startTaskAction)
         
         present(alertController, animated: true, completion: nil)
-        
-        
     }
 }
 

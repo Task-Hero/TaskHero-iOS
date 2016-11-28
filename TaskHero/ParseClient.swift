@@ -105,7 +105,7 @@ class ParseClient: NSObject {
                     "name": step.name as AnyObject,
                     "details": step.details as AnyObject,
                     "assignees": assigneeIds as AnyObject,
-                    "state": "not_started"  as AnyObject,
+                    "state": step.state as AnyObject,
                     "completed_at": "" as AnyObject,
                     "completed_by": "" as AnyObject,
                     "sign_off_by": "" as AnyObject

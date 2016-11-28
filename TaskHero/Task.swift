@@ -31,8 +31,7 @@ class Task: NSObject {
         
         if let estimatedTime = task["estimated_time"] {
             self.estimatedTime = estimatedTime as? TimeInterval
-        }
-        else {
+        } else {
             self.estimatedTime = 0.0
         }
         if let taskId = task["taskId"] {
