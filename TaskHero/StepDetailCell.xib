@@ -86,6 +86,7 @@
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="cellView" destination="wb9-hF-5fC" id="tRh-eR-jJH"/>
                 <outlet property="stateImageView" destination="CSJ-ox-moA" id="Zi0-KW-wbh"/>
                 <outlet property="stepNameLabel" destination="0Xc-E8-Om2" id="MgO-sV-URD"/>
                 <outlet property="stepView" destination="oXT-x7-f2A" id="fU3-wo-gDa"/>

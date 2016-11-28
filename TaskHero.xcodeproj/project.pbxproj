@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		44A3C9E97285B686A5282585 /* Pods_TaskHero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF39FDB9B705F8547F587B26 /* Pods_TaskHero.framework */; };
+		6F32FF251DEC0434001C6300 /* UITableViewCell+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F32FF241DEC0434001C6300 /* UITableViewCell+Convenience.swift */; };
+		6F32FF271DEC066A001C6300 /* UIViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F32FF261DEC066A001C6300 /* UIViewController+Convenience.swift */; };
 		6F9417F21DDA8B9100FE1447 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9417F11DDA8B9100FE1447 /* HomeViewController.swift */; };
 		6F9417F61DDA9C1600FE1447 /* DummyTaskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9417F51DDA9C1600FE1447 /* DummyTaskData.swift */; };
 		6FB712C81DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB712C61DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.swift */; };
@@ -46,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		6C9B051DF5F700B34CF21EF6 /* Pods-TaskHero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero.release.xcconfig"; sourceTree = "<group>"; };
+		6F32FF241DEC0434001C6300 /* UITableViewCell+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Convenience.swift"; sourceTree = "<group>"; };
+		6F32FF261DEC066A001C6300 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
 		6F9417F11DDA8B9100FE1447 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6F9417F51DDA9C1600FE1447 /* DummyTaskData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyTaskData.swift; sourceTree = "<group>"; };
 		6FB712C61DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskInstanceCellTableViewCell.swift; sourceTree = "<group>"; };
@@ -185,6 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				ABD390531DD9649800F90197 /* UITableView+Convenience.swift */,
+				6F32FF241DEC0434001C6300 /* UITableViewCell+Convenience.swift */,
+				6F32FF261DEC066A001C6300 /* UIViewController+Convenience.swift */,
 			);
 			name = extensions;
 			sourceTree = "<group>";
@@ -384,6 +390,8 @@
 				ABD3905C1DD9951800F90197 /* UserPickerCell.swift in Sources */,
 				A8383A591DEA9B34009C9FCA /* TaskCatalogDetailViewController.swift in Sources */,
 				6FFBB4E01DD8019C00BEC201 /* ParseAPIKey.swift in Sources */,
+				6F32FF271DEC066A001C6300 /* UIViewController+Convenience.swift in Sources */,
+				6F32FF251DEC0434001C6300 /* UITableViewCell+Convenience.swift in Sources */,
 				6FFBB4D81DD7EF0600BEC201 /* LoginViewController.swift in Sources */,
 				6FFC30441DD8305800597B7A /* User.swift in Sources */,
 				ABD390591DD9909C00F90197 /* UserPickerViewController.swift in Sources */,

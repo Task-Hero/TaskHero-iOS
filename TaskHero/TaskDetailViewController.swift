@@ -92,6 +92,7 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCell = indexPath.row
+        tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "TaskDetailToStepDetail", sender: self)
     }
 
@@ -101,7 +102,7 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
         if taskInstance?.getLastCompletedStep() == steps?[indexPath.row] {
             cell.nextStep = true
         }
-        cell.setStateImageView()
+        cell.loadCell()
         return cell
     }
     
