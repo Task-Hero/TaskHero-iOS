@@ -13,4 +13,11 @@ extension UITableView {
         let nib = UINib(nibName: reuseIdentifier, bundle: Bundle.main)
         register(nib, forCellReuseIdentifier: reuseIdentifier)
     }
+    
+    func scrollToBottom() {
+        let lastSection = numberOfSections - 1
+        let numRowsInLastSection = numberOfRows(inSection: lastSection)
+        let lastIndex = IndexPath(row: numRowsInLastSection - 1, section: lastSection)
+        scrollToRow(at: lastIndex, at: .bottom, animated: false)
+    }
 }
