@@ -71,11 +71,10 @@ class Step: NSObject {
     
     private func getCompletedBy(completedBy: String) {
         ParseClient.sharedInstance.getUser(userId: completedBy, success: { (user) -> () in
-            self.signoff? = user
+            self.completedBy? = user
         }, failure: { error in
             NSLog("Error getting user, error: \(error)")
         })
     }
-    
-    
+        
 }

@@ -13,14 +13,14 @@ class ParseClient: NSObject {
     
     static let sharedInstance = ParseClient()
     
-    func getAllTaskInstances(sucess: @escaping ([Task]) -> (), failure: @escaping (Error) -> ()) {
-        let query = PFQuery(className: "TaskInstances")
+    func getAllTaskInstances(sucess: @escaping ([TaskInstance]) -> (), failure: @escaping (Error) -> ()) {
+        let query = PFQuery(className: "Task")
         
         query.findObjectsInBackground(block: { (objects, error) -> Void in
             if (error == nil) {
-                var tasks: [Task] = []
+                var tasks: [TaskInstance] = []
                 for object in objects! {
-                    tasks.append(Task.init(task: object))
+                    tasks.append(TaskInstance.init(taskInstance: object))
                 }
                 sucess(tasks)
             } else {
@@ -98,7 +98,6 @@ class ParseClient: NSObject {
     
     func getUser(userId: String, success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
         let query = PFUser.query()
-        
         query?.getObjectInBackground(withId: userId, block: { (userObject, error) -> Void in
             if let error = error {
                 failure(error)
@@ -120,7 +119,7 @@ class ParseClient: NSObject {
         }
     }
     
-    static func logout() {
+    func logout() {
         PFUser.logOut()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: User.didLogoutNotification), object: nil)
     }
@@ -160,4 +159,5 @@ extension ParseClient {
         installation?["user"] = PFUser.current()
         installation?.saveInBackground()
     }
+    
 }

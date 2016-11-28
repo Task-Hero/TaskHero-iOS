@@ -41,7 +41,7 @@ class TaskCatalogViewController: UIViewController {
         if segue.identifier == "TaskCatalogToTaskView" {
             let task = tasks![currentSelectedCellRowNum]
             let taskDetailViewController = segue.destination as! TaskDetailViewController
-            taskDetailViewController.task = task
+            //taskDetailViewController.task = task
         }
     }
 }

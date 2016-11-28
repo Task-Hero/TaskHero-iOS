@@ -12,6 +12,8 @@
 		6F9417F61DDA9C1600FE1447 /* DummyTaskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9417F51DDA9C1600FE1447 /* DummyTaskData.swift */; };
 		6FB712C81DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB712C61DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.swift */; };
 		6FB712C91DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FB712C71DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.xib */; };
+		6FB712CB1DEBB4790000AD44 /* TaskInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB712CA1DEBB4790000AD44 /* TaskInstance.swift */; };
+		6FB712CD1DEBB6A90000AD44 /* TaskInstanceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB712CC1DEBB6A90000AD44 /* TaskInstanceState.swift */; };
 		6FFBB4D61DD7EE3300BEC201 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FFBB4D51DD7EE3300BEC201 /* Login.storyboard */; };
 		6FFBB4D81DD7EF0600BEC201 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBB4D71DD7EF0600BEC201 /* LoginViewController.swift */; };
 		6FFBB4E01DD8019C00BEC201 /* ParseAPIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFBB4DF1DD8019C00BEC201 /* ParseAPIKey.swift */; };
@@ -48,6 +50,8 @@
 		6F9417F51DDA9C1600FE1447 /* DummyTaskData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyTaskData.swift; sourceTree = "<group>"; };
 		6FB712C61DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskInstanceCellTableViewCell.swift; sourceTree = "<group>"; };
 		6FB712C71DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskInstanceCellTableViewCell.xib; sourceTree = "<group>"; };
+		6FB712CA1DEBB4790000AD44 /* TaskInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskInstance.swift; sourceTree = "<group>"; };
+		6FB712CC1DEBB6A90000AD44 /* TaskInstanceState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskInstanceState.swift; sourceTree = "<group>"; };
 		6FFBB4D51DD7EE3300BEC201 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		6FFBB4D71DD7EF0600BEC201 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6FFBB4DF1DD8019C00BEC201 /* ParseAPIKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPIKey.swift; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 				6F9417F51DDA9C1600FE1447 /* DummyTaskData.swift */,
 				ABD3904E1DD94C9800F90197 /* Task.swift */,
 				ABD390501DD94C9F00F90197 /* Step.swift */,
+				6FB712CA1DEBB4790000AD44 /* TaskInstance.swift */,
+				6FB712CC1DEBB6A90000AD44 /* TaskInstanceState.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -369,8 +375,10 @@
 				F4388FDD1DDC0C9B00DD1B21 /* StepDetailViewController.swift in Sources */,
 				A89AFB651DD8D34900141EEB /* TaskCardCell.swift in Sources */,
 				6F9417F21DDA8B9100FE1447 /* HomeViewController.swift in Sources */,
+				6FB712CD1DEBB6A90000AD44 /* TaskInstanceState.swift in Sources */,
 				A89AFB711DD9722A00141EEB /* StepCell.swift in Sources */,
 				A89AFB691DD9668000141EEB /* TaskDetailViewController.swift in Sources */,
+				6FB712CB1DEBB4790000AD44 /* TaskInstance.swift in Sources */,
 				6F9417F61DDA9C1600FE1447 /* DummyTaskData.swift in Sources */,
 				ABD390491DD94BE700F90197 /* CreateStepsViewController.swift in Sources */,
 				ABD390571DD977F800F90197 /* TaskCreationDelegate.swift in Sources */,

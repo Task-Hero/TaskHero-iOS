@@ -20,7 +20,7 @@ class TaskCardCell: UITableViewCell {
     @IBOutlet weak var taskDescription: UILabel!
     @IBOutlet weak var estimatedTime: UILabel!
     
-//  weak var delegate:TaskCardCellDelegate?
+//    weak var delegate:TaskCardCellDelegate?
     
     var task:Task! {
         didSet{
