@@ -12,6 +12,7 @@
 		6F32FF271DEC066A001C6300 /* UIViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F32FF261DEC066A001C6300 /* UIViewController+Convenience.swift */; };
 		6F32FF281DEC1710001C6300 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AFB681DD9668000141EEB /* TaskDetailViewController.swift */; };
 		6F32FF291DEC1764001C6300 /* StepDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AFB701DD9722A00141EEB /* StepDetailCell.swift */; };
+		6F32FF2D1DEC2443001C6300 /* TaskInstanceUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F32FF2C1DEC2443001C6300 /* TaskInstanceUpdateDelegate.swift */; };
 		6F9417F21DDA8B9100FE1447 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9417F11DDA8B9100FE1447 /* HomeViewController.swift */; };
 		6FB712C81DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB712C61DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.swift */; };
 		6FB712C91DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FB712C71DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.xib */; };
@@ -55,6 +56,7 @@
 		6C9B051DF5F700B34CF21EF6 /* Pods-TaskHero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskHero.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskHero/Pods-TaskHero.release.xcconfig"; sourceTree = "<group>"; };
 		6F32FF241DEC0434001C6300 /* UITableViewCell+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Convenience.swift"; sourceTree = "<group>"; };
 		6F32FF261DEC066A001C6300 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
+		6F32FF2C1DEC2443001C6300 /* TaskInstanceUpdateDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskInstanceUpdateDelegate.swift; sourceTree = "<group>"; };
 		6F9417F11DDA8B9100FE1447 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6FB712C61DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskInstanceCellTableViewCell.swift; sourceTree = "<group>"; };
 		6FB712C71DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskInstanceCellTableViewCell.xib; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				ABD390561DD977F800F90197 /* TaskCreationDelegate.swift */,
+				6F32FF2C1DEC2443001C6300 /* TaskInstanceUpdateDelegate.swift */,
 			);
 			name = protocols;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 			files = (
 				F4388FDF1DDC0EC700DD1B21 /* BottomBarViewController.swift in Sources */,
 				F4388FDE1DDC0E5600DD1B21 /* TaskCatalogViewController.swift in Sources */,
+				6F32FF2D1DEC2443001C6300 /* TaskInstanceUpdateDelegate.swift in Sources */,
 				F4388FDD1DDC0C9B00DD1B21 /* StepDetailViewController.swift in Sources */,
 				A89AFB651DD8D34900141EEB /* TaskCardCell.swift in Sources */,
 				6F9417F21DDA8B9100FE1447 /* HomeViewController.swift in Sources */,

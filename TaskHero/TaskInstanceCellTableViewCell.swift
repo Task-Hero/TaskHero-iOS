@@ -56,8 +56,8 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
         if percentComplete == 100 {
             taskImageView.image = UIImage(named: "CheckMark")
         } else {
-            let lastStep = task?.getLastCompletedStep()
-            // TODO add multiple images if there's multiple assignees 
+            let lastStep = task?.getNextStep()
+            // TODO: add multiple images if there's multiple assignees
             if let assignee = lastStep?.assignees?[0] {
                 let assigneeProfileUrl = assignee.profileImageUrl!
                 taskImageView.setImageWith(assigneeProfileUrl)
@@ -69,7 +69,7 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
 
     func getPercentCompleteWidth() -> CGFloat {
         let viewMaxWidth = maxWidth! - 20
-        return (viewMaxWidth - (CGFloat(percentComplete!) * viewMaxWidth))
+        return (viewMaxWidth - (CGFloat(percentComplete!) / 100 * viewMaxWidth))
     }
     
 }

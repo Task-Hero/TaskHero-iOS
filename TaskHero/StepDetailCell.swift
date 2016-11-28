@@ -18,6 +18,7 @@ class StepDetailCell: UITableViewCell {
     @IBOutlet weak var stepView: UIView!
     
     var nextStep: Bool = false
+    var delegate: TaskInstanceUpdateDelegate?
     
     var step: Step! {
         didSet {
@@ -66,7 +67,7 @@ class StepDetailCell: UITableViewCell {
                 self.sendBump()
             }
             let completeAction = UIAlertAction(title: "Mark Complete", style: .default) { (action) in
-                print("complete")
+                self.completeStep()
             }
             alertController.addAction(cancelAction)
             alertController.addAction(bumpAction)
@@ -93,7 +94,17 @@ class StepDetailCell: UITableViewCell {
     }
     
     func completeStep() {
-        step.state = StepState.completed
+        var assignee_emails = [String]()
+        for assignee in step.assignees! {
+            assignee_emails.append(assignee.email!)
+        }
+        
+        if assignee_emails.contains((User.current?.email)!) {
+            step.state = StepState.completed
+            delegate?.taskInstanceUpdated()
+        } else {
+            showAlert(message: "A step can only be completed by an assignee")
+        }
     }
 
 }

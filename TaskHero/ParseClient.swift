@@ -13,6 +13,38 @@ class ParseClient: NSObject {
     
     static let sharedInstance = ParseClient()
     
+    func updateTaskInstance(taskInstance: TaskInstance, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        let query = PFQuery(className: "TaskInstances")
+        query.whereKey("objectId", equalTo: taskInstance.id!)
+        query.getFirstObjectInBackground(block: { (object, error) -> Void in
+            if (error == nil) {
+                
+                if let steps = taskInstance.steps{
+                    let stepsData = steps.map({ (step) -> [String : AnyObject] in
+                        var assigneeIds: [String] = []
+                        if let assignees = step.assignees {
+                            assigneeIds = assignees.map { user in user.id! }
+                        }
+                        return [
+                            "name": step.name as AnyObject,
+                            "details": step.details as AnyObject,
+                            "assignees": assigneeIds as AnyObject,
+                            "state": step.state as AnyObject
+                        ]
+                    })
+                    
+                    let data = try! JSONSerialization.data(withJSONObject: stepsData, options: [])
+                    let string = String(data: data, encoding: .utf8)
+                    object?.setValue(string, forKey: "steps")
+                }
+                object?.saveInBackground()
+                success()
+            } else {
+                failure(error!)
+            }
+        })
+    }
+    
     func getAllTaskInstances(sucess: @escaping ([TaskInstance]) -> (), failure: @escaping (Error) -> ()) {
         let query = PFQuery(className: "TaskInstances")
         

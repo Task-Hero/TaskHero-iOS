@@ -64,7 +64,7 @@ class TaskDetailViewController: UIViewController {
         progressBarContainerView.layer.borderWidth = 2
         progressBarContainerView.layer.borderColor = UIColor.black.cgColor
         let viewMaxWidth = progressBarContainerView.frame.width
-        progressBarTrailingConstraint.constant = (viewMaxWidth - (CGFloat(percentComplete) * viewMaxWidth))
+        progressBarTrailingConstraint.constant = (viewMaxWidth - (CGFloat(percentComplete) / 100 * viewMaxWidth))
     }
     
     @IBAction func onBackButton(_ sender: Any) {
@@ -82,6 +82,7 @@ class TaskDetailViewController: UIViewController {
 }
 
 extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func loadTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -99,15 +100,30 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: stepCellIdentifier, for: indexPath) as! StepDetailCell
         cell.step = steps?[indexPath.row]        
-        if taskInstance?.getLastCompletedStep() == steps?[indexPath.row] {
+        if taskInstance?.getNextStep() == steps?[indexPath.row] {
             cell.nextStep = true
         }
         cell.loadCell()
+        cell.delegate = self
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return steps?.count ?? 0
     }
+    
+}
+
+extension TaskDetailViewController: TaskInstanceUpdateDelegate {
+    
+    func taskInstanceUpdated() {
+        ParseClient.sharedInstance.updateTaskInstance(taskInstance: taskInstance!, success: { () -> () in
+            self.tableView.reloadData()
+            self.setPercentBarAndLabel()
+        }, failure: {(error) -> () in
+            NSLog("error updating task: \(error)")
+        })
+    }
+    
 }
 

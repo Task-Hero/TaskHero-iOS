@@ -64,8 +64,8 @@ class TaskInstance: NSObject {
         return completed_steps / Double(total_steps!)
     }
     
-    func getLastCompletedStep() -> Step? {
-        var last_completed_step_index = 0
+    func getNextStep() -> Step? {
+        var last_completed_step_index = -1
         
         for (index, step) in (steps)!.enumerated() {
             if step.state == StepState.completed {
@@ -73,7 +73,7 @@ class TaskInstance: NSObject {
             }
         }
         
-        return steps?[last_completed_step_index]
+        return ((last_completed_step_index + 1) < (steps?.count)!) ? steps?[last_completed_step_index + 1] : steps?[last_completed_step_index]
     }
     
     func getInvolvedUsers() -> [User] {
