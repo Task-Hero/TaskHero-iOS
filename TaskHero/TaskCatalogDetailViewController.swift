@@ -36,7 +36,7 @@ class TaskCatalogDetailViewController: UIViewController {
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160
-        tableView.register(UINib(nibName: stepCellIdentifier, bundle: nil), forCellReuseIdentifier: stepCellIdentifier)
+        tableView.registerNib(with: stepCellIdentifier)
         tableView.reloadData()
     }
     
