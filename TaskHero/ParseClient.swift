@@ -86,13 +86,15 @@ class ParseClient: NSObject {
         let u = PFUser()
         u.objectId = User.current!.id
         
+        let original = PFObject(className: "Task")
+        original.objectId = task.id
+        
         let t = PFObject(className: "TaskInstances")
         t["author"] = u
         t["name"] = task.name
         t["details"] = task.details
         t["estimated_time"] = task.estimatedTime
-        t["chat_id"] = "test_chat_id"
-        t["task"] = task.taskPFObject
+        t["task"] = original
         
         if let steps = task.steps {
             let stepsData = steps.map({ (step) -> [String : AnyObject] in
@@ -100,12 +102,11 @@ class ParseClient: NSObject {
                 if let assignees = step.assignees {
                     assigneeIds = assignees.map { user in user.id! }
                 }
-                step.state = StepState.notStarted
                 return [
                     "name": step.name as AnyObject,
                     "details": step.details as AnyObject,
                     "assignees": assigneeIds as AnyObject,
-                    "state": step.state as AnyObject
+                    "state": StepState.notStarted as AnyObject
                 ]
             })
             
@@ -146,6 +147,51 @@ class ParseClient: NSObject {
                 success(user)
             }
         })
+    }
+    
+    func postMessage(text: String, taskInstance: TaskInstance, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        let u = PFUser()
+        u.objectId = User.current?.id
+        
+        let t = PFObject(className: "TaskInstances")
+        t.objectId = taskInstance.id
+        
+        let m = PFObject(className: "ChatMessage")
+        m["text"] = text
+        m["author"] = u
+        m["taskInstance"] = t
+        
+        m.saveInBackground { (saved, error) in
+            if let error = error {
+                failure(error)
+            } else {
+                success()
+            }
+        }
+    }
+    
+    func getMessages(taskInstance: TaskInstance, since: Date? = nil, success: @escaping ([Message]) -> (), failure: @escaping (Error) -> ()) {
+        let t = PFObject(className: "TaskInstances")
+        t.objectId = taskInstance.id
+        
+        let query = PFQuery(className: "ChatMessage")
+        query.whereKey("taskInstance", equalTo: t)
+        query.order(byDescending: "createdAt")
+        query.includeKey("author")
+        query.limit = 25
+        
+        if let since = since {
+            query.whereKey("createdAt", greaterThan: since)
+        }
+        
+        query.findObjectsInBackground { (messages, error) in
+            if let error = error {
+                failure(error)
+            } else {
+                let foundMessages = messages?.map { Message(dictionary: $0) }
+                success(foundMessages ?? [])
+            }
+        }
     }
 
     func login(email: String, password: String, success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {

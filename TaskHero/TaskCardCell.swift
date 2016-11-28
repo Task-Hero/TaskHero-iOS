@@ -27,7 +27,10 @@ class TaskCardCell: UITableViewCell {
         didSet{
             taskName.text = task.name
             taskDescription.text = task.details
-            estimatedTime.text = "\(task.estimatedTime!)"
+            
+            if let et = task.estimatedTime {
+                estimatedTime.text = "\(et)"
+            }
         }
     }
     

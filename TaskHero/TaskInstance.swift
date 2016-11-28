@@ -10,6 +10,7 @@ import Foundation
 import Parse
 
 class TaskInstance: NSObject {
+    var id: String?
     var name: String?
     var details: String?
     var estimatedTime: TimeInterval?
@@ -19,6 +20,7 @@ class TaskInstance: NSObject {
     init(taskInstance: PFObject) {
         super.init()
         
+        self.id = taskInstance.objectId
         self.name = taskInstance["name"] as? String
         self.details = taskInstance["details"] as? String
         self.getSteps(steps: (taskInstance["steps"] as? String)!)

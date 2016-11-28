@@ -57,6 +57,7 @@ class BottomBarViewController: UIViewController {
             
             view.layoutIfNeeded()
             
+            contentViewController.view.frame = contentView.frame
             contentViewController.willMove(toParentViewController: self)
             addChildViewController(contentViewController)
             contentView.addSubview(contentViewController.view)

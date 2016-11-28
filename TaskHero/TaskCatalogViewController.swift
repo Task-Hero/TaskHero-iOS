@@ -26,19 +26,6 @@ class TaskCatalogViewController: UIViewController {
         
         loadTasks()
     }
-
-    func loadTasks() {
-        ParseClient.sharedInstance.getAllTasks(sucess: {(tasks) -> () in
-            self.tasks = tasks
-            self.tableView.reloadData()
-        }, failure: {(error) -> () in
-            NSLog("Error: \(error)")
-        })
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -47,6 +34,15 @@ class TaskCatalogViewController: UIViewController {
             let taskCatalogDetailViewController = segue.destination as! TaskCatalogDetailViewController
             taskCatalogDetailViewController.task = task
         }
+    }
+    
+    private func loadTasks() {
+        ParseClient.sharedInstance.getAllTasks(sucess: {(tasks) -> () in
+            self.tasks = tasks
+            self.tableView.reloadData()
+        }, failure: {(error) -> () in
+            NSLog("Error: \(error)")
+        })
     }
 }
 

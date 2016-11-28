@@ -78,7 +78,7 @@ class StepDetailCell: UITableViewCell {
     func sendBump() {
         if step.state != StepState.completed {
             for assignee in step.assignees! {
-                let message = "\(User.current!.name!) sent you a bump to complete: \"\(step.name!)!\""
+                let message = "\(User.current!.name!) sent you a bump to complete: \"\(step.name!)\""
                 ParseClient.sharedInstance.sendPushTo(user: assignee, message: message)
             }
             
