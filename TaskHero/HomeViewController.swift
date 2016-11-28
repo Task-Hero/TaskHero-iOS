@@ -22,7 +22,7 @@ class HomeViewController: UIViewController {
     }
     
     func loadTasks() {
-        ParseClient.sharedInstance.getAllTasks(sucess: {(tasks) -> () in
+        ParseClient.sharedInstance.getAllTasks(success: {(tasks) -> () in
             self.tasks = tasks
             self.tableView.reloadData()
         }, failure: {(error) -> () in

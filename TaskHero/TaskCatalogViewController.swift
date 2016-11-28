@@ -28,7 +28,7 @@ class TaskCatalogViewController: UIViewController {
     }
 
     func loadTasks() {
-        ParseClient.sharedInstance.getAllTasks(sucess: {(tasks) -> () in
+        ParseClient.sharedInstance.getAllTasks(success: {(tasks) -> () in
             self.tasks = tasks
             self.tableView.reloadData()
         }, failure: {(error) -> () in
@@ -47,6 +47,33 @@ class TaskCatalogViewController: UIViewController {
             let taskCatalogDetailViewController = segue.destination as! TaskCatalogDetailViewController
             taskCatalogDetailViewController.task = task
         }
+    }
+    
+    fileprivate func removeTask(at indexPath: IndexPath) {
+        let alertController = UIAlertController(title: "You really want to remove this Task?", message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+            let cell = self.tableView.cellForRow(at: indexPath) as! TaskCardCell
+            cell.animateBackToOriginalPosition()
+        })
+
+        let startTaskAction = UIAlertAction(title: "Remove", style: .destructive, handler: { (action) in
+            let task = self.tasks?[indexPath.row]
+            
+            ParseClient.sharedInstance.deleteTask(task: task!, success: {() -> () in
+                self.dismiss(animated: true, completion: nil)
+                self.tasks?.remove(at: indexPath.row)
+                self.tableView.beginUpdates()
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+                self.tableView.endUpdates()
+            }, failure: {(error) -> () in
+                NSLog("Error: \(error)")
+            })
+        })
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(startTaskAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -90,8 +117,10 @@ extension TaskCatalogViewController: TaskCardCellDelegate {
         
         present(alertController, animated: true, completion: nil)
     }
+    
+    func taskCellWasRemoved(_ taskCell: TaskCardCell) {
+        let removeTaskIndexPath = tableView.indexPath(for: taskCell)
+        removeTask(at: removeTaskIndexPath!)
+    }
 }
-
-
-
 

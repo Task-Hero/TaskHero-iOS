@@ -61,6 +61,7 @@ extension TaskCatalogDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: stepCellIdentifier, for: indexPath) as! EditStepCell
         cell.step = steps?[indexPath.row]
+        cell.isTaskDetailFlow = true
         
         return cell
     }

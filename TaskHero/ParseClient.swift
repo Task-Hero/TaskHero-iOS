@@ -13,7 +13,7 @@ class ParseClient: NSObject {
     
     static let sharedInstance = ParseClient()
     
-    func getAllTaskInstances(sucess: @escaping ([Task]) -> (), failure: @escaping (Error) -> ()) {
+    func getAllTaskInstances(success: @escaping ([Task]) -> (), failure: @escaping (Error) -> ()) {
         let query = PFQuery(className: "TaskInstances")        
         query.findObjectsInBackground(block: { (objects, error) -> Void in
             if (error == nil) {
@@ -22,14 +22,14 @@ class ParseClient: NSObject {
                     let task = Task.init(task: object)
                     tasks.append(task)
                 }
-                sucess(tasks)
+                success(tasks)
             } else {
                 failure(error!)
             }
         })
     }
     
-    func getAllTasks(sucess: @escaping ([Task]) -> (), failure: @escaping (Error) -> ()) {
+    func getAllTasks(success: @escaping ([Task]) -> (), failure: @escaping (Error) -> ()) {
         let query = PFQuery(className: "Task")
         
         query.findObjectsInBackground(block: { (objects, error) -> Void in
@@ -38,7 +38,7 @@ class ParseClient: NSObject {
                 for object in objects! {
                     tasks.append(Task.init(task: object))
                 }
-                sucess(tasks)
+                success(tasks)
             } else {
                 failure(error!)
             }
@@ -80,6 +80,27 @@ class ParseClient: NSObject {
                 success()
             }
         }
+    }
+    
+    func deleteTask(task: Task, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        let query = PFQuery(className: "Task")
+        query.whereKey("name", equalTo: task.name ?? "")
+        query.order(byAscending: "createdAt")
+        
+        query.findObjectsInBackground(block: { (objects, error) -> Void in
+            if (error == nil) {
+                for object in (objects! as [PFObject]) {
+                    do {
+                        try object.delete()
+                    } catch {
+                        failure(error)
+                    }
+                }
+                success()
+            } else {
+                failure(error!)
+            }
+        })
     }
     
     func createTaskInstance(task: Task, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
@@ -184,7 +205,6 @@ class ParseClient: NSObject {
             }
         }
     }
-    
 }
 
 // MARK: functions related to push
