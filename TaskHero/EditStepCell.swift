@@ -24,6 +24,8 @@ class EditStepCell: UITableViewCell {
     
     var delegate: EditStepCellDelegate?
     
+    var isTaskDetailFlow = false
+    
     fileprivate var originalCenter: CGPoint!
     
     var step: Step! {

@@ -20,36 +20,33 @@ class TaskCatalogViewController: UIViewController {
         super.viewDidLoad()
 
         tableView.dataSource = self
-        tableView.delegate = self
-        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160
+        tableView.registerNib(with: taskCardCellIdentifier)
         
-        tableView.register(UINib(nibName: taskCardCellIdentifier, bundle: nil), forCellReuseIdentifier: taskCardCellIdentifier)
-        
-        // Use temporary data for now
-        tasks = DummyTaskData.getTaskData()
-        tableView.reloadData()
+        loadTasks()
     }
 
+    func loadTasks() {
+        ParseClient.sharedInstance.getAllTasks(sucess: {(tasks) -> () in
+            self.tasks = tasks
+            self.tableView.reloadData()
+        }, failure: {(error) -> () in
+            NSLog("Error: \(error)")
+        })
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "TaskCatalogToTaskView" {
+        if segue.identifier == "TaskCatalogToTaskCatalogDetail" {
             let task = tasks![currentSelectedCellRowNum]
-            let taskDetailViewController = segue.destination as! TaskDetailViewController
-            taskDetailViewController.task = task
+            let taskCatalogDetailViewController = segue.destination as! TaskCatalogDetailViewController
+            taskCatalogDetailViewController.task = task
         }
-    }
-}
-
-extension TaskCatalogViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentSelectedCellRowNum = indexPath.row
-        performSegue(withIdentifier: "TaskCatalogToTaskView", sender: nil)
     }
 }
 
@@ -57,12 +54,41 @@ extension TaskCatalogViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: taskCardCellIdentifier, for: indexPath) as! TaskCardCell
         cell.task = tasks?[indexPath.row]
+        cell.delegate = self
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks?.count ?? 0
+    }
+}
+
+extension TaskCatalogViewController: TaskCardCellDelegate {
+    func taskTapped(_ taskCell:TaskCardCell) {
+        let indexPath = tableView.indexPath(for: taskCell)
+        currentSelectedCellRowNum = indexPath!.row
+        performSegue(withIdentifier: "TaskCatalogToTaskCatalogDetail", sender: nil)
+    }
+    
+    func taskLongPressed(_ taskCell:TaskCardCell) {
+        let indexPath = tableView.indexPath(for: taskCell)
+        currentSelectedCellRowNum = indexPath!.row
+        
+        let alertController = UIAlertController(title: "Start this task?", message: nil, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let startTaskAction = UIAlertAction(title: "Start", style: .default, handler: { (action) in
+            self.dismiss(animated: true, completion: nil)
+
+            let task = self.tasks![self.currentSelectedCellRowNum]
+            ParseClient.sharedInstance.createTaskInstance(task: task, success: {}, failure: {error in print(error) })
+            // TODO: Go back to Homescreen
+        })
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(startTaskAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
 }
 

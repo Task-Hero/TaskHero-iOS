@@ -16,6 +16,7 @@ class Task: NSObject {
     var steps: [Step]?
     var taskId: String?
     var chatId: String?
+    var taskPFObject: PFObject?
     
     override init() {
         super.init()
@@ -29,14 +30,18 @@ class Task: NSObject {
         self.getSteps(steps: (task["steps"] as? String)!)
         
         if let estimatedTime = task["estimated_time"] {
-            self.estimatedTime = estimatedTime as! TimeInterval
+            self.estimatedTime = estimatedTime as? TimeInterval
+        } else {
+            self.estimatedTime = 0.0
         }
         if let taskId = task["taskId"] {
-            self.taskId = taskId as! String
+            self.taskId = taskId as? String
         }
         if let chatId = task["chatId"] {
-            self.chatId = chatId as! String
+            self.chatId = chatId as? String
         }
+        
+        self.taskPFObject = task
     }
 
     private func getSteps(steps: String) {

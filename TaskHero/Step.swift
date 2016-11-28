@@ -8,10 +8,16 @@
 
 import Foundation
 
+enum StepState: Int {
+    case NotStarted = 0
+    case InProgress = 1
+    case Completed = 2
+}
+
 class Step: NSObject {
     var name: String?
     var details: String?
-    var state: String?
+    var state: StepState?
     var assignees: [User]?
     var signoff: User?
     var completedBy: User?
@@ -30,7 +36,7 @@ class Step: NSObject {
         if let details = stepDictionary?["details"] as? String?  {
             self.details = details
         }
-        if let state = stepDictionary?["state"] as? String?  {
+        if let state = stepDictionary?["state"] as? StepState?  {
             self.state = state
         }
         if let completedAt = stepDictionary?["completed_at"] {
