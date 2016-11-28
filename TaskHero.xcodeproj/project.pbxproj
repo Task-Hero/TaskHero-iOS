@@ -554,6 +554,7 @@
 				PROVISIONING_PROFILE = "e169a453-b19f-4e9a-8632-d54e9234fed9";
 				PROVISIONING_PROFILE_SPECIFIER = "task hero app dev";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -569,6 +570,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.taskheroapp.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
