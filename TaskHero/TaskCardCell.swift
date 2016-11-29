@@ -66,6 +66,7 @@ class TaskCardCell: UITableViewCell {
         
         let taskPan = UIPanGestureRecognizer()
         taskPan.addTarget(self, action: #selector(onTaskPan))
+        taskPan.delegate = self
         addGestureRecognizer(taskPan)
         
         iconImageViews = [memberIcon1, memberIcon2, memberIcon3, memberIcon4, memberIcon5, memberIcon6, memberIcon7]
@@ -99,7 +100,7 @@ class TaskCardCell: UITableViewCell {
         } else if sender.state == .ended {
             if translation.x > (width / 2) && velocity.x > 0 {
                 UIView.animate(withDuration: 0.25, animations: { 
-                    self.center.x = self.center.x + (width / 2)
+                    self.center.x = self.center.x + width
                     self.alpha = 0
                 }, completion: {(complete) in
                     self.delegate?.taskCellWasRemoved(self)
@@ -111,6 +112,15 @@ class TaskCardCell: UITableViewCell {
                 })
             }
         }
+    }
+    
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let pan = gestureRecognizer as? UIPanGestureRecognizer {
+            let velocity = pan.velocity(in: self)
+            return fabs(velocity.x) > fabs(velocity.y)
+        }
+        
+        return super.gestureRecognizerShouldBegin(gestureRecognizer)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
