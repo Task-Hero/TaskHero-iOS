@@ -13,16 +13,48 @@ class ParseClient: NSObject {
     
     static let sharedInstance = ParseClient()
     
-    func getAllTaskInstances(sucess: @escaping ([Task]) -> (), failure: @escaping (Error) -> ()) {
-        let query = PFQuery(className: "TaskInstances")        
+    func updateTaskInstance(taskInstance: TaskInstance, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        let query = PFQuery(className: "TaskInstances")
+        query.whereKey("objectId", equalTo: taskInstance.id!)
+        query.getFirstObjectInBackground(block: { (object, error) -> Void in
+            if (error == nil) {
+                
+                if let steps = taskInstance.steps{
+                    let stepsData = steps.map({ (step) -> [String : AnyObject] in
+                        var assigneeIds: [String] = []
+                        if let assignees = step.assignees {
+                            assigneeIds = assignees.map { user in user.id! }
+                        }
+                        return [
+                            "name": step.name as AnyObject,
+                            "details": step.details as AnyObject,
+                            "assignees": assigneeIds as AnyObject,
+                            "state": step.state as AnyObject
+                        ]
+                    })
+                    
+                    let data = try! JSONSerialization.data(withJSONObject: stepsData, options: [])
+                    let string = String(data: data, encoding: .utf8)
+                    object?.setValue(string, forKey: "steps")
+                }
+                object?.saveInBackground()
+                success()
+            } else {
+                failure(error!)
+            }
+        })
+    }
+    
+    func getAllTaskInstances(sucess: @escaping ([TaskInstance]) -> (), failure: @escaping (Error) -> ()) {
+        let query = PFQuery(className: "TaskInstances")
+        
         query.findObjectsInBackground(block: { (objects, error) -> Void in
             if (error == nil) {
-                var tasks: [Task] = []
+                var tasksInstances: [TaskInstance] = []
                 for object in objects! {
-                    let task = Task.init(task: object)
-                    tasks.append(task)
+                    tasksInstances.append(TaskInstance.init(taskInstance: object))
                 }
-                sucess(tasks)
+                sucess(tasksInstances)
             } else {
                 failure(error!)
             }
@@ -51,9 +83,18 @@ class ParseClient: NSObject {
         
         let t = PFObject(className: "Task")
         t["author"] = u
-        t["name"] = task.name
-        t["details"] = task.details
-        t["estimated_time"] = task.estimatedTime
+        
+        if let name = task.name {
+            t["name"] = name
+        }
+        
+        if let details = task.details {
+            t["details"] = details
+        }
+        
+        if let estimatedTime = task.estimatedTime {
+            t["estimated_time"] = estimatedTime
+        }
     
         if let steps = task.steps {
             let stepsData = steps.map({ (step) -> [String : AnyObject] in
@@ -102,15 +143,11 @@ class ParseClient: NSObject {
                 if let assignees = step.assignees {
                     assigneeIds = assignees.map { user in user.id! }
                 }
-                
                 return [
                     "name": step.name as AnyObject,
                     "details": step.details as AnyObject,
                     "assignees": assigneeIds as AnyObject,
-                    "state": step.state as AnyObject,
-                    "completed_at": "" as AnyObject,
-                    "completed_by": "" as AnyObject,
-                    "sign_off_by": "" as AnyObject
+                    "state": StepState.notStarted as AnyObject
                 ]
             })
             
@@ -153,12 +190,12 @@ class ParseClient: NSObject {
         })
     }
     
-    func postMessage(text: String, task: Task, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+    func postMessage(text: String, taskInstance: TaskInstance, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         let u = PFUser()
         u.objectId = User.current?.id
         
         let t = PFObject(className: "TaskInstances")
-        t.objectId = task.id
+        t.objectId = taskInstance.id
         
         let m = PFObject(className: "ChatMessage")
         m["text"] = text
@@ -174,9 +211,9 @@ class ParseClient: NSObject {
         }
     }
     
-    func getMessages(task: Task, since: Date? = nil, success: @escaping ([Message]) -> (), failure: @escaping (Error) -> ()) {
+    func getMessages(taskInstance: TaskInstance, since: Date? = nil, success: @escaping ([Message]) -> (), failure: @escaping (Error) -> ()) {
         let t = PFObject(className: "TaskInstances")
-        t.objectId = task.id
+        t.objectId = taskInstance.id
         
         let query = PFQuery(className: "ChatMessage")
         query.whereKey("taskInstance", equalTo: t)
@@ -209,7 +246,7 @@ class ParseClient: NSObject {
         }
     }
     
-    static func logout() {
+    func logout() {
         PFUser.logOut()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: User.didLogoutNotification), object: nil)
     }
@@ -249,4 +286,5 @@ extension ParseClient {
         installation?["user"] = PFUser.current()
         installation?.saveInBackground()
     }
+    
 }
