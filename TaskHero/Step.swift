@@ -8,20 +8,22 @@
 
 import Foundation
 
-enum StepState: Int {
-    case NotStarted = 0
-    case InProgress = 1
-    case Completed = 2
+class StepState: NSObject {
+    static let notStarted = "not_started"
+    static let inProgress = "in_progress"
+    static let completed = "completed"
 }
 
 class Step: NSObject {
     var name: String?
     var details: String?
-    var state: StepState?
+    var state: String?
     var assignees: [User]?
     var signoff: User?
     var completedBy: User?
     var completedAt: TimeInterval?
+    
+    static var assigneeLoadedNotification = "assignedLoaded"
     
     override init() {
         super.init()
@@ -36,17 +38,17 @@ class Step: NSObject {
         if let details = stepDictionary?["details"] as? String?  {
             self.details = details
         }
-        if let state = stepDictionary?["state"] as? StepState?  {
+        if let state = stepDictionary?["state"] as? String?  {
             self.state = state
         }
-        if let completedAt = stepDictionary?["completed_at"] {
-            self.completedAt = (completedAt as! TimeInterval)
+        if let completedAt = stepDictionary?["completed_at"] as? TimeInterval {
+            self.completedAt = completedAt
         }
-        if let completedBy = stepDictionary?["completed_by"] {
-            getCompletedBy(completedBy: (completedBy as! String))
+        if let completedBy = stepDictionary?["completed_by"] as? String {
+            getCompletedBy(completedBy: completedBy)
         }
-        if let signoff = stepDictionary?["signoff"]  {
-            getSignoff(signoff: (signoff as! String))
+        if let signoff = stepDictionary?["signoff"] as? String {
+            getSignoff(signoff: signoff)
         }
     }
     
@@ -58,6 +60,7 @@ class Step: NSObject {
                 } else {
                     self.assignees?.append(user)
                 }
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: Step.assigneeLoadedNotification), object: nil)
             }, failure: { error in
                 NSLog("Error getting users, error: \(error)")
             })
@@ -74,11 +77,10 @@ class Step: NSObject {
     
     private func getCompletedBy(completedBy: String) {
         ParseClient.sharedInstance.getUser(userId: completedBy, success: { (user) -> () in
-            self.signoff? = user
+            self.completedBy? = user
         }, failure: { error in
             NSLog("Error getting user, error: \(error)")
         })
     }
-    
-    
+        
 }

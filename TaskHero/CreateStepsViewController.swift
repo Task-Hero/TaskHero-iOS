@@ -42,7 +42,6 @@ class CreateStepsViewController: UIViewController {
     
     @IBAction func onCancelTapped(_ sender: Any) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let destroyAction = UIAlertAction(title: "Discard", style: .destructive) { (action) in
             self.dismiss(animated: true) {

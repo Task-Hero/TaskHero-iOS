@@ -16,7 +16,7 @@ class ChatViewController: UIViewController {
     
     @IBOutlet weak var messageEntryBottomConstraint: NSLayoutConstraint!
     
-    var task: Task!
+    var task: TaskInstance!
     
     fileprivate var messages: [Message]!
     fileprivate var messageTimer: Timer!
@@ -86,7 +86,7 @@ class ChatViewController: UIViewController {
     @IBAction func onSendTapped(_ sender: Any) {
         ParseClient.sharedInstance.postMessage(
             text: enteredText,
-            task: task,
+            taskInstance: task,
             success: {},
             failure: { error in print(error) }
         )
@@ -135,7 +135,7 @@ class ChatViewController: UIViewController {
         })
         
         ParseClient.sharedInstance.getMessages(
-            task: task,
+            taskInstance: task,
             since: mostRecentMessage?.createdAt,
             success: { (messages) in
                 completion(messages)
