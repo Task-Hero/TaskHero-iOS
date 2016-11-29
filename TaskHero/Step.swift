@@ -41,14 +41,14 @@ class Step: NSObject {
         if let state = stepDictionary?["state"] as? String?  {
             self.state = state
         }
-        if let completedAt = stepDictionary?["completed_at"] {
-            self.completedAt = (completedAt as! TimeInterval)
+        if let completedAt = stepDictionary?["completed_at"] as? TimeInterval {
+            self.completedAt = completedAt
         }
-        if let completedBy = stepDictionary?["completed_by"] {
-            getCompletedBy(completedBy: (completedBy as! String))
+        if let completedBy = stepDictionary?["completed_by"] as? String {
+            getCompletedBy(completedBy: completedBy)
         }
-        if let signoff = stepDictionary?["signoff"]  {
-            getSignoff(signoff: (signoff as! String))
+        if let signoff = stepDictionary?["signoff"] as? String {
+            getSignoff(signoff: signoff)
         }
     }
     

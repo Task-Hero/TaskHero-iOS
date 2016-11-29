@@ -83,9 +83,18 @@ class ParseClient: NSObject {
         
         let t = PFObject(className: "Task")
         t["author"] = u
-        t["name"] = task.name
-        t["details"] = task.details
-        t["estimated_time"] = task.estimatedTime
+        
+        if let name = task.name {
+            t["name"] = name
+        }
+        
+        if let details = task.details {
+            t["details"] = details
+        }
+        
+        if let estimatedTime = task.estimatedTime {
+            t["estimated_time"] = estimatedTime
+        }
     
         if let steps = task.steps {
             let stepsData = steps.map({ (step) -> [String : AnyObject] in
