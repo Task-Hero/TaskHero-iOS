@@ -21,7 +21,18 @@ class TaskCardCell: UITableViewCell {
     @IBOutlet weak var taskDescription: UILabel!
     @IBOutlet weak var estimatedTime: UILabel!
     
+    @IBOutlet weak var memberIcon1: UIImageView!
+    @IBOutlet weak var memberIcon2: UIImageView!
+    @IBOutlet weak var memberIcon3: UIImageView!
+    @IBOutlet weak var memberIcon4: UIImageView!
+    @IBOutlet weak var memberIcon5: UIImageView!
+    @IBOutlet weak var memberIcon6: UIImageView!
+    @IBOutlet weak var memberIcon7: UIImageView!
+    
+    var iconImageViews:[UIImageView]?
+    
     fileprivate var originalCenter:CGPoint!
+    fileprivate var users: [User]?
     
     var delegate:TaskCardCellDelegate?
     
@@ -56,6 +67,15 @@ class TaskCardCell: UITableViewCell {
         let taskPan = UIPanGestureRecognizer()
         taskPan.addTarget(self, action: #selector(onTaskPan))
         addGestureRecognizer(taskPan)
+        
+        iconImageViews = [memberIcon1, memberIcon2, memberIcon3, memberIcon4, memberIcon5, memberIcon6, memberIcon7]
+        for iconImageView in iconImageViews! {
+            iconImageView.isHidden = true
+            iconImageView.clipsToBounds = true
+            iconImageView.layer.cornerRadius = iconImageView.bounds.width / 2
+        }
+
+        fetchUsers()
     }
     
     @objc fileprivate func onTaskTap(sender: UITapGestureRecognizer) {
@@ -102,5 +122,29 @@ class TaskCardCell: UITableViewCell {
             self.center.x = self.originalCenter.x
             self.alpha = 1
         })
+    }
+    
+    fileprivate func fetchUsers() {
+        ParseClient.sharedInstance.getTeammates(
+            success: { (users) in
+                self.users = users
+                self.setMemberIcons()
+        },
+            failure: { (error) in
+                print("ERROR - failed to fetch users")
+        })
+    }
+    
+    fileprivate func setMemberIcons() {
+        // TODO: load only users who have steps assigned in this Task
+        for (index, imageView) in (iconImageViews?.enumerated())! {
+            if index < (users?.count)! {
+                imageView.isHidden = false
+                let user = users?[index]
+                imageView.setImageWith((user?.profileImageUrl)!)
+            } else {
+                imageView.isHidden = true
+            }
+        }
     }
 }

@@ -51,28 +51,73 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jsk-f8-LxO">
                             <rect key="frame" x="14" y="155" width="347" height="37"/>
                             <subviews>
-                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="ic_person_48pt" translatesAutoresizingMaskIntoConstraints="NO" id="Oh1-g3-qp1">
+                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oh1-g3-qp1">
                                     <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="36" id="M3B-fU-npq"/>
                                         <constraint firstAttribute="width" constant="36" id="PG4-8l-HEl"/>
                                     </constraints>
                                 </imageView>
-                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="ic_person_48pt" translatesAutoresizingMaskIntoConstraints="NO" id="zdo-4W-p8U">
+                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdo-4W-p8U">
                                     <rect key="frame" x="47" y="0.0" width="36" height="36"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="36" id="8Om-sa-e6E"/>
                                         <constraint firstAttribute="width" constant="36" id="BKO-ut-8Bt"/>
                                     </constraints>
                                 </imageView>
+                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKR-E4-wVF">
+                                    <rect key="frame" x="94" y="0.0" width="36" height="36"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="36" id="ddQ-qU-HHS"/>
+                                        <constraint firstAttribute="height" constant="36" id="rgB-a9-4p7"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nto-fH-cjT">
+                                    <rect key="frame" x="141" y="0.0" width="36" height="36"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="36" id="McX-9y-NAO"/>
+                                        <constraint firstAttribute="width" constant="36" id="eg6-Dg-F3A"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tb0-sr-RqW">
+                                    <rect key="frame" x="188" y="0.0" width="36" height="36"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="36" id="MK2-rZ-gke"/>
+                                        <constraint firstAttribute="height" constant="36" id="pt8-mQ-yEA"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v5h-2T-FSz">
+                                    <rect key="frame" x="235" y="0.0" width="36" height="36"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="36" id="IT3-kV-iRd"/>
+                                        <constraint firstAttribute="height" constant="36" id="ibx-ky-tmJ"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yzi-yP-akK">
+                                    <rect key="frame" x="282" y="0.0" width="36" height="36"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="36" id="XKB-qm-Pka"/>
+                                        <constraint firstAttribute="width" constant="36" id="zeN-71-SFj"/>
+                                    </constraints>
+                                </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="nto-fH-cjT" firstAttribute="leading" secondItem="YKR-E4-wVF" secondAttribute="trailing" constant="11" id="0Jw-hq-0kq"/>
                                 <constraint firstItem="Oh1-g3-qp1" firstAttribute="top" secondItem="Jsk-f8-LxO" secondAttribute="top" id="1Nk-bx-lMR"/>
+                                <constraint firstItem="Yzi-yP-akK" firstAttribute="leading" secondItem="v5h-2T-FSz" secondAttribute="trailing" constant="11" id="6sc-eY-zXn"/>
+                                <constraint firstItem="Yzi-yP-akK" firstAttribute="top" secondItem="Jsk-f8-LxO" secondAttribute="top" id="DRY-2d-N3W"/>
+                                <constraint firstItem="v5h-2T-FSz" firstAttribute="top" secondItem="Jsk-f8-LxO" secondAttribute="top" id="Gd8-vp-J1S"/>
                                 <constraint firstItem="zdo-4W-p8U" firstAttribute="leading" secondItem="Oh1-g3-qp1" secondAttribute="trailing" constant="11" id="Xtf-3w-LeU"/>
+                                <constraint firstItem="Tb0-sr-RqW" firstAttribute="leading" secondItem="nto-fH-cjT" secondAttribute="trailing" constant="11" id="YdP-Vx-uSK"/>
+                                <constraint firstItem="nto-fH-cjT" firstAttribute="top" secondItem="Jsk-f8-LxO" secondAttribute="top" id="Yo9-rp-eqj"/>
                                 <constraint firstAttribute="height" constant="37" id="cl4-mg-DLX"/>
                                 <constraint firstItem="Oh1-g3-qp1" firstAttribute="leading" secondItem="Jsk-f8-LxO" secondAttribute="leading" id="iH7-PP-Luq"/>
                                 <constraint firstItem="zdo-4W-p8U" firstAttribute="top" secondItem="Jsk-f8-LxO" secondAttribute="top" id="jYW-vG-ZT3"/>
+                                <constraint firstItem="v5h-2T-FSz" firstAttribute="leading" secondItem="Tb0-sr-RqW" secondAttribute="trailing" constant="11" id="jla-hH-kAd"/>
+                                <constraint firstItem="YKR-E4-wVF" firstAttribute="top" secondItem="Jsk-f8-LxO" secondAttribute="top" id="tx6-Kd-sz6"/>
+                                <constraint firstItem="YKR-E4-wVF" firstAttribute="leading" secondItem="zdo-4W-p8U" secondAttribute="trailing" constant="11" id="vwH-iB-DS3"/>
+                                <constraint firstItem="Tb0-sr-RqW" firstAttribute="top" secondItem="Jsk-f8-LxO" secondAttribute="top" id="yT4-W5-yth"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -117,13 +162,17 @@
             <connections>
                 <outlet property="cardView" destination="xfi-fW-9sS" id="g5t-ZR-BDM"/>
                 <outlet property="estimatedTime" destination="qYT-sa-O7Z" id="Gsu-2W-SIl"/>
+                <outlet property="memberIcon1" destination="Oh1-g3-qp1" id="7pi-vD-bFj"/>
+                <outlet property="memberIcon2" destination="zdo-4W-p8U" id="iZR-9f-muN"/>
+                <outlet property="memberIcon3" destination="YKR-E4-wVF" id="L7J-hz-cJU"/>
+                <outlet property="memberIcon4" destination="nto-fH-cjT" id="YRh-5W-o4H"/>
+                <outlet property="memberIcon5" destination="Tb0-sr-RqW" id="ZnR-fe-STh"/>
+                <outlet property="memberIcon6" destination="v5h-2T-FSz" id="c7X-Eo-Vwa"/>
+                <outlet property="memberIcon7" destination="Yzi-yP-akK" id="8y4-LN-xFV"/>
                 <outlet property="taskDescription" destination="Xjd-RK-gr4" id="qVh-aO-S8u"/>
                 <outlet property="taskName" destination="LOf-KW-iut" id="MkV-cY-oRA"/>
             </connections>
             <point key="canvasLocation" x="0.5" y="-195"/>
         </view>
     </objects>
-    <resources>
-        <image name="ic_person_48pt" width="48" height="48"/>
-    </resources>
 </document>
