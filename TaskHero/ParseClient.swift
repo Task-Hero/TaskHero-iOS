@@ -125,19 +125,17 @@ class ParseClient: NSObject {
     
     func deleteTask(task: Task, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         let query = PFQuery(className: "Task")
-        query.whereKey("name", equalTo: task.name ?? "")
         query.order(byAscending: "createdAt")
-        
-        query.findObjectsInBackground(block: { (objects, error) -> Void in
-            if (error == nil) {
-                for object in (objects! as [PFObject]) {
-                    do {
-                        try object.delete()
-                    } catch {
-                        failure(error)
+
+        query.getObjectInBackground(withId: task.id!, block: { (object, error) -> Void in
+            if error == nil {
+                object!.deleteInBackground(block: { (deleteSuccess, error) in
+                    if error == nil {
+                        success()
+                    } else {
+                        failure(error!)
                     }
-                }
-                success()
+                })
             } else {
                 failure(error!)
             }
@@ -146,42 +144,39 @@ class ParseClient: NSObject {
     
     func updateTask(task: Task, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         let query = PFQuery(className: "Task")
-        query.whereKey("name", equalTo: task.name ?? "")
         query.order(byAscending: "createdAt")
         
-        query.findObjectsInBackground(block: { (objects, error) -> Void in
-            if (error == nil) {
-                for object in (objects! as [PFObject]) {
-                    object["name"] = task.name
-                    object["details"] = task.details
-                    object["estimated_time"] = task.estimatedTime
-                    
-                    if let steps = task.steps {
-                        let stepsData = steps.map({ (step) -> [String : AnyObject] in
-                            var assigneeIds: [String] = []
-                            if let assignees = step.assignees {
-                                assigneeIds = assignees.map { user in user.id! }
-                            }
-                            
-                            return [
-                                "name": step.name as AnyObject,
-                                "details": step.details as AnyObject,
-                                "assignees": assigneeIds as AnyObject
-                            ]
-                        })
-                        
-                        let data = try! JSONSerialization.data(withJSONObject: stepsData, options: [])
-                        object["steps"] = String(data: data, encoding: .utf8)
-                    }
-                    
-                    object.saveInBackground { (saved, error) in
-                        if let error = error {
-                            failure(error)
+        query.getObjectInBackground(withId: task.id!, block: { (object, error) -> Void in
+            if error == nil {
+                object!["name"] = task.name
+                object!["details"] = task.details
+                object!["estimated_time"] = task.estimatedTime
+                
+                if let steps = task.steps {
+                    let stepsData = steps.map({ (step) -> [String : AnyObject] in
+                        var assigneeIds: [String] = []
+                        if let assignees = step.assignees {
+                            assigneeIds = assignees.map { user in user.id! }
                         }
-                    }
+                        
+                        return [
+                            "name": step.name as AnyObject,
+                            "details": step.details as AnyObject,
+                            "assignees": assigneeIds as AnyObject
+                        ]
+                    })
+                    
+                    let data = try! JSONSerialization.data(withJSONObject: stepsData, options: [])
+                    object!["steps"] = String(data: data, encoding: .utf8)
                 }
                 
-                success()
+                object!.saveInBackground(block: { (saveSuccess, error) in
+                    if saveSuccess {
+                        success()
+                    } else {
+                        failure(error!)
+                    }
+                })
             } else {
                 failure(error!)
             }
