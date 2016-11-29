@@ -10,12 +10,10 @@ import UIKit
 
 class TaskCatalogDetailViewController: UIViewController {
 
-    @IBOutlet weak var taskName: UILabel!
-    @IBOutlet weak var taskDetail: UILabel!
-    @IBOutlet weak var taskEstimatedTime: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     fileprivate var selectedStep: Step!
+    fileprivate let taskCellIdentifier = "TaskDetailTaskCell"
     fileprivate let stepCellIdentifier = "EditStepCell"
     var currentSelectedCellRowNum = -1
     
@@ -24,13 +22,10 @@ class TaskCatalogDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        taskName.text = task?.name
-        taskDetail.text = task?.details
-        taskEstimatedTime.text = String(describing: (task?.estimatedTime)!)
-        
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
+        tableView.registerNib(with: taskCellIdentifier)
         tableView.registerNib(with: stepCellIdentifier)
         tableView.reloadData()
     }
@@ -65,7 +60,7 @@ class TaskCatalogDetailViewController: UIViewController {
     }
     
     fileprivate func removeStep(at indexPath: IndexPath) {
-        task.steps?.remove(at: indexPath.row)
+        task.steps?.remove(at: indexPath.row - 1)
         
         tableView.beginUpdates()
         tableView.deleteRows(at: [indexPath], with: .fade)
@@ -83,16 +78,23 @@ class TaskCatalogDetailViewController: UIViewController {
 
 extension TaskCatalogDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: stepCellIdentifier, for: indexPath) as! EditStepCell
-        cell.step = task.steps?[indexPath.row]
-        cell.delegate = self
-        cell.isTaskDetailFlow = true
-        
-        return cell
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: taskCellIdentifier, for: indexPath) as! TaskDetailTaskCell
+            cell.task = self.task
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: stepCellIdentifier, for: indexPath) as! EditStepCell
+            cell.step = task.steps?[indexPath.row - 1]
+            cell.delegate = self
+            cell.isTaskDetailFlow = true
+            
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return task.steps?.count ?? 0
+        return (task.steps?.count)! + 1 
     }
 }
 
@@ -108,7 +110,7 @@ extension TaskCatalogDetailViewController: EditStepCellDelegate {
     
     func stepCellDidSelectAssignees(_ stepCell: EditStepCell) {
         let indexPath = tableView.indexPath(for: stepCell)
-        selectedStep = task.steps![indexPath!.row]
+        selectedStep = task.steps![indexPath!.row - 1]
         performSegue(withIdentifier: "TaskCatalogDetailoPickUsers", sender: stepCell)
     }
 }
