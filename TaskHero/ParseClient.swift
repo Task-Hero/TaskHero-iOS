@@ -36,6 +36,7 @@ class ParseClient: NSObject {
                     let data = try! JSONSerialization.data(withJSONObject: stepsData, options: [])
                     let string = String(data: data, encoding: .utf8)
                     object?.setValue(string, forKey: "steps")
+                    object?.setValue(taskInstance.completed, forKey: "completed")
                 }
                 object?.saveInBackground()
                 success()
@@ -47,6 +48,9 @@ class ParseClient: NSObject {
     
     func getAllTaskInstances(sucess: @escaping ([TaskInstance]) -> (), failure: @escaping (Error) -> ()) {
         let query = PFQuery(className: "TaskInstances")
+        
+        query.order(byAscending: "completed")
+        query.addDescendingOrder("updatedAt")
         
         query.findObjectsInBackground(block: { (objects, error) -> Void in
             if (error == nil) {
@@ -136,6 +140,7 @@ class ParseClient: NSObject {
         t["details"] = task.details
         t["estimated_time"] = task.estimatedTime
         t["task"] = original
+        t["completed"] = false
         
         if let steps = task.steps {
             let stepsData = steps.map({ (step) -> [String : AnyObject] in

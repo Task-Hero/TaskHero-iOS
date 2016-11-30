@@ -16,6 +16,7 @@ class TaskInstance: NSObject {
     var estimatedTime: TimeInterval?
     var steps: [Step]?
     var chatId: String?
+    var completed: Bool?
     
     init(taskInstance: PFObject) {
         super.init()
@@ -32,6 +33,9 @@ class TaskInstance: NSObject {
         }
         if let chatId = taskInstance["chatId"] {
             self.chatId = chatId as? String
+        }
+        if let completed = taskInstance["completed"] {
+            self.completed = (completed as? Bool)!
         }
     }
     

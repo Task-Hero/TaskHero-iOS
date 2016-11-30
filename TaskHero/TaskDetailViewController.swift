@@ -117,6 +117,9 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
 extension TaskDetailViewController: TaskInstanceUpdateDelegate {
     
     func taskInstanceUpdated() {
+        if taskInstance?.getPercentComplete() == 1.0 {
+            taskInstance?.completed = true
+        }            
         ParseClient.sharedInstance.updateTaskInstance(taskInstance: taskInstance!, success: { () -> () in
             self.tableView.reloadData()
             self.setPercentBarAndLabel()
