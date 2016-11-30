@@ -45,7 +45,7 @@ class ParseClient: NSObject {
         })
     }
     
-    func getAllTaskInstances(sucess: @escaping ([TaskInstance]) -> (), failure: @escaping (Error) -> ()) {
+    func getAllTaskInstances(success: @escaping ([TaskInstance]) -> (), failure: @escaping (Error) -> ()) {
         let query = PFQuery(className: "TaskInstances")
         
         query.findObjectsInBackground(block: { (objects, error) -> Void in
@@ -54,7 +54,7 @@ class ParseClient: NSObject {
                 for object in objects! {
                     tasksInstances.append(TaskInstance.init(taskInstance: object))
                 }
-                sucess(tasksInstances)
+                success(tasksInstances)
             } else {
                 failure(error!)
             }
@@ -162,7 +162,8 @@ class ParseClient: NSObject {
                         return [
                             "name": step.name as AnyObject,
                             "details": step.details as AnyObject,
-                            "assignees": assigneeIds as AnyObject
+                            "assignees": assigneeIds as AnyObject,
+                            "state": step.state as AnyObject
                         ]
                     })
                     

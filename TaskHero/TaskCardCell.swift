@@ -32,7 +32,6 @@ class TaskCardCell: UITableViewCell {
     var iconImageViews:[UIImageView]?
     
     fileprivate var originalCenter:CGPoint!
-    fileprivate var users: [User]?
     
     var delegate:TaskCardCellDelegate?
     
@@ -44,6 +43,8 @@ class TaskCardCell: UITableViewCell {
             if let et = task.estimatedTime {
                 estimatedTime.text = "\(et)"
             }
+            
+            //setMemberIcons(users: task.getInvolvedUsers()) // somehow assignee gets null
         }
     }
     
@@ -76,7 +77,7 @@ class TaskCardCell: UITableViewCell {
             iconImageView.layer.cornerRadius = iconImageView.bounds.width / 2
         }
 
-        fetchUsers()
+       
     }
     
     @objc fileprivate func onTaskTap(sender: UITapGestureRecognizer) {
@@ -133,25 +134,13 @@ class TaskCardCell: UITableViewCell {
             self.alpha = 1
         })
     }
-    
-    fileprivate func fetchUsers() {
-        ParseClient.sharedInstance.getTeammates(
-            success: { (users) in
-                self.users = users
-                self.setMemberIcons()
-        },
-            failure: { (error) in
-                print("ERROR - failed to fetch users")
-        })
-    }
-    
-    fileprivate func setMemberIcons() {
-        // TODO: load only users who have steps assigned in this Task
+
+    fileprivate func setMemberIcons(users: [User]) {
         for (index, imageView) in (iconImageViews?.enumerated())! {
-            if index < (users?.count)! {
+            if index < (users.count) {
                 imageView.isHidden = false
-                let user = users?[index]
-                imageView.setImageWith((user?.profileImageUrl)!)
+                let user = users[index]
+                imageView.setImageWith(user.profileImageUrl)
             } else {
                 imageView.isHidden = true
             }

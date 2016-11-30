@@ -53,5 +53,21 @@ class Task: NSObject {
             }
         }
     }
+    
+    func getInvolvedUsers() -> [User] {
+        var users = [User]()
+        var emails = [String]()
         
+        for step in steps! {
+            for user in step.assignees! {
+                if !emails.contains(user.email!) {
+                    emails.append(user.email!)
+                    users.append(user)
+                }
+            }
+        }
+        
+        return users
+    }
+    
 }

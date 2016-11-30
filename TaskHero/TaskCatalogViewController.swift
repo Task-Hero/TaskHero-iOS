@@ -26,6 +26,10 @@ class TaskCatalogViewController: UIViewController {
         
         loadTasks()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadTasks()
+    }
 
     func loadTasks() {
         ParseClient.sharedInstance.getAllTasks(success: {(tasks) -> () in

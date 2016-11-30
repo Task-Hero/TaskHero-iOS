@@ -51,7 +51,7 @@ class TaskCatalogDetailViewController: UIViewController {
             tableView.reloadData()
         } else {
             tableView.beginUpdates()
-            let nextIndex = IndexPath(row: task.steps!.count - 1, section: 0)
+            let nextIndex = IndexPath(row: task.steps!.count, section: 0)
             tableView.insertRows(at: [nextIndex], with: .right)
             tableView.endUpdates()
             
