@@ -30,20 +30,25 @@ class TaskDetailViewController: UIViewController {
     var steps: [Step]!
     var selectedCell: Int?
     let stepCellIdentifier = "StepDetailCell"
+    var viewMaxWidth: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
- 
         loadTopView()
         loadTableView()
         tableView.reloadData()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        viewMaxWidth = progressBarContainerView.frame.width
+        setPercentBarAndLabel()
     }
     
     func loadTopView() {
         taskNameLabel.text = (taskInstance!.name!)
         taskDescriptionLabel.text = taskInstance?.details
         setUserImages(users: (taskInstance?.getInvolvedUsers())!)
-        setPercentBarAndLabel()
     }
     
     func setUserImages(users: [User]) {
@@ -63,8 +68,7 @@ class TaskDetailViewController: UIViewController {
         percentLabel.text = "\(percentComplete)%"
         progressBarContainerView.layer.borderWidth = 2
         progressBarContainerView.layer.borderColor = UIColor.black.cgColor
-        let viewMaxWidth = progressBarContainerView.frame.width
-        progressBarTrailingConstraint.constant = (viewMaxWidth - (CGFloat(percentComplete) / 100 * viewMaxWidth))
+        progressBarTrailingConstraint.constant = (viewMaxWidth! - (CGFloat(percentComplete) / 100 * viewMaxWidth!))
     }
     
     @IBAction func onBackButton(_ sender: Any) {
@@ -72,10 +76,11 @@ class TaskDetailViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? StepDetailViewController {
+        if let destination = segue.destination as? UINavigationController {
+            let vc = destination.topViewController as! StepDetailViewController
             vc.step = steps![selectedCell!]
-        } else if let vc = segue.destination as? ChatViewController {
-            vc.task = taskInstance
+        } else if let destination = segue.destination as? ChatViewController {
+            destination.task = taskInstance
         }
     }
     

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -511,7 +511,7 @@
                         <outlet property="tableView" destination="gk8-yy-QEV" id="sFz-DT-OZq"/>
                         <outlet property="taskDescriptionLabel" destination="eVT-wR-Mk5" id="klY-t1-hst"/>
                         <outlet property="taskNameLabel" destination="97D-tv-Hek" id="dOj-nw-kRa"/>
-                        <segue destination="Hl7-AX-up1" kind="show" identifier="TaskDetailToStepDetail" id="7EM-kJ-3Nm"/>
+                        <segue destination="LMS-pF-Wzv" kind="presentation" identifier="TaskDetailToStepDetail" id="7EM-kJ-3Nm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d8o-Tn-pQE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -521,7 +521,7 @@
         <!--Step Detail-->
         <scene sceneID="lwc-WT-7MC">
             <objects>
-                <viewController id="Hl7-AX-up1" customClass="StepDetailViewController" customModule="TaskHero" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StepDetailViewController" id="Hl7-AX-up1" customClass="StepDetailViewController" customModule="TaskHero" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QMS-DP-YPZ"/>
                         <viewControllerLayoutGuide type="bottom" id="RdX-fR-8C8"/>
@@ -591,7 +591,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TD5-x0-ieK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4286" y="-618"/>
+            <point key="canvasLocation" x="5224.8000000000002" y="-618.44077961019491"/>
         </scene>
         <!--New Task-->
         <scene sceneID="H0q-Bu-Iy4">
@@ -874,6 +874,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qIk-VX-2pM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1340" y="139"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YtM-Hj-kaB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LMS-pF-Wzv" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IWZ-UP-cIm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Hl7-AX-up1" kind="relationship" relationship="rootViewController" id="th1-Fg-Xsx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1bT-cW-yhT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4250" y="-618"/>
         </scene>
     </scenes>
     <resources>

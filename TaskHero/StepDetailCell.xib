@@ -36,10 +36,17 @@
                                     </constraints>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iie-nI-yAk">
-                                    <rect key="frame" x="254" y="12" width="30" height="30"/>
+                                    <rect key="frame" x="262" y="12" width="30" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="Xhq-tt-Lsb"/>
                                         <constraint firstAttribute="height" constant="30" id="z8T-Bj-lt3"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vwp-Q5-sOL">
+                                    <rect key="frame" x="236" y="12" width="30" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="5Wg-BL-B6V"/>
+                                        <constraint firstAttribute="height" constant="30" id="7yl-49-OKp"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check diff" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Xc-E8-Om2">
@@ -52,13 +59,15 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="0Xc-E8-Om2" secondAttribute="bottom" constant="4" id="1Se-I2-kgA"/>
+                                <constraint firstItem="vwp-Q5-sOL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0Xc-E8-Om2" secondAttribute="trailing" constant="4" id="5Mn-Iu-Ws7"/>
                                 <constraint firstItem="0Xc-E8-Om2" firstAttribute="leading" secondItem="oXT-x7-f2A" secondAttribute="leading" constant="4" id="Jmc-8V-5dv"/>
                                 <constraint firstAttribute="trailing" secondItem="Wxb-X5-emQ" secondAttribute="trailing" constant="8" id="Q5x-sT-YoM"/>
+                                <constraint firstItem="Iie-nI-yAk" firstAttribute="leading" secondItem="vwp-Q5-sOL" secondAttribute="trailing" constant="-4" id="Xmp-mf-KOY"/>
                                 <constraint firstItem="Iie-nI-yAk" firstAttribute="centerY" secondItem="oXT-x7-f2A" secondAttribute="centerY" id="cUa-IU-t9I"/>
-                                <constraint firstItem="Wxb-X5-emQ" firstAttribute="leading" secondItem="Iie-nI-yAk" secondAttribute="trailing" constant="4" id="cXJ-Zb-1K8"/>
+                                <constraint firstItem="Wxb-X5-emQ" firstAttribute="leading" secondItem="Iie-nI-yAk" secondAttribute="trailing" constant="-4" id="cXJ-Zb-1K8"/>
                                 <constraint firstItem="0Xc-E8-Om2" firstAttribute="top" secondItem="oXT-x7-f2A" secondAttribute="top" constant="4" id="mVE-zq-Hdx"/>
                                 <constraint firstItem="Wxb-X5-emQ" firstAttribute="centerY" secondItem="oXT-x7-f2A" secondAttribute="centerY" id="w6z-cT-v0C"/>
-                                <constraint firstItem="Iie-nI-yAk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0Xc-E8-Om2" secondAttribute="trailing" constant="4" id="zsj-sF-I4Q"/>
+                                <constraint firstItem="vwp-Q5-sOL" firstAttribute="centerY" secondItem="oXT-x7-f2A" secondAttribute="centerY" id="yzV-mh-484"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -92,6 +101,7 @@
                 <outlet property="stepView" destination="oXT-x7-f2A" id="fU3-wo-gDa"/>
                 <outlet property="user1ImageView" destination="Wxb-X5-emQ" id="ROp-K0-Pez"/>
                 <outlet property="user2ImageView" destination="Iie-nI-yAk" id="4Wv-rv-I6J"/>
+                <outlet property="user3ImageView" destination="vwp-Q5-sOL" id="pFL-RF-IUx"/>
             </connections>
             <point key="canvasLocation" x="35.5" y="-245"/>
         </view>
