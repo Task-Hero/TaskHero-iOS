@@ -49,7 +49,7 @@ class Step: NSObject {
         }
         if let signoff = stepDictionary?["signoff"] as? String {
             getSignoff(signoff: signoff)
-        }
+        }        
     }
     
     private func getAssignees(assignees: [String]) {
