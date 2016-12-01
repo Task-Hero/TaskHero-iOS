@@ -86,12 +86,14 @@ class StepDetailCell: UITableViewCell {
         if step.state != StepState.completed {
             for assignee in step.assignees! {
                 let message = "\(User.current!.name!) sent you a bump to complete: \"\(step.name!)\""
-                ParseClient.sharedInstance.sendPushTo(user: assignee, message: message)
+                if assignee.email != User.current?.email {
+                    ParseClient.sharedInstance.sendPushTo(user: assignee, message: message)
+                }
             }
             
             let animation = CABasicAnimation(keyPath: "position")
             animation.duration = 0.1
-            animation.repeatCount = 4
+            animation.repeatCount = 5
             animation.autoreverses = true
             animation.fromValue = NSValue(cgPoint: CGPoint(x: stepView.center.x - 7, y: stepView.center.y))
             animation.toValue = NSValue(cgPoint: CGPoint(x: stepView.center.x + 7, y: stepView.center.y))

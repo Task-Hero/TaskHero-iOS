@@ -46,7 +46,7 @@ class ParseClient: NSObject {
         })
     }
     
-    func getAllTaskInstances(sucess: @escaping ([TaskInstance]) -> (), failure: @escaping (Error) -> ()) {
+    func getAllTaskInstances(success: @escaping ([TaskInstance]) -> (), failure: @escaping (Error) -> ()) {
         let query = PFQuery(className: "TaskInstances")
         
         query.order(byAscending: "completed")
@@ -58,14 +58,14 @@ class ParseClient: NSObject {
                 for object in objects! {
                     tasksInstances.append(TaskInstance.init(taskInstance: object))
                 }
-                sucess(tasksInstances)
+                success(tasksInstances)
             } else {
                 failure(error!)
             }
         })
     }
     
-    func getAllTasks(sucess: @escaping ([Task]) -> (), failure: @escaping (Error) -> ()) {
+    func getAllTasks(success: @escaping ([Task]) -> (), failure: @escaping (Error) -> ()) {
         let query = PFQuery(className: "Task")
         
         query.findObjectsInBackground(block: { (objects, error) -> Void in
@@ -74,7 +74,7 @@ class ParseClient: NSObject {
                 for object in objects! {
                     tasks.append(Task.init(task: object))
                 }
-                sucess(tasks)
+                success(tasks)
             } else {
                 failure(error!)
             }
@@ -125,6 +125,65 @@ class ParseClient: NSObject {
                 success()
             }
         }
+    }
+    
+    func deleteTask(task: Task, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        let query = PFQuery(className: "Task")
+
+        query.getObjectInBackground(withId: task.id!, block: { (object, error) -> Void in
+            if error == nil {
+                object!.deleteInBackground(block: { (deleteSuccess, error) in
+                    if error == nil {
+                        success()
+                    } else {
+                        failure(error!)
+                    }
+                })
+            } else {
+                failure(error!)
+            }
+        })
+    }
+    
+    func updateTask(task: Task, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        let query = PFQuery(className: "Task")
+        
+        query.getObjectInBackground(withId: task.id!, block: { (object, error) -> Void in
+            if error == nil {
+                object!["name"] = task.name
+                object!["details"] = task.details
+                object!["estimated_time"] = task.estimatedTime
+                
+                if let steps = task.steps {
+                    let stepsData = steps.map({ (step) -> [String : AnyObject] in
+                        var assigneeIds: [String] = []
+                        if let assignees = step.assignees {
+                            assigneeIds = assignees.map { user in user.id! }
+                        }
+                        
+                        return [
+                            "name": step.name as AnyObject,
+                            "details": step.details as AnyObject,
+                            "assignees": assigneeIds as AnyObject,
+                            "state": step.state as AnyObject
+                        ]
+                    })
+                    
+                    let data = try! JSONSerialization.data(withJSONObject: stepsData, options: [])
+                    object!["steps"] = String(data: data, encoding: .utf8)
+                }
+                
+                object!.saveInBackground(block: { (saveSuccess, error) in
+                    if saveSuccess {
+                        success()
+                    } else {
+                        failure(error!)
+                    }
+                })
+            } else {
+                failure(error!)
+            }
+        })
     }
     
     func createTaskInstance(task: Task, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
@@ -195,7 +254,7 @@ class ParseClient: NSObject {
         })
     }
     
-    func postMessage(text: String, taskInstance: TaskInstance, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+    func postMessage(text: String, taskInstance: TaskInstance, success: @escaping (String) -> (), failure: @escaping (Error) -> ()) {
         let u = PFUser()
         u.objectId = User.current?.id
         
@@ -211,7 +270,7 @@ class ParseClient: NSObject {
             if let error = error {
                 failure(error)
             } else {
-                success()
+                success(text)
             }
         }
     }
@@ -273,7 +332,6 @@ class ParseClient: NSObject {
             }
         }
     }
-    
 }
 
 // MARK: functions related to push

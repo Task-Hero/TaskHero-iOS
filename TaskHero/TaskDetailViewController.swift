@@ -125,12 +125,43 @@ extension TaskDetailViewController: TaskInstanceUpdateDelegate {
         if taskInstance?.getPercentComplete() == 1.0 {
             taskInstance?.completed = true
         }            
+        
         ParseClient.sharedInstance.updateTaskInstance(taskInstance: taskInstance!, success: { () -> () in
             self.tableView.reloadData()
             self.setPercentBarAndLabel()
+            
+            if self.taskInstance?.completed == true {
+                self.notifyAllUsers()
+            } else {
+                self.notifyNextStepUsers()
+            }
+            
         }, failure: {(error) -> () in
             NSLog("error updating task: \(error)")
         })
+        
+    }
+    
+    func notifyNextStepUsers() {
+        let nextStep = taskInstance?.getNextStep()
+        
+        for assignee in (nextStep?.assignees!)! {
+            let message = "\(User.current!.name!) completed their task. You're up for \(nextStep!.name!)! May the force be with you."
+            if assignee.email != User.current?.email {
+                ParseClient.sharedInstance.sendPushTo(user: assignee, message: message)
+            }
+        }
+    }
+    
+    func notifyAllUsers() {
+        let users = taskInstance?.getInvolvedUsers()
+        
+        for user in users! {
+            let message = "\(taskInstance!.name!) completed! Nice job."
+            if user.email != User.current?.email {
+                ParseClient.sharedInstance.sendPushTo(user: user, message: message)
+            }
+        }
     }
     
 }
