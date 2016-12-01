@@ -44,9 +44,12 @@ class TaskCardCell: UITableViewCell {
                 estimatedTime.text = "\(et)"
             }
             
-            //setMemberIcons(users: task.getInvolvedUsers()) // somehow assignee gets null
+            if isAssigneeLoaded {
+                setMemberIcons(users: task.getInvolvedUsers())
+            }
         }
     }
+    var isAssigneeLoaded = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -77,7 +80,7 @@ class TaskCardCell: UITableViewCell {
             iconImageView.layer.cornerRadius = iconImageView.bounds.width / 2
         }
 
-       
+
     }
     
     @objc fileprivate func onTaskTap(sender: UITapGestureRecognizer) {

@@ -15,6 +15,7 @@ class TaskCatalogViewController: UIViewController {
     fileprivate let taskCardCellIdentifier = "TaskCardCell"
     var tasks: [Task]?
     var currentSelectedCellRowNum = -1
+    var isAssigneeLoaded = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +24,10 @@ class TaskCatalogViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160
         tableView.registerNib(with: taskCardCellIdentifier)
-        
-        loadTasks()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        reloadTableOnNotification()
         loadTasks()
     }
 
@@ -37,6 +37,13 @@ class TaskCatalogViewController: UIViewController {
             self.tableView.reloadData()
         }, failure: {(error) -> () in
             NSLog("Error: \(error)")
+        })
+    }
+    
+    func reloadTableOnNotification() {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Step.assigneeLoadedNotification), object: nil, queue: OperationQueue.main, using: {(notification: Notification) -> Void in
+            self.isAssigneeLoaded = true
+            self.tableView.reloadData()
         })
     }
     
@@ -84,6 +91,7 @@ class TaskCatalogViewController: UIViewController {
 extension TaskCatalogViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: taskCardCellIdentifier, for: indexPath) as! TaskCardCell
+        cell.isAssigneeLoaded = isAssigneeLoaded
         cell.task = tasks?[indexPath.row]
         cell.delegate = self
         
