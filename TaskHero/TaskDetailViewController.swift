@@ -32,10 +32,10 @@ class TaskDetailViewController: UIViewController {
     var steps: [Step]!
     var selectedCell: Int?
     let stepCellIdentifier = "StepDetailCell"
+    var viewMaxWidth: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
- 
         loadTopView()
         loadTableView()
         tableView.reloadData()
@@ -62,11 +62,16 @@ class TaskDetailViewController: UIViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        viewMaxWidth = progressBarContainerView.frame.width
+        setPercentBarAndLabel()
+    }
+    
     func loadTopView() {
         taskNameLabel.text = (taskInstance!.name!)
         taskDescriptionLabel.text = taskInstance?.details
         setUserImages(users: (taskInstance?.getInvolvedUsers())!)
-        setPercentBarAndLabel()
     }
     
     func setUserImages(users: [User]) {
@@ -86,8 +91,7 @@ class TaskDetailViewController: UIViewController {
         percentLabel.text = "\(percentComplete)%"
         progressBarContainerView.layer.borderWidth = 2
         progressBarContainerView.layer.borderColor = UIColor.black.cgColor
-        let viewMaxWidth = progressBarContainerView.frame.width
-        progressBarTrailingConstraint.constant = (viewMaxWidth - (CGFloat(percentComplete) / 100 * viewMaxWidth))
+        progressBarTrailingConstraint.constant = (viewMaxWidth! - (CGFloat(percentComplete) / 100 * viewMaxWidth!))
     }
     
     @IBAction func onBackButton(_ sender: Any) {
@@ -95,10 +99,12 @@ class TaskDetailViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? StepDetailViewController {
+        if let destination = segue.destination as? UINavigationController {
+            let vc = destination.topViewController as! StepDetailViewController
             vc.step = steps![selectedCell!]
-        } else if let vc = segue.destination as? ChatViewController {
-            vc.task = taskInstance
+            vc.taskInstance = taskInstance
+        } else if let destination = segue.destination as? ChatViewController {
+            destination.task = taskInstance
         }
     }
     
@@ -140,12 +146,46 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
 extension TaskDetailViewController: TaskInstanceUpdateDelegate {
     
     func taskInstanceUpdated() {
+        if taskInstance!.getPercentComplete() >= 1.0 {
+            taskInstance?.completed = true
+        }            
+        
         ParseClient.sharedInstance.updateTaskInstance(taskInstance: taskInstance!, success: { () -> () in
             self.tableView.reloadData()
             self.setPercentBarAndLabel()
+            
+            if self.taskInstance?.completed == true {
+                self.notifyAllUsers()
+            } else {
+                self.notifyNextStepUsers()
+            }
+            
         }, failure: {(error) -> () in
             NSLog("error updating task: \(error)")
         })
+        
+    }
+    
+    func notifyNextStepUsers() {
+        let nextStep = taskInstance?.getNextStep()
+        
+        for assignee in (nextStep?.assignees!)! {
+            let message = "\(User.current!.name!) completed their task. You're up for \(nextStep!.name!)! May the force be with you."
+            if assignee.email != User.current?.email {
+                ParseClient.sharedInstance.sendPushTo(user: assignee, message: message)
+            }
+        }
+    }
+    
+    func notifyAllUsers() {
+        let users = taskInstance?.getInvolvedUsers()
+        
+        for user in users! {
+            let message = "\(taskInstance!.name!) completed! Nice job."
+            if user.email != User.current?.email {
+                ParseClient.sharedInstance.sendPushTo(user: user, message: message)
+            }
+        }
     }
 }
 
@@ -158,4 +198,3 @@ extension TaskDetailViewController: ActionViewProtocol {
         return UIImage(named: "BarItemChat")!
     }
 }
-

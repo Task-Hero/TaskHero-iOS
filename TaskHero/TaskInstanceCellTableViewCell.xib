@@ -47,6 +47,13 @@
                                             <constraint firstAttribute="width" constant="40" id="j3K-Yb-in7"/>
                                         </constraints>
                                     </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zPa-ze-x5x">
+                                        <rect key="frame" x="208" y="8" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="QTk-Mz-gfj"/>
+                                            <constraint firstAttribute="width" constant="40" id="haH-A3-Ps9"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -56,9 +63,11 @@
                                     <constraint firstAttribute="trailing" secondItem="j54-TE-4zG" secondAttribute="trailing" constant="8" id="CuX-NK-pX3"/>
                                     <constraint firstAttribute="bottom" secondItem="KYg-02-S1X" secondAttribute="bottom" id="IkL-3N-Sti"/>
                                     <constraint firstItem="KYg-02-S1X" firstAttribute="top" secondItem="cTU-xb-EdP" secondAttribute="top" id="PPA-0J-9kL"/>
+                                    <constraint firstItem="j54-TE-4zG" firstAttribute="leading" secondItem="zPa-ze-x5x" secondAttribute="trailing" constant="-8" id="WTy-nF-GJa"/>
                                     <constraint firstItem="KYg-02-S1X" firstAttribute="leading" secondItem="cTU-xb-EdP" secondAttribute="leading" id="XrQ-jj-Rv3"/>
                                     <constraint firstItem="j54-TE-4zG" firstAttribute="centerY" secondItem="cTU-xb-EdP" secondAttribute="centerY" id="a2f-yE-4Ue"/>
                                     <constraint firstAttribute="trailing" secondItem="KYg-02-S1X" secondAttribute="trailing" constant="100" id="a4x-uF-dVw"/>
+                                    <constraint firstItem="zPa-ze-x5x" firstAttribute="centerY" secondItem="cTU-xb-EdP" secondAttribute="centerY" id="zFq-bb-UDf"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -88,6 +97,7 @@
                 <outlet property="progressConstraint" destination="a4x-uF-dVw" id="zuq-jt-yPM"/>
                 <outlet property="progressView" destination="KYg-02-S1X" id="Jdj-z6-Pm3"/>
                 <outlet property="progressViewContainer" destination="cTU-xb-EdP" id="wsO-iy-5yT"/>
+                <outlet property="secondImageView" destination="zPa-ze-x5x" id="q5A-PX-Spi"/>
                 <outlet property="taskImageView" destination="j54-TE-4zG" id="DIv-dP-HNU"/>
                 <outlet property="taskNameLabel" destination="MIu-bM-zo1" id="vvL-jK-DQH"/>
             </connections>

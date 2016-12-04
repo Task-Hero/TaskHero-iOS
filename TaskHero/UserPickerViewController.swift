@@ -25,7 +25,8 @@ class UserPickerViewController: UIViewController {
     var delegate: UserPickerDelegate?
 
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad()        
+        AppColors.loadNavigationBarColors(navigationController: navigationController!)
         
         tableView.delegate = self
         tableView.dataSource = self

@@ -20,6 +20,7 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
     @IBOutlet weak var taskNameLabel: UILabel!
     @IBOutlet weak var progressViewContainer: UIView!
     @IBOutlet weak var progressView: UIView!
+    @IBOutlet weak var secondImageView: UIImageView!
     
     var percentComplete: Double?
     
@@ -52,15 +53,22 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
     func loadImage() {
         taskImageView.clipsToBounds = true
         taskImageView.layer.cornerRadius = taskImageView.bounds.width / 2
+        secondImageView.isHidden = true
+        secondImageView.clipsToBounds = true
+        secondImageView.layer.cornerRadius = taskImageView.bounds.width / 2
         
         if percentComplete == 100 {
             taskImageView.image = UIImage(named: "CheckMark")
         } else {
             let lastStep = task?.getNextStep()
-            // TODO: add multiple images if there's multiple assignees
-            if let assignee = lastStep?.assignees?[0] {
-                let assigneeProfileUrl = assignee.profileImageUrl!
+            if let assignees = lastStep?.assignees {
+                let assigneeProfileUrl = assignees[0].profileImageUrl!
                 taskImageView.setImageWith(assigneeProfileUrl)
+                if assignees.count > 1 {
+                    secondImageView.isHidden = false
+                    let assigneeProfileUrl = assignees[1].profileImageUrl!
+                    secondImageView.setImageWith(assigneeProfileUrl)
+                }
             } else {
                 taskImageView.image = UIImage(named: "QuestionMark")
             }

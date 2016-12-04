@@ -21,6 +21,7 @@ class CreateTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        AppColors.loadNavigationBarColors(navigationController: navigationController!)
         
         taskDescriptionField.delegate = self
         taskDescriptionField.text = ""

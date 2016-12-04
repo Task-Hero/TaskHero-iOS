@@ -87,7 +87,9 @@ class ChatViewController: UIViewController {
         ParseClient.sharedInstance.postMessage(
             text: enteredText,
             taskInstance: task,
-            success: {},
+            success: { text in
+                self.notifyAllUsers(text: text)
+            },
             failure: { error in print(error) }
         )
         
@@ -150,6 +152,17 @@ class ChatViewController: UIViewController {
         let origin = view.superview?.convert(view.frame.origin, to: nil) ?? CGPoint(x: 0, y: 0)
         let bottomY = origin.y + view.frame.height
         bottomLayoutDelta = UIScreen.main.bounds.size.height - bottomY
+    }
+    
+    private func notifyAllUsers(text: String) {
+        let users = task?.getInvolvedUsers()
+        
+        for user in users! {
+            let message = "\(User.current!.name!): \(text)"
+            if user.email != User.current?.email {
+                ParseClient.sharedInstance.sendPushTo(user: user, message: message)
+            }
+        }
     }
 }
 

@@ -13,6 +13,7 @@ class StepDetailCell: UITableViewCell {
     @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var user1ImageView: UIImageView!
     @IBOutlet weak var user2ImageView: UIImageView!
+    @IBOutlet weak var user3ImageView: UIImageView!
     @IBOutlet weak var stateImageView: UIImageView!
     @IBOutlet weak var stepNameLabel: UILabel!
     @IBOutlet weak var stepView: UIView!
@@ -27,6 +28,9 @@ class StepDetailCell: UITableViewCell {
             if (step.assignees?.count)! > 1 {
                 user2ImageView.setImageWith((step.assignees?[1].profileImageUrl)!)
             }
+            if (step.assignees?.count)! > 2 {
+                user3ImageView.setImageWith((step.assignees?[2].profileImageUrl)!)
+            }
         }
     }
     
@@ -37,7 +41,9 @@ class StepDetailCell: UITableViewCell {
         user1ImageView.clipsToBounds = true
         user1ImageView.layer.cornerRadius = user1ImageView.bounds.width / 2
         user2ImageView.clipsToBounds = true
-        user2ImageView.layer.cornerRadius = user1ImageView.bounds.width / 2
+        user2ImageView.layer.cornerRadius = user2ImageView.bounds.width / 2
+        user3ImageView.clipsToBounds = true
+        user3ImageView.layer.cornerRadius = user3ImageView.bounds.width / 2
         stateImageView.clipsToBounds = true
     }
 
@@ -80,12 +86,14 @@ class StepDetailCell: UITableViewCell {
         if step.state != StepState.completed {
             for assignee in step.assignees! {
                 let message = "\(User.current!.name!) sent you a bump to complete: \"\(step.name!)\""
-                ParseClient.sharedInstance.sendPushTo(user: assignee, message: message)
+                if assignee.email != User.current?.email {
+                    ParseClient.sharedInstance.sendPushTo(user: assignee, message: message)
+                }
             }
             
             let animation = CABasicAnimation(keyPath: "position")
             animation.duration = 0.1
-            animation.repeatCount = 4
+            animation.repeatCount = 5
             animation.autoreverses = true
             animation.fromValue = NSValue(cgPoint: CGPoint(x: stepView.center.x - 7, y: stepView.center.y))
             animation.toValue = NSValue(cgPoint: CGPoint(x: stepView.center.x + 7, y: stepView.center.y))

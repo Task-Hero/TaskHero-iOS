@@ -13,6 +13,56 @@ class ParseClient: NSObject {
     
     static let sharedInstance = ParseClient()
     
+    func loadStepImage(taskInstance: TaskInstance, step: Step, success: @escaping (UIImage) -> (), failure: @escaping (Error) -> ()) {
+        
+        let taskInstanceObject = PFObject(className: "TaskInstances")
+        taskInstanceObject.objectId = taskInstance.id
+        
+        let query = PFQuery(className: "StepImage")
+        query.whereKey("taskInstance", equalTo: taskInstanceObject)
+        query.whereKey("step", equalTo: step.name!)
+        query.addDescendingOrder("updatedAt")
+        
+        query.getFirstObjectInBackground(block: { (object, error) in
+            if error == nil {
+                let file = object?.value(forKey: "image") as! PFFile
+                file.getDataInBackground(block: { (data, error) in
+                    if error == nil {
+                        let image = UIImage(data: data!)
+                        success(image!)
+                    } else {
+                        failure(error!)
+                    }
+                })
+            } else {
+                failure(error!)
+            }
+        })
+    }
+    
+    func saveStepImage(taskInstance: TaskInstance, step: Step, image: UIImage, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        
+        let taskInstanceObject = PFObject(className: "TaskInstances")
+        taskInstanceObject.objectId = taskInstance.id
+    
+        let imageData = UIImageJPEGRepresentation(image, 0.5)
+        
+        let file = PFFile(name: "img", data: imageData!)
+        
+        let object = PFObject(className: "StepImage")
+        object["taskInstance"] = taskInstanceObject
+        object["step"] = step.name!
+        object["image"] = file
+        
+        object.saveInBackground(block: { (saved, error) in
+            if error == nil {
+                success()
+            } else {
+                failure(error!)
+            }
+        })
+    }
+
     func updateTaskInstance(taskInstance: TaskInstance, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         let query = PFQuery(className: "TaskInstances")
         query.whereKey("objectId", equalTo: taskInstance.id!)
@@ -36,9 +86,15 @@ class ParseClient: NSObject {
                     let data = try! JSONSerialization.data(withJSONObject: stepsData, options: [])
                     let string = String(data: data, encoding: .utf8)
                     object?.setValue(string, forKey: "steps")
+                    object?.setValue(taskInstance.completed, forKey: "completed")
                 }
-                object?.saveInBackground()
-                success()
+                object?.saveInBackground(block: { (saved, error) in
+                    if error == nil {
+                        success()
+                    } else {
+                        failure(error!)
+                    }
+                })
             } else {
                 failure(error!)
             }
@@ -47,6 +103,9 @@ class ParseClient: NSObject {
     
     func getAllTaskInstances(success: @escaping ([TaskInstance]) -> (), failure: @escaping (Error) -> ()) {
         let query = PFQuery(className: "TaskInstances")
+        
+        query.order(byAscending: "completed")
+        query.addDescendingOrder("updatedAt")
         
         query.findObjectsInBackground(block: { (objects, error) -> Void in
             if (error == nil) {
@@ -125,7 +184,6 @@ class ParseClient: NSObject {
     
     func deleteTask(task: Task, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         let query = PFQuery(className: "Task")
-        query.order(byAscending: "createdAt")
 
         query.getObjectInBackground(withId: task.id!, block: { (object, error) -> Void in
             if error == nil {
@@ -144,7 +202,6 @@ class ParseClient: NSObject {
     
     func updateTask(task: Task, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         let query = PFQuery(className: "Task")
-        query.order(byAscending: "createdAt")
         
         query.getObjectInBackground(withId: task.id!, block: { (object, error) -> Void in
             if error == nil {
@@ -197,6 +254,7 @@ class ParseClient: NSObject {
         t["details"] = task.details
         t["estimated_time"] = task.estimatedTime
         t["task"] = original
+        t["completed"] = false
         
         if let steps = task.steps {
             let stepsData = steps.map({ (step) -> [String : AnyObject] in
@@ -251,7 +309,7 @@ class ParseClient: NSObject {
         })
     }
     
-    func postMessage(text: String, taskInstance: TaskInstance, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+    func postMessage(text: String, taskInstance: TaskInstance, success: @escaping (String) -> (), failure: @escaping (Error) -> ()) {
         let u = PFUser()
         u.objectId = User.current?.id
         
@@ -267,7 +325,7 @@ class ParseClient: NSObject {
             if let error = error {
                 failure(error)
             } else {
-                success()
+                success(text)
             }
         }
     }

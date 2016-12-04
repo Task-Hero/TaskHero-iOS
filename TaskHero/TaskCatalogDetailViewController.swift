@@ -111,7 +111,7 @@ extension TaskCatalogDetailViewController: EditStepCellDelegate {
     func stepCellDidSelectAssignees(_ stepCell: EditStepCell) {
         let indexPath = tableView.indexPath(for: stepCell)
         selectedStep = task.steps![indexPath!.row - 1]
-        performSegue(withIdentifier: "TaskCatalogDetailoPickUsers", sender: stepCell)
+        performSegue(withIdentifier: "TaskCatalogDetailToPickUsers", sender: stepCell)
     }
 }
 
