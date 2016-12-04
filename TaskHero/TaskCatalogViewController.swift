@@ -107,26 +107,34 @@ extension TaskCatalogViewController: TaskCardCellDelegate {
     func taskTapped(_ taskCell:TaskCardCell) {
         let indexPath = tableView.indexPath(for: taskCell)
         currentSelectedCellRowNum = indexPath!.row
-        performSegue(withIdentifier: "TaskCatalogToTaskCatalogDetail", sender: nil)
-    }
-    
-    func taskLongPressed(_ taskCell:TaskCardCell) {
-        let indexPath = tableView.indexPath(for: taskCell)
-        currentSelectedCellRowNum = indexPath!.row
-        
-        let alertController = UIAlertController(title: "Start this task?", message: nil, preferredStyle: .alert)
+
+        let alertController = UIAlertController(title: "Start or Edit?", message: "You want to Start this task? \n Or, edit it?", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+       
         let startTaskAction = UIAlertAction(title: "Start", style: .default, handler: { (action) in
             self.dismiss(animated: true, completion: nil)
-
+            
             let task = self.tasks![self.currentSelectedCellRowNum]
-            ParseClient.sharedInstance.createTaskInstance(task: task, success: {}, failure: {error in print(error) })
-            // TODO: Go back to Homescreen
+            ParseClient.sharedInstance.createTaskInstance(task: task, success: {() -> () in
+                
+                
+                // TODO: Go back to Homescreen
+                // how to get task instance ????
+                
+            
+            }, failure: {(error) -> () in
+                print("start task failed : error = \(error)")
+            })
         })
         
+        let editTaskAction = UIAlertAction(title: "Edit", style: .default, handler: { (action) in
+            self.dismiss(animated: true, completion: nil)
+            self.performSegue(withIdentifier: "TaskCatalogToTaskCatalogDetail", sender: nil)
+        })
+
         alertController.addAction(cancelAction)
         alertController.addAction(startTaskAction)
-        
+        alertController.addAction(editTaskAction)
         present(alertController, animated: true, completion: nil)
     }
     
