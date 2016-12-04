@@ -148,13 +148,13 @@ class BottomBarViewController: UIViewController {
     }
     
     private func updateSelection() {
-        leftBarItemImageView.tintColor = UIColor.black
-        rightBarItemImageView.tintColor = UIColor.black
+        leftBarItemImageView.tintColor = AppColors.appRed
+        rightBarItemImageView.tintColor = AppColors.appRed
         
         if contentViewController == leftItemViewController {
-            leftBarItemImageView.tintColor = UIColor.red
+            leftBarItemImageView.tintColor = AppColors.appMidGrey
         } else if contentViewController == rightItemViewController {
-            rightBarItemImageView.tintColor = UIColor.red
+            rightBarItemImageView.tintColor = AppColors.appMidGrey
         }
     }
 }

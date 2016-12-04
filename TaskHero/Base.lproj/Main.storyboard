@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,11 +29,11 @@
                                 <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BarItemAddTask" translatesAutoresizingMaskIntoConstraints="NO" id="eJB-6M-OeL">
-                                        <rect key="frame" x="152" y="-20" width="72" height="72"/>
+                                        <rect key="frame" x="159.5" y="1" width="56" height="56"/>
                                         <gestureRecognizers/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="72" id="lyI-dq-Ic7"/>
-                                            <constraint firstAttribute="width" constant="72" id="vgR-jh-gGw"/>
+                                            <constraint firstAttribute="height" constant="56" id="lyI-dq-Ic7"/>
+                                            <constraint firstAttribute="width" constant="56" id="vgR-jh-gGw"/>
                                         </constraints>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="JAu-ae-njt" appends="YES" id="ier-xz-BbM"/>
@@ -62,27 +62,37 @@
                                         </connections>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="TRS-ta-eNi"/>
                                     <constraint firstItem="h0u-2K-mYB" firstAttribute="centerY" secondItem="0d9-n8-TZW" secondAttribute="centerY" id="YJF-xG-lbE"/>
                                     <constraint firstItem="eJB-6M-OeL" firstAttribute="centerX" secondItem="0d9-n8-TZW" secondAttribute="centerX" id="ah7-R0-P0E"/>
                                     <constraint firstAttribute="trailing" secondItem="5cA-Zp-sA5" secondAttribute="trailing" constant="48" id="bpr-pg-q61"/>
                                     <constraint firstItem="h0u-2K-mYB" firstAttribute="leading" secondItem="0d9-n8-TZW" secondAttribute="leading" constant="48" id="d7m-Te-Q3Y"/>
-                                    <constraint firstItem="eJB-6M-OeL" firstAttribute="top" secondItem="0d9-n8-TZW" secondAttribute="top" constant="-20" id="rIv-vP-fg7"/>
+                                    <constraint firstItem="eJB-6M-OeL" firstAttribute="top" secondItem="0d9-n8-TZW" secondAttribute="top" constant="1" id="rIv-vP-fg7"/>
                                     <constraint firstItem="5cA-Zp-sA5" firstAttribute="centerY" secondItem="0d9-n8-TZW" secondAttribute="centerY" id="yhI-qx-rWo"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fol-7F-f5y">
+                                <rect key="frame" x="0.0" y="606" width="375" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="uPj-6v-1og"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0d9-n8-TZW" secondAttribute="bottom" id="2w7-gP-QDY"/>
+                            <constraint firstItem="Fol-7F-f5y" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6FF-eh-r6a"/>
                             <constraint firstItem="0d9-n8-TZW" firstAttribute="top" secondItem="mXf-gp-pqB" secondAttribute="bottom" id="9GN-VT-esZ"/>
                             <constraint firstItem="mXf-gp-pqB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="B8x-N4-AgO"/>
                             <constraint firstAttribute="trailing" secondItem="mXf-gp-pqB" secondAttribute="trailing" id="FcR-NB-aeb"/>
                             <constraint firstItem="mXf-gp-pqB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Hxo-Vz-2aL"/>
                             <constraint firstAttribute="trailing" secondItem="0d9-n8-TZW" secondAttribute="trailing" id="kKS-vt-DVr"/>
                             <constraint firstItem="0d9-n8-TZW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kuu-va-ifu"/>
+                            <constraint firstItem="0d9-n8-TZW" firstAttribute="top" secondItem="Fol-7F-f5y" secondAttribute="bottom" id="nGk-F1-8Qz"/>
+                            <constraint firstAttribute="trailing" secondItem="Fol-7F-f5y" secondAttribute="trailing" id="ydY-J3-gFy"/>
                         </constraints>
                     </view>
                     <connections>
@@ -950,6 +960,6 @@
         <image name="cameraButton" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="typ-hw-nhL"/>
+        <segue reference="dIS-mt-g39"/>
     </inferredMetricsTieBreakers>
 </document>
