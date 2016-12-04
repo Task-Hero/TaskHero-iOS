@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -24,7 +24,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mXf-gp-pqB">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="607"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0d9-n8-TZW">
                                 <rect key="frame" x="0.0" y="607" width="375" height="60"/>
@@ -78,17 +77,19 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0d9-n8-TZW" secondAttribute="bottom" id="2w7-gP-QDY"/>
+                            <constraint firstItem="0d9-n8-TZW" firstAttribute="top" secondItem="mXf-gp-pqB" secondAttribute="bottom" id="9GN-VT-esZ"/>
                             <constraint firstItem="mXf-gp-pqB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="B8x-N4-AgO"/>
                             <constraint firstAttribute="trailing" secondItem="mXf-gp-pqB" secondAttribute="trailing" id="FcR-NB-aeb"/>
                             <constraint firstItem="mXf-gp-pqB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Hxo-Vz-2aL"/>
-                            <constraint firstItem="0d9-n8-TZW" firstAttribute="top" secondItem="mXf-gp-pqB" secondAttribute="bottom" id="KeN-jC-eQ5"/>
                             <constraint firstAttribute="trailing" secondItem="0d9-n8-TZW" secondAttribute="trailing" id="kKS-vt-DVr"/>
                             <constraint firstItem="0d9-n8-TZW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kuu-va-ifu"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="actionBarItemImageView" destination="eJB-6M-OeL" id="MQh-KE-Bud"/>
+                        <outlet property="barView" destination="0d9-n8-TZW" id="U07-2X-rC7"/>
                         <outlet property="contentView" destination="mXf-gp-pqB" id="4Wa-wY-Ss0"/>
+                        <outlet property="contentViewBottomConstraint" destination="2w7-gP-QDY" id="8lP-LO-O00"/>
                         <outlet property="leftBarItemImageView" destination="h0u-2K-mYB" id="16d-gj-kaN"/>
                         <outlet property="rightBarItemImageView" destination="5cA-Zp-sA5" id="mfS-mJ-S38"/>
                     </connections>
@@ -503,11 +504,6 @@
                                 <action selector="onBackButton:" destination="rcV-wD-8WO" id="9Zn-5I-Mcg"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Chat" id="UPq-gN-x36">
-                            <connections>
-                                <segue destination="CFx-c1-7Ax" kind="show" identifier="TaskDetailToChat" id="Qre-Dq-Cj7"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="imageView1" destination="Ob3-yp-EGS" id="XnP-6H-X0T"/>
@@ -522,6 +518,7 @@
                         <outlet property="taskDescriptionLabel" destination="eVT-wR-Mk5" id="klY-t1-hst"/>
                         <outlet property="taskNameLabel" destination="97D-tv-Hek" id="dOj-nw-kRa"/>
                         <segue destination="Hl7-AX-up1" kind="show" identifier="TaskDetailToStepDetail" id="7EM-kJ-3Nm"/>
+                        <segue destination="CFx-c1-7Ax" kind="show" identifier="TaskDetailToChat" id="PdC-wG-N8x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d8o-Tn-pQE" userLabel="First Responder" sceneMemberID="firstResponder"/>

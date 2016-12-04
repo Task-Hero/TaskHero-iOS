@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         registerForLogoutMessages()
         
         if User.current != nil {
-            setRootViewController(BottomBarLoader.loadBottomBar())
+            setRootViewController(BottomBar.instance)
         } else {
             setRootViewController(loadLoginScreen())
         }

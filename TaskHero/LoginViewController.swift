@@ -118,8 +118,7 @@ class LoginViewController: UIViewController {
     
     private func transitionToApp() {
         ParseClient.sharedInstance.connectCurrentUserAndInstallation()
-        let bottomBarViewController = BottomBarLoader.loadBottomBar()
-        self.present(bottomBarViewController, animated: true, completion: nil)
+        self.present(BottomBar.instance, animated: true, completion: nil)
     }
     
 }

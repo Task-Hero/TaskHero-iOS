@@ -9,27 +9,47 @@
 import UIKit
 import Parse
 
-class BottomBarLoader: NSObject {
+class CreateTaskAction: ActionViewProtocol {
+    func actionViewRequestedAction(bottomBarViewController: BottomBarViewController) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateTaskNavigationController")
+        bottomBarViewController.present(vc, animated: true, completion: nil)
+    }
     
-    class func loadBottomBar() -> BottomBarViewController {
+    func imageForActionView() -> UIImage {
+        return UIImage(named: "BarItemAddTask")!
+    }
+}
+
+class BottomBar {
+    private init() {}
+    
+    private static var _instance: BottomBarViewController!
+    
+    static var instance: BottomBarViewController! {
+        get {
+            if (_instance == nil) {
+                _instance = loadBottomBar()
+            }
+            
+            return _instance
+        }
+    }
+    
+    private class func loadBottomBar() -> BottomBarViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let bottomBarViewController = storyboard.instantiateViewController(withIdentifier: "BottomBarViewController") as! BottomBarViewController
-        
-        let actionViewController = storyboard.instantiateViewController(withIdentifier: "CreateTaskNavigationController")
-        actionViewController.tabBarItem.image = UIImage(named: "BarItemAddTask")
         
         let leftViewController = storyboard.instantiateViewController(withIdentifier: "HomeNavigationController")
         leftViewController.tabBarItem.image = UIImage(named: "BarItemProgressView")
         
         let rightViewController = storyboard.instantiateViewController(withIdentifier: "TaskCatalogNavigationController")
         rightViewController.tabBarItem.image = UIImage(named: "BarItemTaskCatalog")
-        
-        bottomBarViewController.actionViewController = actionViewController
+
+        bottomBarViewController.actionView = CreateTaskAction()
         bottomBarViewController.leftItemViewController = leftViewController
         bottomBarViewController.rightItemViewController = rightViewController
         
         return bottomBarViewController
     }
-
 }
