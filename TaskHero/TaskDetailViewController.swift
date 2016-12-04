@@ -46,7 +46,6 @@ class TaskDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        BottomBar.instance.show(animated: true)
         BottomBar.instance.actionView = self
     }
     
@@ -57,8 +56,6 @@ class TaskDetailViewController: UIViewController {
         if (index == nil) {
             // Going back in stack - replace the old action view
             BottomBar.instance.actionView = lastActionView
-        } else {
-            BottomBar.instance.hide(animated: true)
         }
     }
     
