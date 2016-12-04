@@ -79,6 +79,7 @@ class TaskDetailViewController: UIViewController {
         if let destination = segue.destination as? UINavigationController {
             let vc = destination.topViewController as! StepDetailViewController
             vc.step = steps![selectedCell!]
+            vc.taskInstance = taskInstance
         } else if let destination = segue.destination as? ChatViewController {
             destination.task = taskInstance
         }
@@ -122,7 +123,7 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
 extension TaskDetailViewController: TaskInstanceUpdateDelegate {
     
     func taskInstanceUpdated() {
-        if taskInstance?.getPercentComplete() == 1.0 {
+        if taskInstance!.getPercentComplete() >= 1.0 {
             taskInstance?.completed = true
         }            
         
@@ -165,4 +166,3 @@ extension TaskDetailViewController: TaskInstanceUpdateDelegate {
     }
     
 }
-

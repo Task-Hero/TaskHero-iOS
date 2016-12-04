@@ -22,6 +22,7 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        AppColors.loadNavigationBarColors(navigationController: navigationController!)
         loadNavigationBar()
         loadTableView()
         loadTasks()

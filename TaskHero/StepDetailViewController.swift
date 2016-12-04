@@ -17,19 +17,21 @@ class StepDetailViewController: UIViewController {
     @IBOutlet weak var imageView3: UIImageView!
     @IBOutlet weak var imageView4: UIImageView!
     @IBOutlet weak var imageView5: UIImageView!
-    @IBOutlet weak var dateStarted: UILabel!
-    @IBOutlet weak var dateUpdated: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var statusImageView: UIImageView!
+    @IBOutlet weak var attachedImageView: UIImageView!
     
+    var taskInstance: TaskInstance!
     var step: Step!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        AppColors.loadNavigationBarColors(navigationController: navigationController!)
         stepName.text = step.name
         stepDescription.text = step.details
         setUserImages()
         setStateImageView()
+        loadSavedImage()
     }
     
     @IBAction func onBackButton(_ sender: Any) {
@@ -54,6 +56,46 @@ class StepDetailViewController: UIViewController {
         } else {
             statusImageView.image = UIImage(named: "Attention")
         }
+    }
+    
+    func loadSavedImage() {
+        ParseClient.sharedInstance.loadStepImage(taskInstance: taskInstance, step: step, success: { (image) -> () in
+            NSLog("loading image")
+            self.attachedImageView.image = image
+        }, failure: { (error) -> () in
+            NSLog("error loading image, or no saved images. e=\(error)")
+        })
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        self.attachedImageView.image = image
+        
+        ParseClient.sharedInstance.saveStepImage(taskInstance: taskInstance, step: step, image: image!, success: { () -> () in
+            NSLog("image saved.")
+        }, failure: { (error) -> () in
+            NSLog("error saving image. e=\(error)")
+        })
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+extension StepDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    @IBAction func onCameraButton(_ sender: Any) {
+        let vc = UIImagePickerController()
+        vc.delegate = self
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            vc.sourceType = UIImagePickerControllerSourceType.camera
+        } else {
+            vc.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        }
+        
+        self.present(vc, animated: true, completion: nil)
     }
     
 }

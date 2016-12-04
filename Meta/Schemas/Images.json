@@ -1,0 +1,5 @@
+{ 
+	"taskInstance: "_taskInstanceId",
+	"step": "stepName",
+	"image": "file"
+}

@@ -19,7 +19,7 @@ class TaskCatalogViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        AppColors.loadNavigationBarColors(navigationController: navigationController!)
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160
