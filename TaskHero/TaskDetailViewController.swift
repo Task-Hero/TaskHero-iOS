@@ -22,6 +22,8 @@ class TaskDetailViewController: UIViewController {
     @IBOutlet weak var percentLabel: UILabel!
     @IBOutlet weak var progressBarTrailingConstraint: NSLayoutConstraint!
     
+    private var lastActionView: ActionViewProtocol!
+    
     var taskInstance: TaskInstance? {
         didSet {
             steps = taskInstance?.steps
@@ -37,6 +39,27 @@ class TaskDetailViewController: UIViewController {
         loadTopView()
         loadTableView()
         tableView.reloadData()
+        
+        lastActionView = BottomBar.instance.actionView
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        BottomBar.instance.show(animated: true)
+        BottomBar.instance.actionView = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        let index = navigationController?.viewControllers.index(of: self)
+        if (index == nil) {
+            // Going back in stack - replace the old action view
+            BottomBar.instance.actionView = lastActionView
+        } else {
+            BottomBar.instance.hide(animated: true)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -164,5 +187,14 @@ extension TaskDetailViewController: TaskInstanceUpdateDelegate {
             }
         }
     }
+}
+
+extension TaskDetailViewController: ActionViewProtocol {
+    func actionViewRequestedAction(bottomBarViewController: BottomBarViewController) {
+        performSegue(withIdentifier: "TaskDetailToChat", sender: self)
+    }
     
+    func imageForActionView() -> UIImage {
+        return UIImage(named: "BarItemChat")!
+    }
 }
