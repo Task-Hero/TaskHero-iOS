@@ -10,9 +10,6 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var appLogoLabel: UILabel!
-    @IBOutlet weak var appLogoTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var appnameLabel: UILabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var buttonsView: UIView!
     @IBOutlet weak var signupButton: UIButton!
@@ -21,10 +18,14 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var okButton: UIButton!
+    @IBOutlet weak var appLogoImageView: UIImageView!
+    @IBOutlet weak var appLogoImageViewTopConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         buttonConfigs()
+        backgroundImageView.backgroundColor = AppColors.appWhite
+        appLogoImageView.image = UIImage(named: "appLogo")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,16 +37,20 @@ class LoginViewController: UIViewController {
         loginButton.backgroundColor = UIColor.clear
         okButton.backgroundColor = UIColor.clear
         
+        signupButton.tintColor = AppColors.appRed
+        loginButton.tintColor = AppColors.appRed
+        okButton.tintColor = AppColors.appRed
+        
         signupButton.layer.borderWidth = 2.0
-        signupButton.layer.borderColor = UIColor.white.cgColor
+        signupButton.layer.borderColor = AppColors.appBlue.cgColor
         signupButton.layer.cornerRadius = 6
         
         loginButton.layer.borderWidth = 2.0
-        loginButton.layer.borderColor = UIColor.white.cgColor
+        loginButton.layer.borderColor = AppColors.appBlue.cgColor
         loginButton.layer.cornerRadius = 6
         
         okButton.layer.borderWidth = 2.0
-        okButton.layer.borderColor = UIColor.white.cgColor
+        okButton.layer.borderColor = AppColors.appBlue.cgColor
         okButton.layer.cornerRadius = 6
     }
     
@@ -55,17 +60,15 @@ class LoginViewController: UIViewController {
     }
     
     private func animateInputFields() {
-        self.appLogoTopConstraint.constant = 10
+        self.appLogoImageViewTopConstraint.constant = 50
         
         UIView.animate(withDuration: 0.4, animations: {
             self.userInputView.alpha = 1
             self.buttonsView.alpha = 0.1
-            self.appnameLabel.alpha = 0.1
             self.view.layoutIfNeeded()
         }, completion: { (finished) in
             self.userInputView.isHidden = false
             self.buttonsView.isHidden = true
-            self.appnameLabel.isHidden = true
         })
     }
     
@@ -102,23 +105,27 @@ class LoginViewController: UIViewController {
     }
     
     private func animateLoginSignupButtons() {
-        appLogoTopConstraint.constant = 120
+        appLogoImageViewTopConstraint.constant = 120
         
         UIView.animate(withDuration: 0.3, animations: {
             self.userInputView.alpha = 0.1
             self.buttonsView.alpha = 1
-            self.appnameLabel.alpha = 1
             self.view.layoutIfNeeded()
         }, completion: { (finished) in
             self.userInputView.isHidden = true
             self.buttonsView.isHidden = false
-            self.appnameLabel.isHidden = false
         })        
     }
     
     private func transitionToApp() {
-        ParseClient.sharedInstance.connectCurrentUserAndInstallation()
-        self.present(BottomBar.instance, animated: true, completion: nil)
+        UIView.animate(withDuration: 1.5, animations: ({
+            self.userInputView.isHidden = true
+            self.buttonsView.isHidden = true
+            self.appLogoImageView.transform = CGAffineTransform(scaleX: 25,y: 25)
+        }), completion: ({ finish in
+            ParseClient.sharedInstance.connectCurrentUserAndInstallation()
+            self.present(BottomBar.instance, animated: true, completion: nil)
+        }))
     }
     
 }
