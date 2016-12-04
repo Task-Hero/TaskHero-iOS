@@ -152,9 +152,9 @@ class BottomBarViewController: UIViewController {
         rightBarItemImageView.tintColor = AppColors.appRed
         
         if contentViewController == leftItemViewController {
-            leftBarItemImageView.tintColor = AppColors.appMidGrey
+            leftBarItemImageView.tintColor = AppColors.appBlue
         } else if contentViewController == rightItemViewController {
-            rightBarItemImageView.tintColor = AppColors.appMidGrey
+            rightBarItemImageView.tintColor = AppColors.appBlue
         }
     }
 }
