@@ -56,12 +56,15 @@ class CreateStepsViewController: UIViewController {
     }
     
     @IBAction func onDoneTapped(_ sender: Any) {
-        ParseClient.sharedInstance.createTask(task: task, success: {}, failure: {error in print(error) })
-        
-        dismiss(animated: true) {
-            self.resetNavigationStackToNewTask()
-            self.delegate?.taskWasCreated(self.task)
-        }
+        ParseClient.sharedInstance.createTask(task: task, success: {() -> () in
+            self.dismiss(animated: true) {
+                BottomBar.instance.switchToRightViewController()
+                self.resetNavigationStackToNewTask()
+                self.delegate?.taskWasCreated(self.task)
+            }
+        }, failure: { (error) -> () in
+            print(error)
+        })
     }
     
     @IBAction func onAddTapped(_ sender: Any) {
