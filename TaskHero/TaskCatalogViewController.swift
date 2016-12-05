@@ -16,6 +16,12 @@ class TaskCatalogViewController: UIViewController {
     var tasks: [Task]?
     var currentSelectedCellRowNum = -1
     var isAssigneeLoaded = false
+    
+    private var lastActionView: ActionViewProtocol!
+    
+    fileprivate var popover: PopoverView!
+    fileprivate var dimView: UIView!
+    fileprivate let popoverDuration: TimeInterval = 0.3
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,11 +30,26 @@ class TaskCatalogViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160
         tableView.registerNib(with: taskCardCellIdentifier)
+        
+        lastActionView = BottomBar.instance.actionView
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        BottomBar.instance.actionView = CreateTaskAction()
         reloadTableOnNotification()
         loadTasks()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        let index = navigationController?.viewControllers.index(of: self)
+        if (index == nil) {
+            // Going back in stack - replace the old action view
+            BottomBar.instance.actionView = lastActionView
+        }
     }
 
     func loadTasks() {
@@ -45,10 +66,6 @@ class TaskCatalogViewController: UIViewController {
             self.isAssigneeLoaded = true
             self.tableView.reloadData()
         })
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     // MARK: - Navigation
@@ -89,6 +106,7 @@ class TaskCatalogViewController: UIViewController {
 }
 
 extension TaskCatalogViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: taskCardCellIdentifier, for: indexPath) as! TaskCardCell
         cell.isAssigneeLoaded = isAssigneeLoaded
@@ -101,37 +119,14 @@ extension TaskCatalogViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks?.count ?? 0
     }
+    
 }
 
 extension TaskCatalogViewController: TaskCardCellDelegate {
     func taskTapped(_ taskCell:TaskCardCell) {
         let indexPath = tableView.indexPath(for: taskCell)
         currentSelectedCellRowNum = indexPath!.row
-
-        let alertController = UIAlertController(title: "Start or Edit?", message: "You want to Start this task? \n Or, edit it?", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-       
-        let startTaskAction = UIAlertAction(title: "Start", style: .default, handler: { (action) in
-            self.dismiss(animated: true, completion: nil)
-
-            let task = self.tasks![self.currentSelectedCellRowNum]
-            ParseClient.sharedInstance.createTaskInstance(task: task, success: {(instanceObjectId) -> () in
-                BottomBar.instance.switchToLeftViewController()
-                (BottomBar.instance.leftItemViewController.childViewControllers[0] as! HomeViewController).presentTargetTaskDetailView(taskInstanceId: instanceObjectId)
-            }, failure: {(error) -> () in
-                print("start task failed : error = \(error)")
-            })
-        })
-        
-        let editTaskAction = UIAlertAction(title: "Edit", style: .default, handler: { (action) in
-            self.dismiss(animated: true, completion: nil)
-            self.performSegue(withIdentifier: "TaskCatalogToTaskCatalogDetail", sender: nil)
-        })
-
-        alertController.addAction(cancelAction)
-        alertController.addAction(startTaskAction)
-        alertController.addAction(editTaskAction)
-        present(alertController, animated: true, completion: nil)
+        showPopover()
     }
     
     func taskCellWasRemoved(_ taskCell: TaskCardCell) {
@@ -140,3 +135,71 @@ extension TaskCatalogViewController: TaskCardCellDelegate {
     }
 }
 
+extension TaskCatalogViewController: PopoverViewDelegate {
+
+    func popoverViewDidSelectPrimaryAction(popoverView: PopoverView) {
+        dismissPopover { 
+            self.dismiss(animated: true, completion: nil)
+            let task = self.tasks![self.currentSelectedCellRowNum]
+
+            ParseClient.sharedInstance.createTaskInstance(task: task, success: { (instanceObjectId) -> () in
+                BottomBar.instance.switchToLeftViewController()
+                (BottomBar.instance.leftItemViewController.childViewControllers[0] as! HomeViewController).presentTargetTaskDetailView(taskInstanceId: instanceObjectId)
+            }, failure: {(error) -> () in
+                print("start task failed : error = \(error)")
+            })
+        }
+    }
+    
+    func popoverViewDidSelectSecondaryAction(popoverView: PopoverView) {
+        dismissPopover { 
+            self.performSegue(withIdentifier: "TaskCatalogToTaskCatalogDetail", sender: nil)
+        }
+    }
+    
+    fileprivate func showPopover() {
+        let padding: CGFloat = 30
+        
+        popover = UIView.loadNib(named: "PopoverView") as! PopoverView
+        let size = CGSize(width: view.bounds.width - (padding * 2), height: popover.frame.height)
+        let origin = CGPoint(x: padding, y: -size.height)
+        popover.frame = CGRect(origin: origin, size: size)
+        
+        dimView = UIView(frame: BottomBar.instance.view.frame)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissPopoverOnTap))
+        dimView.addGestureRecognizer(tap)
+        dimView.addSubview(popover)
+        
+        BottomBar.instance.view.addSubview(dimView)
+        BottomBar.instance.view.bringSubview(toFront: dimView)
+        
+        popover.primaryTitle = "Run"
+        popover.secondaryTitle = "Edit"
+        popover.delegate = self
+        
+        dimView.backgroundColor = UIColor.clear
+        
+        UIView.animate(withDuration: popoverDuration) {
+            self.dimView.backgroundColor = UIColor(white: 0, alpha: 0.4)
+            self.popover.center.y = self.view.center.y
+        }
+    }
+    
+    @objc fileprivate func dismissPopoverOnTap() {
+        dismissPopover(complete: nil)
+    }
+    
+    fileprivate func dismissPopover(complete: (() -> ())?) {
+        UIView.animate(
+            withDuration: popoverDuration,
+            animations: {
+                self.popover.center.y = -self.popover.bounds.size.height
+                self.dimView.backgroundColor = UIColor.clear
+        },
+            completion: { _ in
+                self.dimView.removeFromSuperview()
+                complete?()
+        }
+        )
+    }
+}

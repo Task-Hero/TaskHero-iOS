@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PopoverView" customModule="TaskHero" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="387" height="227"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="apM-Zz-HYM">
+                    <rect key="frame" x="0.0" y="48" width="387" height="179"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdD-aV-aOm">
+                            <rect key="frame" x="28" y="112" width="331" height="48"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="mp4-Ff-XWs"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                            <state key="normal" title="NO">
+                                <color key="titleColor" red="0.0" green="0.80392156862745101" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="onSecondary:" destination="iN0-l3-epB" eventType="touchUpInside" id="tCB-ae-69L"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOY-DJ-EzG">
+                            <rect key="frame" x="28" y="48" width="331" height="48"/>
+                            <color key="backgroundColor" red="0.0" green="0.80392156862745101" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="DoQ-Db-87A"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                            <state key="normal" title="RUN IT">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onPrimary:" destination="iN0-l3-epB" eventType="touchUpInside" id="igq-gX-kyk"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="xdD-aV-aOm" firstAttribute="leading" secondItem="rOY-DJ-EzG" secondAttribute="leading" id="0jb-d2-ZyY"/>
+                        <constraint firstAttribute="trailing" secondItem="rOY-DJ-EzG" secondAttribute="trailing" constant="28" id="RlQ-DM-6Tg"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xdD-aV-aOm" secondAttribute="bottom" constant="16" id="af9-wl-Seb"/>
+                        <constraint firstItem="xdD-aV-aOm" firstAttribute="top" secondItem="rOY-DJ-EzG" secondAttribute="bottom" constant="16" id="beD-fo-0ND"/>
+                        <constraint firstItem="xdD-aV-aOm" firstAttribute="trailing" secondItem="rOY-DJ-EzG" secondAttribute="trailing" id="jqj-mQ-oTp"/>
+                        <constraint firstItem="rOY-DJ-EzG" firstAttribute="top" secondItem="apM-Zz-HYM" secondAttribute="top" constant="48" id="mV4-AH-Kr2"/>
+                        <constraint firstItem="rOY-DJ-EzG" firstAttribute="leading" secondItem="apM-Zz-HYM" secondAttribute="leading" constant="28" id="seW-0x-LaE"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hero" translatesAutoresizingMaskIntoConstraints="NO" id="Z8a-lp-WRg">
+                    <rect key="frame" x="151" y="0.0" width="84" height="84"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="84" id="EQP-mZ-TYD"/>
+                        <constraint firstAttribute="width" constant="84" id="zhu-We-hNB"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="apM-Zz-HYM" secondAttribute="trailing" id="IUd-OP-zbg"/>
+                <constraint firstAttribute="bottom" secondItem="apM-Zz-HYM" secondAttribute="bottom" id="RLe-Il-L9N"/>
+                <constraint firstItem="apM-Zz-HYM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dDC-xC-b8u"/>
+                <constraint firstItem="Z8a-lp-WRg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="i8x-rD-Nwu"/>
+                <constraint firstItem="Z8a-lp-WRg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vNw-Ew-NYq"/>
+                <constraint firstItem="apM-Zz-HYM" firstAttribute="top" secondItem="Z8a-lp-WRg" secondAttribute="bottom" constant="-36" id="x3W-RS-zVb"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backgroundView" destination="apM-Zz-HYM" id="ygx-Yh-DqK"/>
+                <outlet property="primaryButton" destination="rOY-DJ-EzG" id="TxD-jH-igV"/>
+                <outlet property="secondaryButton" destination="xdD-aV-aOm" id="35P-sG-O11"/>
+            </connections>
+            <point key="canvasLocation" x="57.5" y="-165.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Hero" width="212" height="212"/>
+    </resources>
+</document>

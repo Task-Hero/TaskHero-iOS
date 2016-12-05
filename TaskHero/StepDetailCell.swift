@@ -23,8 +23,7 @@ class StepDetailCell: UITableViewCell {
     
     var step: Step! {
         didSet {
-            stepNameLabel.text = step.name
-            
+            stepNameLabel.text = step.name            
             if step.assignees != nil {
                 user1ImageView.setImageWith((step.assignees?[0].profileImageUrl)!)
                 if (step.assignees?.count)! > 1 {

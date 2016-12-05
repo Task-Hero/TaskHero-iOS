@@ -1,3 +1,4 @@
+
 //
 //  TaskCatalogDetailViewController.swift
 //  TaskHero
@@ -18,7 +19,7 @@ class TaskCatalogDetailViewController: UIViewController {
     var currentSelectedCellRowNum = -1
     
     var task:Task!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,11 +31,20 @@ class TaskCatalogDetailViewController: UIViewController {
         tableView.reloadData()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        BottomBar.instance.hide(animated: true)
     }
     
-    @IBAction func onBackButton(_ sender: Any) {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        BottomBar.instance.show(animated: true)
+    }
+    
+    @IBAction func onDoneButton(_ sender: Any) {
         ParseClient.sharedInstance.updateTask(task: task, success: {}, failure: {error in print(error) })
         
         _ = navigationController?.popViewController(animated: true)

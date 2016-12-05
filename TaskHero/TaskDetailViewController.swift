@@ -41,14 +41,11 @@ class TaskDetailViewController: UIViewController {
         tableView.reloadData()
         
         lastActionView = BottomBar.instance.actionView
-        
-        setAssigneeLoadedNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        BottomBar.instance.show(animated: true)
         BottomBar.instance.actionView = self
     }
     
@@ -59,8 +56,6 @@ class TaskDetailViewController: UIViewController {
         if (index == nil) {
             // Going back in stack - replace the old action view
             BottomBar.instance.actionView = lastActionView
-        } else {
-            BottomBar.instance.hide(animated: true)
         }
     }
     
@@ -94,10 +89,6 @@ class TaskDetailViewController: UIViewController {
         progressBarContainerView.layer.borderWidth = 2
         progressBarContainerView.layer.borderColor = UIColor.black.cgColor
         progressBarTrailingConstraint.constant = (viewMaxWidth! - (CGFloat(percentComplete) / 100 * viewMaxWidth!))
-    }
-    
-    @IBAction func onBackButton(_ sender: Any) {
-        _ = navigationController?.popViewController(animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -141,13 +132,7 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return steps?.count ?? 0
     }
-    
-    func setAssigneeLoadedNotification() {
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Step.allAssigneeLoadedNotification), object: nil, queue: OperationQueue.main, using: {(notification: Notification) -> Void in
-            self.loadTopView()
-            self.tableView.reloadData()
-        })
-    }
+
 }
 
 extension TaskDetailViewController: TaskInstanceUpdateDelegate {

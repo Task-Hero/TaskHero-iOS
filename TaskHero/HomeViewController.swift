@@ -11,11 +11,10 @@ import UIKit
 class HomeViewController: UIViewController {
     
     var tasks: [TaskInstance]?
+    var selectedTaskInstance: TaskInstance?
     var selectedCell: Int?
     var initialIndexPath: IndexPath?
     var cellSnapshot: UIView?
-    fileprivate var isOpenFromTaskCatalogCase = false
-    var openFromTaskCatalogCaseTask: TaskInstance?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -50,15 +49,9 @@ class HomeViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "HomeToTaskDetail" {
-            if isOpenFromTaskCatalogCase {
-                isOpenFromTaskCatalogCase = false
-                let taskDetailViewController = segue.destination as! TaskDetailViewController
-                taskDetailViewController.taskInstance = openFromTaskCatalogCaseTask
-            } else {
-                let task = tasks![selectedCell!]
-                let taskDetailViewController = segue.destination as! TaskDetailViewController
-                taskDetailViewController.taskInstance = task
-            }
+            let taskInstance = selectedTaskInstance
+            let taskDetailViewController = segue.destination as! TaskDetailViewController
+            taskDetailViewController.taskInstance = taskInstance
         }
     }
 }
@@ -90,8 +83,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return tasks?.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
-        selectedCell = indexPath.row
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedTaskInstance = tasks![indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "HomeToTaskDetail", sender: self)
     }
@@ -103,18 +96,31 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func presentTargetTaskDetailView(taskInstanceId: String) {
-        ParseClient.sharedInstance.getAllTaskInstances(success: {(tasks) -> () in
-            for task in tasks {
-                if task.id == taskInstanceId {
-                    self.isOpenFromTaskCatalogCase = true
-                    self.openFromTaskCatalogCaseTask = task
-                    self.performSegue(withIdentifier: "HomeToTaskDetail", sender: self)
+        ParseClient.sharedInstance.getAllTaskInstances(success: { (taskInstances) -> () in
+            for taskInstance in taskInstances {
+                if taskInstance.id == taskInstanceId {
+                    _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
+                        var loading = true
+                        for step in taskInstance.steps! {
+                            if step.assigneesLoaded == true {
+                                loading = false
+                            } else {
+                                loading = true
+                            }
+                        }
+                        if loading == false {
+                            timer.invalidate()
+                            self.selectedTaskInstance = taskInstance
+                            self.performSegue(withIdentifier: "HomeToTaskDetail", sender: self)
+                        }
+                    }
                 }
             }
-        }, failure: {(error) -> () in
+        }, failure: { (error) -> () in
             NSLog("Error: \(error)")
         })
     }
+    
 }
 
 // MARK: code for drag and drop cells
