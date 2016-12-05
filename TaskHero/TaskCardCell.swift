@@ -54,7 +54,7 @@ class TaskCardCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        cardView.layer.cornerRadius = 8.0
+        cardView.layer.cornerRadius = 20.0
         cardView.layer.shadowColor = UIColor.lightGray.cgColor
         cardView.layer.shadowOpacity = 0.5
         cardView.layer.shadowRadius = 3.0
@@ -79,8 +79,6 @@ class TaskCardCell: UITableViewCell {
             iconImageView.clipsToBounds = true
             iconImageView.layer.cornerRadius = iconImageView.bounds.width / 2
         }
-
-
     }
     
     @objc fileprivate func onTaskTap(sender: UITapGestureRecognizer) {
