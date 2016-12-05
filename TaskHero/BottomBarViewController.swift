@@ -158,7 +158,15 @@ class BottomBarViewController: UIViewController {
         }
     }
     
-    func switchToLeftViewControllerAndShowTaskDetailView() {
-        contentViewController = leftItemViewController
+    func switchToLeftViewController() {
+        if contentViewController != leftItemViewController {
+            contentViewController = leftItemViewController
+        }
+    }
+    
+    func switchToRightViewController() {
+        if contentViewController != rightItemViewController {
+            contentViewController = rightItemViewController
+        }
     }
 }
