@@ -23,13 +23,15 @@ class StepDetailCell: UITableViewCell {
     
     var step: Step! {
         didSet {
-            stepNameLabel.text = step.name
-            user1ImageView.setImageWith((step.assignees?[0].profileImageUrl)!)
-            if (step.assignees?.count)! > 1 {
-                user2ImageView.setImageWith((step.assignees?[1].profileImageUrl)!)
-            }
-            if (step.assignees?.count)! > 2 {
-                user3ImageView.setImageWith((step.assignees?[2].profileImageUrl)!)
+            stepNameLabel.text = step.name            
+            if step.assignees != nil {
+                user1ImageView.setImageWith((step.assignees?[0].profileImageUrl)!)
+                if (step.assignees?.count)! > 1 {
+                    user2ImageView.setImageWith((step.assignees?[1].profileImageUrl)!)
+                }
+                if (step.assignees?.count)! > 2 {
+                    user3ImageView.setImageWith((step.assignees?[2].profileImageUrl)!)
+                }
             }
         }
     }

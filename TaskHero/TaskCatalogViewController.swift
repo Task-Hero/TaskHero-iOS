@@ -106,6 +106,7 @@ class TaskCatalogViewController: UIViewController {
 }
 
 extension TaskCatalogViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: taskCardCellIdentifier, for: indexPath) as! TaskCardCell
         cell.isAssigneeLoaded = isAssigneeLoaded
@@ -118,6 +119,7 @@ extension TaskCatalogViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks?.count ?? 0
     }
+    
 }
 
 extension TaskCatalogViewController: TaskCardCellDelegate {
@@ -134,11 +136,17 @@ extension TaskCatalogViewController: TaskCardCellDelegate {
 }
 
 extension TaskCatalogViewController: PopoverViewDelegate {
+
     func popoverViewDidSelectPrimaryAction(popoverView: PopoverView) {
         dismissPopover { 
             self.dismiss(animated: true, completion: nil)
             let task = self.tasks![self.currentSelectedCellRowNum]
-            ParseClient.sharedInstance.createTaskInstance(task: task, success: {}, failure: {error in print(error) })
+            ParseClient.sharedInstance.createTaskInstance(task: task, success: { (instanceObjectId) -> () in
+                BottomBar.instance.switchToLeftViewControllerAndShowTaskDetailView()
+                (BottomBar.instance.leftItemViewController.childViewControllers[0] as! HomeViewController).presentTargetTaskDetailView(taskInstanceId: instanceObjectId)
+            }, failure: {(error) -> () in
+                print("start task failed : error = \(error)")
+            })
         }
     }
     

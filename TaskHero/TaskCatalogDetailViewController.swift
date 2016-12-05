@@ -1,3 +1,4 @@
+
 //
 //  TaskCatalogDetailViewController.swift
 //  TaskHero
@@ -30,6 +31,7 @@ class TaskCatalogDetailViewController: UIViewController {
         tableView.reloadData()
     }
     
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
@@ -42,7 +44,7 @@ class TaskCatalogDetailViewController: UIViewController {
         BottomBar.instance.show(animated: true)
     }
     
-    @IBAction func onBackButton(_ sender: Any) {
+    @IBAction func onDoneButton(_ sender: Any) {
         ParseClient.sharedInstance.updateTask(task: task, success: {}, failure: {error in print(error) })
         
         _ = navigationController?.popViewController(animated: true)

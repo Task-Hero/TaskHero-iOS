@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     var tasks: [TaskInstance]?
+    var selectedTaskInstance: TaskInstance?
     var selectedCell: Int?
     var initialIndexPath: IndexPath?
     var cellSnapshot: UIView?
@@ -48,12 +49,11 @@ class HomeViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "HomeToTaskDetail" {
-            let task = tasks![selectedCell!]
+            let taskInstance = selectedTaskInstance
             let taskDetailViewController = segue.destination as! TaskDetailViewController
-            taskDetailViewController.taskInstance = task
+            taskDetailViewController.taskInstance = taskInstance
         }
     }
-    
 }
 
 // MARK: TableView functions
@@ -83,8 +83,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return tasks?.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
-        selectedCell = indexPath.row
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedTaskInstance = tasks![indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "HomeToTaskDetail", sender: self)
     }
@@ -92,6 +92,32 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func reloadTableOnNotification() {
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Step.assigneeLoadedNotification), object: nil, queue: OperationQueue.main, using: {(notification: Notification) -> Void in
                 self.tableView.reloadData()
+        })
+    }
+    
+    func presentTargetTaskDetailView(taskInstanceId: String) {
+        ParseClient.sharedInstance.getAllTaskInstances(success: { (taskInstances) -> () in
+            for taskInstance in taskInstances {
+                if taskInstance.id == taskInstanceId {
+                    _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
+                        var loading = true
+                        for step in taskInstance.steps! {
+                            if step.assigneesLoaded == true {
+                                loading = false
+                            } else {
+                                loading = true
+                            }
+                        }
+                        if loading == false {
+                            timer.invalidate()
+                            self.selectedTaskInstance = taskInstance
+                            self.performSegue(withIdentifier: "HomeToTaskDetail", sender: self)
+                        }
+                    }
+                }
+            }
+        }, failure: { (error) -> () in
+            NSLog("Error: \(error)")
         })
     }
     
@@ -175,5 +201,4 @@ extension HomeViewController {
         cellSnapshot.layer.shadowOpacity = 0.4
         return cellSnapshot
     }
-    
 }
