@@ -16,6 +16,8 @@ class TaskCatalogViewController: UIViewController {
     var tasks: [Task]?
     var currentSelectedCellRowNum = -1
     var isAssigneeLoaded = false
+    
+    private var lastActionView: ActionViewProtocol!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,11 +26,26 @@ class TaskCatalogViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160
         tableView.registerNib(with: taskCardCellIdentifier)
+        
+        lastActionView = BottomBar.instance.actionView
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        BottomBar.instance.actionView = CreateTaskAction()
         reloadTableOnNotification()
         loadTasks()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        let index = navigationController?.viewControllers.index(of: self)
+        if (index == nil) {
+            // Going back in stack - replace the old action view
+            BottomBar.instance.actionView = lastActionView
+        }
     }
 
     func loadTasks() {

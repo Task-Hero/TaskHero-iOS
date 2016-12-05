@@ -34,6 +34,18 @@ class StepDetailViewController: UIViewController {
         loadSavedImage()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        BottomBar.instance.hide(animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        BottomBar.instance.show(animated: true)
+    }
+    
     @IBAction func onBackButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

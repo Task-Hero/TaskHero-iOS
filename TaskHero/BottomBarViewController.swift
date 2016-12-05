@@ -27,6 +27,7 @@ class BottomBarViewController: UIViewController {
         didSet {
             if let imageView = actionBarItemImageView {
                 imageView.image = actionView?.imageForActionView()
+                imageView.tintColor = AppColors.appRed
             }
         }
     }
@@ -53,19 +54,21 @@ class BottomBarViewController: UIViewController {
 
             if oldContentViewController != nil {
                 if contentViewController == oldContentViewController {
+                    if let nav = contentViewController as? UINavigationController {
+                        nav.popToRootViewController(animated: true)
+                    }
+                    
                     return
                 }
                 
                 oldContentViewController.willMove(toParentViewController: nil)
                 oldContentViewController.view.removeFromSuperview()
                 oldContentViewController.removeFromParentViewController()
-                oldContentViewController.didMove(toParentViewController: nil)
             }
             
             view.layoutIfNeeded()
             
             contentViewController.view.frame = contentView.frame
-            contentViewController.willMove(toParentViewController: self)
             addChildViewController(contentViewController)
             contentView.addSubview(contentViewController.view)
             contentViewController.didMove(toParentViewController: self)

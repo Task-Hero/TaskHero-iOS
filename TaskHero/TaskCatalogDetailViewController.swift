@@ -1,3 +1,4 @@
+
 //
 //  TaskCatalogDetailViewController.swift
 //  TaskHero
@@ -18,7 +19,7 @@ class TaskCatalogDetailViewController: UIViewController {
     var currentSelectedCellRowNum = -1
     
     var task:Task!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +29,19 @@ class TaskCatalogDetailViewController: UIViewController {
         tableView.registerNib(with: taskCellIdentifier)
         tableView.registerNib(with: stepCellIdentifier)
         tableView.reloadData()
+    }
+    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        BottomBar.instance.hide(animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        BottomBar.instance.show(animated: true)
     }
     
     @IBAction func onDoneButton(_ sender: Any) {

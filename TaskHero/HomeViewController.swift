@@ -99,7 +99,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         ParseClient.sharedInstance.getAllTaskInstances(success: { (taskInstances) -> () in
             for taskInstance in taskInstances {
                 if taskInstance.id == taskInstanceId {
-                    let timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
+                    _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
                         var loading = true
                         for step in taskInstance.steps! {
                             if step.assigneesLoaded == true {
