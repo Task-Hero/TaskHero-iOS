@@ -102,6 +102,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         })
     }
     
+    func presentTargetTaskDetailView(taskInstanceId: String) {
+        ParseClient.sharedInstance.getAllTaskInstances(success: {(tasks) -> () in
+            for task in tasks {
+                if task.id == taskInstanceId {
+                    self.isOpenFromTaskCatalogCase = true
+                    self.openFromTaskCatalogCaseTask = task
+                    self.performSegue(withIdentifier: "HomeToTaskDetail", sender: self)
+                }
+            }
+        }, failure: {(error) -> () in
+            NSLog("Error: \(error)")
+        })
+    }
 }
 
 // MARK: code for drag and drop cells
@@ -181,19 +194,5 @@ extension HomeViewController {
         cellSnapshot.layer.shadowRadius = 5.0
         cellSnapshot.layer.shadowOpacity = 0.4
         return cellSnapshot
-    }
-    
-    func presentTargetTaskDetailView(taskInstanceId: String) {
-        ParseClient.sharedInstance.getAllTaskInstances(success: {(tasks) -> () in
-            for task in tasks {
-                if task.id == taskInstanceId {
-                    self.isOpenFromTaskCatalogCase = true
-                    self.openFromTaskCatalogCaseTask = task
-                    self.performSegue(withIdentifier: "HomeToTaskDetail", sender: self)
-                }
-            }
-        }, failure: {(error) -> () in
-            NSLog("Error: \(error)")
-        })
     }
 }

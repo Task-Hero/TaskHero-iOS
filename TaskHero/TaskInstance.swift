@@ -89,15 +89,16 @@ class TaskInstance: NSObject {
         var emails = [String]()
         
         for step in steps! {
-            for user in step.assignees! {
-                if !emails.contains(user.email!) {
-                    emails.append(user.email!)
-                    users.append(user)
+            if step.assignees != nil {
+                for user in step.assignees! {
+                    if !emails.contains(user.email!) {
+                        emails.append(user.email!)
+                        users.append(user)
+                    }
                 }
             }
         }
         
         return users
     }
-    
 }

@@ -24,6 +24,7 @@ class Step: NSObject {
     var completedAt: TimeInterval?
     
     static var assigneeLoadedNotification = "assignedLoaded"
+    static var allAssigneeLoadedNotification = "allAssignedLoaded"
     
     override init() {
         super.init()
@@ -65,6 +66,8 @@ class Step: NSObject {
                 NSLog("Error getting users, error: \(error)")
             })
         }
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: Step.allAssigneeLoadedNotification), object: nil)
     }
     
     private func getSignoff(signoff: String) {
