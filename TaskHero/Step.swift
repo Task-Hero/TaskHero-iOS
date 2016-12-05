@@ -24,6 +24,7 @@ class Step: NSObject {
     var completedAt: TimeInterval?
     
     static var assigneeLoadedNotification = "assignedLoaded"
+    var assigneesLoaded: Bool = false
     
     override init() {
         super.init()
@@ -33,7 +34,7 @@ class Step: NSObject {
         super.init()
         
         self.name = stepDictionary?["name"] as! String?
-        self.getAssignees(assignees: stepDictionary?["assignees"] as! [String])
+        self.getAssignees(assigneeIds: stepDictionary?["assignees"] as! [String])
         
         if let details = stepDictionary?["details"] as? String?  {
             self.details = details
@@ -52,19 +53,19 @@ class Step: NSObject {
         }        
     }
     
-    private func getAssignees(assignees: [String]) {
-        for assignee in assignees {
-            ParseClient.sharedInstance.getUser(userId: assignee, success: { (user) -> () in
-                if self.assignees == nil {
-                    self.assignees = [user]
-                } else {
-                    self.assignees?.append(user)
+    private func getAssignees(assigneeIds: [String]) {
+        ParseClient.sharedInstance.getTeammates(success: { (users) -> () in
+            self.assignees = [User]()
+            for user in users {
+                if assigneeIds.contains(user.id!) {                    
+                    self.assignees!.append(user)
                 }
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: Step.assigneeLoadedNotification), object: nil)
-            }, failure: { error in
-                NSLog("Error getting users, error: \(error)")
-            })
-        }
+            }
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Step.assigneeLoadedNotification), object: nil)
+            self.assigneesLoaded = true
+        }, failure: { error in
+            NSLog("Error getting users, error: \(error)")
+        })
     }
     
     private func getSignoff(signoff: String) {

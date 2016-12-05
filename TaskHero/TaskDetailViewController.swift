@@ -91,10 +91,6 @@ class TaskDetailViewController: UIViewController {
         progressBarTrailingConstraint.constant = (viewMaxWidth! - (CGFloat(percentComplete) / 100 * viewMaxWidth!))
     }
     
-    @IBAction func onBackButton(_ sender: Any) {
-        _ = navigationController?.popViewController(animated: true)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? UINavigationController {
             let vc = destination.topViewController as! StepDetailViewController
@@ -104,7 +100,6 @@ class TaskDetailViewController: UIViewController {
             destination.task = taskInstance
         }
     }
-    
 }
 
 extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -137,7 +132,7 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return steps?.count ?? 0
     }
-    
+
 }
 
 extension TaskDetailViewController: TaskInstanceUpdateDelegate {
@@ -160,7 +155,6 @@ extension TaskDetailViewController: TaskInstanceUpdateDelegate {
         }, failure: {(error) -> () in
             NSLog("error updating task: \(error)")
         })
-        
     }
     
     func notifyNextStepUsers() {
