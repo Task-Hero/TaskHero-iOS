@@ -30,11 +30,7 @@ class TaskCatalogDetailViewController: UIViewController {
         tableView.reloadData()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    @IBAction func onBackButton(_ sender: Any) {
+    @IBAction func onDoneButton(_ sender: Any) {
         ParseClient.sharedInstance.updateTask(task: task, success: {}, failure: {error in print(error) })
         
         _ = navigationController?.popViewController(animated: true)

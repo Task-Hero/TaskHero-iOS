@@ -15,7 +15,7 @@ class ParseClient: NSObject {
     
     func loadStepImage(taskInstance: TaskInstance, step: Step, success: @escaping (UIImage) -> (), failure: @escaping (Error) -> ()) {
         
-        let taskInstanceObject = PFObject(className: "TaskInstances")
+        let taskInstanceObject = PFObject(className: "TaskInstance")
         taskInstanceObject.objectId = taskInstance.id
         
         let query = PFQuery(className: "StepImage")
@@ -42,7 +42,7 @@ class ParseClient: NSObject {
     
     func saveStepImage(taskInstance: TaskInstance, step: Step, image: UIImage, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         
-        let taskInstanceObject = PFObject(className: "TaskInstances")
+        let taskInstanceObject = PFObject(className: "TaskInstance")
         taskInstanceObject.objectId = taskInstance.id
     
         let imageData = UIImageJPEGRepresentation(image, 0.5)
@@ -64,7 +64,7 @@ class ParseClient: NSObject {
     }
 
     func updateTaskInstance(taskInstance: TaskInstance, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
-        let query = PFQuery(className: "TaskInstances")
+        let query = PFQuery(className: "TaskInstance")
         query.whereKey("objectId", equalTo: taskInstance.id!)
         query.getFirstObjectInBackground(block: { (object, error) -> Void in
             if (error == nil) {
@@ -102,7 +102,7 @@ class ParseClient: NSObject {
     }
     
     func getAllTaskInstances(success: @escaping ([TaskInstance]) -> (), failure: @escaping (Error) -> ()) {
-        let query = PFQuery(className: "TaskInstances")
+        let query = PFQuery(className: "TaskInstance")
         
         query.order(byAscending: "completed")
         query.addDescendingOrder("updatedAt")
@@ -248,7 +248,7 @@ class ParseClient: NSObject {
         let original = PFObject(className: "Task")
         original.objectId = task.id
         
-        let t = PFObject(className: "TaskInstances")
+        let t = PFObject(className: "TaskInstance")
         t["author"] = u
         t["name"] = task.name
         t["details"] = task.details
@@ -313,7 +313,7 @@ class ParseClient: NSObject {
         let u = PFUser()
         u.objectId = User.current?.id
         
-        let t = PFObject(className: "TaskInstances")
+        let t = PFObject(className: "TaskInstance")
         t.objectId = taskInstance.id
         
         let m = PFObject(className: "ChatMessage")
@@ -331,7 +331,7 @@ class ParseClient: NSObject {
     }
     
     func getMessages(taskInstance: TaskInstance, since: Date? = nil, success: @escaping ([Message]) -> (), failure: @escaping (Error) -> ()) {
-        let t = PFObject(className: "TaskInstances")
+        let t = PFObject(className: "TaskInstance")
         t.objectId = taskInstance.id
         
         let query = PFQuery(className: "ChatMessage")

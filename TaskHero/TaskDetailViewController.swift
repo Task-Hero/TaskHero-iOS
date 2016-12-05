@@ -41,8 +41,6 @@ class TaskDetailViewController: UIViewController {
         tableView.reloadData()
         
         lastActionView = BottomBar.instance.actionView
-        
-        setAssigneeLoadedNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,10 +94,6 @@ class TaskDetailViewController: UIViewController {
         progressBarTrailingConstraint.constant = (viewMaxWidth! - (CGFloat(percentComplete) / 100 * viewMaxWidth!))
     }
     
-    @IBAction func onBackButton(_ sender: Any) {
-        _ = navigationController?.popViewController(animated: true)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? UINavigationController {
             let vc = destination.topViewController as! StepDetailViewController
@@ -141,13 +135,7 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return steps?.count ?? 0
     }
-    
-    func setAssigneeLoadedNotification() {
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Step.allAssigneeLoadedNotification), object: nil, queue: OperationQueue.main, using: {(notification: Notification) -> Void in
-            self.loadTopView()
-            self.tableView.reloadData()
-        })
-    }
+
 }
 
 extension TaskDetailViewController: TaskInstanceUpdateDelegate {

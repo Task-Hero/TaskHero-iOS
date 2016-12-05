@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -149,12 +149,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="User Name" id="0MG-oT-7Ga">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="FjU-x6-Shd"/>
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="fh5-W2-Gmh">
                             <connections>
                                 <action selector="logoutButton:" destination="CJO-Vf-Iro" id="bdv-hI-PXC"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Invite!" id="wpZ-11-LuH"/>
+                        <barButtonItem key="rightBarButtonItem" title="Invite" id="wpZ-11-LuH"/>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="0sI-l9-M31" id="ic8-b2-DD7"/>
@@ -189,7 +190,9 @@
                             <constraint firstItem="u4m-Cn-wiB" firstAttribute="top" secondItem="DTa-xr-gpJ" secondAttribute="top" id="wGQ-UP-fai"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Task Catalog" id="btD-fu-2QJ"/>
+                    <navigationItem key="navigationItem" title="Task Catalog" id="btD-fu-2QJ">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Fqh-Qp-Rwf"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="u4m-Cn-wiB" id="mAM-2x-n3I"/>
                         <segue destination="4Bh-kx-Ib5" kind="show" identifier="TaskCatalogToTaskCatalogDetail" id="fKX-f3-GN2"/>
@@ -306,9 +309,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Task Detail" id="dL8-Of-XbB">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="y4h-dt-OCX">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="shx-0m-IHI">
                             <connections>
-                                <action selector="onBackButton:" destination="4Bh-kx-Ib5" id="ekG-rh-ieZ"/>
+                                <action selector="onDoneButton:" destination="4Bh-kx-Ib5" id="JoC-IL-404"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -455,13 +458,7 @@
                             <constraint firstItem="gk8-yy-QEV" firstAttribute="bottom" secondItem="vo9-4M-g02" secondAttribute="top" id="zz2-cp-4Q8"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Task Detail" id="xcw-lA-fIR">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="KG1-PX-5Co">
-                            <connections>
-                                <action selector="onBackButton:" destination="rcV-wD-8WO" id="9Zn-5I-Mcg"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Task Detail" id="xcw-lA-fIR"/>
                     <connections>
                         <outlet property="imageView1" destination="Ob3-yp-EGS" id="XnP-6H-X0T"/>
                         <outlet property="imageView2" destination="b0l-ex-gVi" id="aeY-a2-Vg3"/>
@@ -628,7 +625,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Step Detail" id="sJB-mC-Pvm">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="el9-eh-XWT">
+                        <barButtonItem key="leftBarButtonItem" title="Done" id="el9-eh-XWT">
                             <connections>
                                 <action selector="onBackButton:" destination="Hl7-AX-up1" id="kTo-lo-Fde"/>
                             </connections>

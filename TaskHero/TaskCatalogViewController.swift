@@ -115,7 +115,7 @@ extension TaskCatalogViewController: TaskCardCellDelegate {
             self.dismiss(animated: true, completion: nil)
 
             let task = self.tasks![self.currentSelectedCellRowNum]
-            ParseClient.sharedInstance.createTaskInstance(task: task, success: {(instanceObjectId) -> () in
+            ParseClient.sharedInstance.createTaskInstance(task: task, success: { (instanceObjectId) -> () in
                 BottomBar.instance.switchToLeftViewControllerAndShowTaskDetailView()
                 (BottomBar.instance.leftItemViewController.childViewControllers[0] as! HomeViewController).presentTargetTaskDetailView(taskInstanceId: instanceObjectId)
             }, failure: {(error) -> () in
