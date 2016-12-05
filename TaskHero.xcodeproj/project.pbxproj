@@ -30,6 +30,9 @@
 		A89AFB631DD8CF0100141EEB /* TaskCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A89AFB621DD8CF0100141EEB /* TaskCardCell.xib */; };
 		A89AFB651DD8D34900141EEB /* TaskCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89AFB641DD8D34900141EEB /* TaskCardCell.swift */; };
 		A89AFB6F1DD9720F00141EEB /* StepDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A89AFB6E1DD9720F00141EEB /* StepDetailCell.xib */; };
+		AB1867EE1DF50BCA001D0EE7 /* PopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB1867ED1DF50BCA001D0EE7 /* PopoverView.xib */; };
+		AB1867F01DF51020001D0EE7 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1867EF1DF51020001D0EE7 /* PopoverView.swift */; };
+		AB1867F21DF51B0C001D0EE7 /* UIView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1867F11DF51B0C001D0EE7 /* UIView+Convenience.swift */; };
 		ABD390471DD93D9000F90197 /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD390461DD93D9000F90197 /* CreateTaskViewController.swift */; };
 		ABD390491DD94BE700F90197 /* CreateStepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD390481DD94BE700F90197 /* CreateStepsViewController.swift */; };
 		ABD3904C1DD94C3E00F90197 /* EditStepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3904A1DD94C3E00F90197 /* EditStepCell.swift */; };
@@ -82,6 +85,9 @@
 		A89AFB6A1DD9669400141EEB /* StepDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepDetailViewController.swift; sourceTree = "<group>"; };
 		A89AFB6E1DD9720F00141EEB /* StepDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepDetailCell.xib; sourceTree = "<group>"; };
 		A89AFB701DD9722A00141EEB /* StepDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepDetailCell.swift; sourceTree = "<group>"; };
+		AB1867ED1DF50BCA001D0EE7 /* PopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopoverView.xib; sourceTree = "<group>"; };
+		AB1867EF1DF51020001D0EE7 /* PopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
+		AB1867F11DF51B0C001D0EE7 /* UIView+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Convenience.swift"; sourceTree = "<group>"; };
 		ABD390451DD935FF00F90197 /* TaskHero.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TaskHero.entitlements; sourceTree = "<group>"; };
 		ABD390461DD93D9000F90197 /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
 		ABD390481DD94BE700F90197 /* CreateStepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStepsViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +213,8 @@
 				ABD390631DEBA32800F90197 /* MessageCell.xib */,
 				ABD390661DEBAADA00F90197 /* MyMessageCell.swift */,
 				ABD390671DEBAADA00F90197 /* MyMessageCell.xib */,
+				AB1867ED1DF50BCA001D0EE7 /* PopoverView.xib */,
+				AB1867EF1DF51020001D0EE7 /* PopoverView.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -217,6 +225,7 @@
 				ABD390531DD9649800F90197 /* UITableView+Convenience.swift */,
 				6F32FF241DEC0434001C6300 /* UITableViewCell+Convenience.swift */,
 				6F32FF261DEC066A001C6300 /* UIViewController+Convenience.swift */,
+				AB1867F11DF51B0C001D0EE7 /* UIView+Convenience.swift */,
 			);
 			name = extensions;
 			sourceTree = "<group>";
@@ -339,6 +348,7 @@
 			files = (
 				6FFBB4D61DD7EE3300BEC201 /* Login.storyboard in Resources */,
 				ABD390691DEBAADA00F90197 /* MyMessageCell.xib in Resources */,
+				AB1867EE1DF50BCA001D0EE7 /* PopoverView.xib in Resources */,
 				A89AFB631DD8CF0100141EEB /* TaskCardCell.xib in Resources */,
 				ABD3904D1DD94C3E00F90197 /* EditStepCell.xib in Resources */,
 				A89AFB6F1DD9720F00141EEB /* StepDetailCell.xib in Resources */,
@@ -434,9 +444,11 @@
 				ABD390471DD93D9000F90197 /* CreateTaskViewController.swift in Sources */,
 				ABD390611DEB92EC00F90197 /* ChatViewController.swift in Sources */,
 				6F32FF281DEC1710001C6300 /* TaskDetailViewController.swift in Sources */,
+				AB1867F01DF51020001D0EE7 /* PopoverView.swift in Sources */,
 				6FFC30491DD8343B00597B7A /* ParseClient.swift in Sources */,
 				6FB712C81DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.swift in Sources */,
 				ABD390511DD94C9F00F90197 /* Step.swift in Sources */,
+				AB1867F21DF51B0C001D0EE7 /* UIView+Convenience.swift in Sources */,
 				6F32FF291DEC1764001C6300 /* StepDetailCell.swift in Sources */,
 				6FFC30471DD8310200597B7A /* BottomBarLoader.swift in Sources */,
 				ABD390641DEBA32800F90197 /* MessageCell.swift in Sources */,

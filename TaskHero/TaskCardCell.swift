@@ -11,7 +11,6 @@ import UIKit
 protocol TaskCardCellDelegate {
     func taskCellWasRemoved(_ taskCell:TaskCardCell)
     func taskTapped(_ taskCell:TaskCardCell)
-    func taskLongPressed(_ taskCell:TaskCardCell)
 }
 
 class TaskCardCell: UITableViewCell {
@@ -64,10 +63,6 @@ class TaskCardCell: UITableViewCell {
         taskTap.addTarget(self, action: #selector(onTaskTap))
         addGestureRecognizer(taskTap)
         
-        let taskLongPress = UILongPressGestureRecognizer()
-        taskLongPress.addTarget(self, action: #selector(onTaskLongPress))
-        addGestureRecognizer(taskLongPress)
-        
         let taskPan = UIPanGestureRecognizer()
         taskPan.addTarget(self, action: #selector(onTaskPan))
         taskPan.delegate = self
@@ -83,10 +78,6 @@ class TaskCardCell: UITableViewCell {
     
     @objc fileprivate func onTaskTap(sender: UITapGestureRecognizer) {
         delegate?.taskTapped(self)
-    }
-    
-    @objc fileprivate func onTaskLongPress(sender: UILongPressGestureRecognizer) {
-        delegate?.taskLongPressed(self)
     }
     
     @objc fileprivate func onTaskPan(sender: UIPanGestureRecognizer) {
