@@ -108,7 +108,7 @@ extension TaskCatalogViewController: TaskCardCellDelegate {
         let indexPath = tableView.indexPath(for: taskCell)
         currentSelectedCellRowNum = indexPath!.row
 
-        let alertController = UIAlertController(title: "Start or Edit?", message: "You want to Start this task? \n Or, edit it?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: nil, message: "Do you want to start or edit this task?", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
        
         let startTaskAction = UIAlertAction(title: "Start", style: .default, handler: { (action) in
