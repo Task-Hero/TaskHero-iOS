@@ -241,7 +241,7 @@ class ParseClient: NSObject {
         })
     }
     
-    func createTaskInstance(task: Task, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+    func createTaskInstance(task: Task, success: @escaping (String) -> (), failure: @escaping (Error) -> ()) {
         let u = PFUser()
         u.objectId = User.current!.id
         
@@ -273,12 +273,12 @@ class ParseClient: NSObject {
             let data = try! JSONSerialization.data(withJSONObject: stepsData, options: [])
             t["steps"] = String(data: data, encoding: .utf8)
         }
-        
+
         t.saveInBackground { (saved, error) in
             if let error = error {
                 failure(error)
             } else {
-                success()
+                success(t.objectId!)
             }
         }
     }

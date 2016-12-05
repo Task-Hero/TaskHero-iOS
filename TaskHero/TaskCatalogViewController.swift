@@ -113,15 +113,11 @@ extension TaskCatalogViewController: TaskCardCellDelegate {
        
         let startTaskAction = UIAlertAction(title: "Start", style: .default, handler: { (action) in
             self.dismiss(animated: true, completion: nil)
-            
+
             let task = self.tasks![self.currentSelectedCellRowNum]
-            ParseClient.sharedInstance.createTaskInstance(task: task, success: {() -> () in
-                
-                
-                // TODO: Go back to Homescreen
-                // how to get task instance ????
-                
-            
+            ParseClient.sharedInstance.createTaskInstance(task: task, success: {(instanceObjectId) -> () in
+                BottomBar.instance.switchToLeftViewControllerAndShowTaskDetailView()
+                (BottomBar.instance.leftItemViewController.childViewControllers[0] as! HomeViewController).presentTargetTaskDetailView(taskInstanceId: instanceObjectId)
             }, failure: {(error) -> () in
                 print("start task failed : error = \(error)")
             })

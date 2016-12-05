@@ -140,7 +140,6 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return steps?.count ?? 0
     }
-    
 }
 
 extension TaskDetailViewController: TaskInstanceUpdateDelegate {
@@ -163,7 +162,6 @@ extension TaskDetailViewController: TaskInstanceUpdateDelegate {
         }, failure: {(error) -> () in
             NSLog("error updating task: \(error)")
         })
-        
     }
     
     func notifyNextStepUsers() {

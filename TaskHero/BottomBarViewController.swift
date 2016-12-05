@@ -157,4 +157,8 @@ class BottomBarViewController: UIViewController {
             rightBarItemImageView.tintColor = AppColors.appBlue
         }
     }
+    
+    func switchToLeftViewControllerAndShowTaskDetailView() {
+        contentViewController = leftItemViewController
+    }
 }

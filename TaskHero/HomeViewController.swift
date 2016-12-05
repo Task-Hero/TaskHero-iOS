@@ -14,6 +14,8 @@ class HomeViewController: UIViewController {
     var selectedCell: Int?
     var initialIndexPath: IndexPath?
     var cellSnapshot: UIView?
+    fileprivate var isOpenFromTaskCatalogCase = false
+    var openFromTaskCatalogCaseTask: TaskInstance?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -48,12 +50,17 @@ class HomeViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "HomeToTaskDetail" {
-            let task = tasks![selectedCell!]
-            let taskDetailViewController = segue.destination as! TaskDetailViewController
-            taskDetailViewController.taskInstance = task
+            if isOpenFromTaskCatalogCase {
+                isOpenFromTaskCatalogCase = false
+                let taskDetailViewController = segue.destination as! TaskDetailViewController
+                taskDetailViewController.taskInstance = openFromTaskCatalogCaseTask
+            } else {
+                let task = tasks![selectedCell!]
+                let taskDetailViewController = segue.destination as! TaskDetailViewController
+                taskDetailViewController.taskInstance = task
+            }
         }
     }
-    
 }
 
 // MARK: TableView functions
@@ -176,4 +183,17 @@ extension HomeViewController {
         return cellSnapshot
     }
     
+    func presentTargetTaskDetailView(taskInstanceId: String) {
+        ParseClient.sharedInstance.getAllTaskInstances(success: {(tasks) -> () in
+            for task in tasks {
+                if task.id == taskInstanceId {
+                    self.isOpenFromTaskCatalogCase = true
+                    self.openFromTaskCatalogCaseTask = task
+                    self.performSegue(withIdentifier: "HomeToTaskDetail", sender: self)
+                }
+            }
+        }, failure: {(error) -> () in
+            NSLog("Error: \(error)")
+        })
+    }
 }
