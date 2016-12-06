@@ -15,39 +15,56 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var progressConstraint: NSLayoutConstraint!
-    @IBOutlet weak var taskImageView: UIImageView!
     @IBOutlet weak var percentLabel: UILabel!
     @IBOutlet weak var taskNameLabel: UILabel!
     @IBOutlet weak var progressViewContainer: UIView!
     @IBOutlet weak var progressView: UIView!
     @IBOutlet weak var secondImageView: UIImageView!
+    @IBOutlet weak var taskImageView: UIImageView!
+    @IBOutlet weak var taskImageViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var TaskImageViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var TaskImageViewTrailingConstraint: NSLayoutConstraint!
     
     var percentComplete: Double?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+    }
+    
+    func loadViews() {
         selectionStyle = .none
         cardView.layer.cornerRadius = 8.0
-        cardView.layer.shadowColor = UIColor.lightGray.cgColor
-        cardView.layer.shadowOpacity = 0.5
-        cardView.layer.shadowRadius = 3.0
-        cardView.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
+        
+        progressViewContainer.layer.cornerRadius = 25
+        progressViewContainer.layer.borderWidth = 2
+        progressViewContainer.layer.borderColor = AppColors.appBlue.cgColor
+        progressViewContainer.clipsToBounds = true
+        
+        progressView.layer.backgroundColor = AppColors.appBlue.cgColor
+    }
+    
+    func loadPercentLabelTextColors() {
+        percentLabel.textColor = AppColors.appBlack
+        
+        if progressView.frame.maxX > percentLabel.frame.maxX {
+            print("\(progressView.frame.maxX)")
+            print("\(percentLabel.frame.maxX)")
+            percentLabel.textColor = AppColors.appWhite
+        }
+        
+        let myMutableString = NSMutableAttributedString(string: "\(percentComplete!)%", attributes: nil)
+        //TODO: find the x value of each character and set only that portion to be white
+        //myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: NSRange(location:0,length:2))
+        percentLabel.attributedText = myMutableString
     }
     
     func loadData() {
-        progressViewContainer.layer.borderWidth = 2
-        progressViewContainer.layer.borderColor = UIColor.black.cgColor
+        loadViews()
         percentComplete = round((task?.getPercentComplete())! * 100)
-        percentLabel.text = "\(percentComplete!)%"
         taskNameLabel.text = task?.name
         progressConstraint.constant = getPercentCompleteWidth()
         loadImage()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
+        loadPercentLabelTextColors()
     }
     
     func loadImage() {
@@ -58,7 +75,10 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
         secondImageView.layer.cornerRadius = taskImageView.bounds.width / 2
         
         if percentComplete == 100 {
-            taskImageView.image = UIImage(named: "CheckMark")
+            taskImageView.image = UIImage(named: "TaskIconChecked")
+            taskImageViewHeightConstraint.constant = 50
+            TaskImageViewWidthConstraint.constant = 50
+            TaskImageViewTrailingConstraint.constant = 2
         } else {
             let lastStep = task?.getNextStep()
             if let assignees = lastStep?.assignees {

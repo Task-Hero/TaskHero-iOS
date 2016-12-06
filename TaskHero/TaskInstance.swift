@@ -18,13 +18,15 @@ class TaskInstance: NSObject {
     var chatId: String?
     var completed: Bool?
     var lastUpdated: Date?
+    var teammates: [User]?
     
-    init(taskInstance: PFObject) {
+    init(taskInstance: PFObject, teammates: [User]) {
         super.init()
         
         self.id = taskInstance.objectId
         self.name = taskInstance["name"] as? String
         self.details = taskInstance["details"] as? String
+        self.teammates = teammates
         self.getSteps(steps: (taskInstance["steps"] as? String)!)
         
         if let estimatedTime = taskInstance["estimated_time"] {
@@ -48,7 +50,7 @@ class TaskInstance: NSObject {
         let stepsJson = try! JSONSerialization.jsonObject(with: data!, options: []) as! [Any]
         for stepJson in stepsJson {
             let stepDictionary = stepJson as! [String: AnyObject]
-            let step = Step(stepDictionary: stepDictionary)
+            let step = Step(stepDictionary: stepDictionary, teammates: teammates)
             if self.steps == nil {
                 self.steps = [step]
             } else {

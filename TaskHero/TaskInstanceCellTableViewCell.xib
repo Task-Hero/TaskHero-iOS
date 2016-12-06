@@ -22,8 +22,8 @@
                         <rect key="frame" x="8" y="8" width="304" height="84"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deploy new machine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIu-bM-zo1">
-                                <rect key="frame" x="8" y="0.0" width="159" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="8" y="0.0" width="187" height="19"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -31,8 +31,7 @@
                                 <rect key="frame" x="8" y="21" width="288" height="55"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KYg-02-S1X">
-                                        <rect key="frame" x="0.0" y="0.0" width="188" height="55"/>
-                                        <color key="backgroundColor" red="0.58431372550000005" green="0.69803921570000005" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="38" height="55"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txV-g0-vfn">
                                         <rect key="frame" x="127" y="17" width="34" height="21"/>
@@ -66,7 +65,7 @@
                                     <constraint firstItem="j54-TE-4zG" firstAttribute="leading" secondItem="zPa-ze-x5x" secondAttribute="trailing" constant="-8" id="WTy-nF-GJa"/>
                                     <constraint firstItem="KYg-02-S1X" firstAttribute="leading" secondItem="cTU-xb-EdP" secondAttribute="leading" id="XrQ-jj-Rv3"/>
                                     <constraint firstItem="j54-TE-4zG" firstAttribute="centerY" secondItem="cTU-xb-EdP" secondAttribute="centerY" id="a2f-yE-4Ue"/>
-                                    <constraint firstAttribute="trailing" secondItem="KYg-02-S1X" secondAttribute="trailing" constant="100" id="a4x-uF-dVw"/>
+                                    <constraint firstAttribute="trailing" secondItem="KYg-02-S1X" secondAttribute="trailing" constant="250" id="a4x-uF-dVw"/>
                                     <constraint firstItem="zPa-ze-x5x" firstAttribute="centerY" secondItem="cTU-xb-EdP" secondAttribute="centerY" id="zFq-bb-UDf"/>
                                 </constraints>
                             </view>
@@ -74,7 +73,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="cTU-xb-EdP" secondAttribute="trailing" constant="8" id="7RG-xE-prI"/>
                             <constraint firstItem="cTU-xb-EdP" firstAttribute="leading" secondItem="Hhj-GX-ezB" secondAttribute="leading" constant="8" id="9rD-xb-DXy"/>
-                            <constraint firstItem="cTU-xb-EdP" firstAttribute="top" secondItem="MIu-bM-zo1" secondAttribute="bottom" constant="1" id="QN5-F0-067"/>
+                            <constraint firstItem="cTU-xb-EdP" firstAttribute="top" secondItem="MIu-bM-zo1" secondAttribute="bottom" constant="2" id="QN5-F0-067"/>
                             <constraint firstAttribute="bottom" secondItem="cTU-xb-EdP" secondAttribute="bottom" constant="8" id="aRO-hb-Sn4"/>
                             <constraint firstItem="MIu-bM-zo1" firstAttribute="top" secondItem="Hhj-GX-ezB" secondAttribute="top" id="cZk-wP-AUf"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MIu-bM-zo1" secondAttribute="trailing" constant="8" id="vUO-eg-VjU"/>
@@ -82,7 +81,6 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.95294117649999999" green="0.96862745100000003" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="Hhj-GX-ezB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="2NG-bK-BEv"/>
                     <constraint firstAttribute="bottom" secondItem="Hhj-GX-ezB" secondAttribute="bottom" constant="8" id="IoV-eC-Jyn"/>
@@ -91,6 +89,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="TaskImageViewTrailingConstraint" destination="CuX-NK-pX3" id="nld-jJ-yom"/>
+                <outlet property="TaskImageViewWidthConstraint" destination="j3K-Yb-in7" id="bgG-XA-2tU"/>
                 <outlet property="cardView" destination="Hhj-GX-ezB" id="Rof-dF-Gow"/>
                 <outlet property="contentView" destination="H2p-sc-9uM" id="6Xn-fk-l9v"/>
                 <outlet property="percentLabel" destination="txV-g0-vfn" id="caF-RL-uro"/>
@@ -99,6 +99,7 @@
                 <outlet property="progressViewContainer" destination="cTU-xb-EdP" id="wsO-iy-5yT"/>
                 <outlet property="secondImageView" destination="zPa-ze-x5x" id="q5A-PX-Spi"/>
                 <outlet property="taskImageView" destination="j54-TE-4zG" id="DIv-dP-HNU"/>
+                <outlet property="taskImageViewHeightConstraint" destination="1Dw-7t-cFB" id="Veo-Lf-XLC"/>
                 <outlet property="taskNameLabel" destination="MIu-bM-zo1" id="vvL-jK-DQH"/>
             </connections>
             <point key="canvasLocation" x="38" y="67.5"/>
