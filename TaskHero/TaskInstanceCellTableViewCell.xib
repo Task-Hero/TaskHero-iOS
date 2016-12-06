@@ -22,7 +22,7 @@
                         <rect key="frame" x="8" y="8" width="304" height="84"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deploy new machine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIu-bM-zo1">
-                                <rect key="frame" x="8" y="0.0" width="187" height="19"/>
+                                <rect key="frame" x="12" y="0.0" width="187" height="19"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -71,13 +71,13 @@
                             </view>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MIu-bM-zo1" secondAttribute="trailing" constant="12" id="2of-sX-gyW"/>
                             <constraint firstAttribute="trailing" secondItem="cTU-xb-EdP" secondAttribute="trailing" constant="8" id="7RG-xE-prI"/>
                             <constraint firstItem="cTU-xb-EdP" firstAttribute="leading" secondItem="Hhj-GX-ezB" secondAttribute="leading" constant="8" id="9rD-xb-DXy"/>
                             <constraint firstItem="cTU-xb-EdP" firstAttribute="top" secondItem="MIu-bM-zo1" secondAttribute="bottom" constant="2" id="QN5-F0-067"/>
                             <constraint firstAttribute="bottom" secondItem="cTU-xb-EdP" secondAttribute="bottom" constant="8" id="aRO-hb-Sn4"/>
                             <constraint firstItem="MIu-bM-zo1" firstAttribute="top" secondItem="Hhj-GX-ezB" secondAttribute="top" id="cZk-wP-AUf"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MIu-bM-zo1" secondAttribute="trailing" constant="8" id="vUO-eg-VjU"/>
-                            <constraint firstItem="MIu-bM-zo1" firstAttribute="leading" secondItem="Hhj-GX-ezB" secondAttribute="leading" constant="8" id="xPV-57-COO"/>
+                            <constraint firstItem="MIu-bM-zo1" firstAttribute="leading" secondItem="Hhj-GX-ezB" secondAttribute="leading" constant="12" id="zhH-QT-nSx"/>
                         </constraints>
                     </view>
                 </subviews>

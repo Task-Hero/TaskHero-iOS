@@ -50,7 +50,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check diff" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Xc-E8-Om2">
-                                    <rect key="frame" x="4" y="4" width="74.5" height="19.5"/>
+                                    <rect key="frame" x="4" y="4" width="75" height="20"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -71,7 +71,6 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.63131381228945149" green="0.81074645762690956" blue="0.90334535256410253" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="oXT-x7-f2A" secondAttribute="trailing" constant="8" id="6q0-Sj-3MA"/>
                         <constraint firstItem="CSJ-ox-moA" firstAttribute="leading" secondItem="wb9-hF-5fC" secondAttribute="leading" constant="8" id="Ifc-Fj-uPL"/>

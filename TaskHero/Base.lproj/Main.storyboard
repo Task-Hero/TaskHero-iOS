@@ -385,7 +385,6 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4t-sc-9Tg">
                                                 <rect key="frame" x="0.0" y="0.0" width="111" height="35"/>
-                                                <color key="backgroundColor" red="0.58431372550000005" green="0.69803921570000005" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doa-z9-lZF">
                                                 <rect key="frame" x="56" y="7" width="24" height="21"/>
@@ -468,6 +467,7 @@
                         <outlet property="percentLabel" destination="doa-z9-lZF" id="OmX-sz-AZX"/>
                         <outlet property="progressBarContainerView" destination="Esi-rq-0ZM" id="0kz-Sx-QYL"/>
                         <outlet property="progressBarTrailingConstraint" destination="5PI-04-kBB" id="stR-Wd-VEF"/>
+                        <outlet property="progressBarView" destination="X4t-sc-9Tg" id="bqg-J4-bvJ"/>
                         <outlet property="tableView" destination="gk8-yy-QEV" id="sFz-DT-OZq"/>
                         <outlet property="taskDescriptionLabel" destination="eVT-wR-Mk5" id="klY-t1-hst"/>
                         <outlet property="taskNameLabel" destination="97D-tv-Hek" id="dOj-nw-kRa"/>

@@ -21,6 +21,7 @@ class TaskDetailViewController: UIViewController {
     @IBOutlet weak var progressBarContainerView: UIView!
     @IBOutlet weak var percentLabel: UILabel!
     @IBOutlet weak var progressBarTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var progressBarView: UIView!
     
     private var lastActionView: ActionViewProtocol!
     
@@ -86,8 +87,12 @@ class TaskDetailViewController: UIViewController {
     func setPercentBarAndLabel() {
         let percentComplete = round((taskInstance?.getPercentComplete())! * 100)
         percentLabel.text = "\(percentComplete)%"
+        percentLabel.textColor = AppColors.appBlack
         progressBarContainerView.layer.borderWidth = 2
-        progressBarContainerView.layer.borderColor = UIColor.black.cgColor
+        progressBarContainerView.layer.cornerRadius = 5
+        progressBarContainerView.clipsToBounds = true
+        progressBarContainerView.layer.borderColor = AppColors.appBlack.cgColor
+        progressBarView.backgroundColor = AppColors.appBlue
         progressBarTrailingConstraint.constant = (viewMaxWidth! - (CGFloat(percentComplete) / 100 * viewMaxWidth!))
     }
     

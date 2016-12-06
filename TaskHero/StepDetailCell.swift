@@ -39,7 +39,7 @@ class StepDetailCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         stepView.layer.borderWidth = 1
-        stepView.layer.borderColor = UIColor.black.cgColor
+        
         user1ImageView.clipsToBounds = true
         user1ImageView.layer.cornerRadius = user1ImageView.bounds.width / 2
         user2ImageView.clipsToBounds = true
@@ -57,11 +57,19 @@ class StepDetailCell: UITableViewCell {
         setStateImageView()
         let longPressGestureRecognizer = UILongPressGestureRecognizer.init(target: self, action: #selector(onLongPressGesture(sender:)))
         cellView.addGestureRecognizer(longPressGestureRecognizer)
+        
+        if step.state == StepState.completed {
+            stepView.layer.borderColor = AppColors.appBlack.cgColor
+            stepView.layer.backgroundColor = AppColors.appMidGrey.cgColor
+        } else {
+            stepView.layer.borderColor = AppColors.appBlack.cgColor
+            stepView.layer.backgroundColor = AppColors.appWhite.cgColor
+        }
     }
     
     func setStateImageView() {
         if step.state == StepState.completed {
-            stateImageView.image = UIImage(named: "CheckMark")
+            stateImageView.image = UIImage(named: "StepIconChecked")
         } else if nextStep {
             stateImageView.image = UIImage(named: "Attention")
         }

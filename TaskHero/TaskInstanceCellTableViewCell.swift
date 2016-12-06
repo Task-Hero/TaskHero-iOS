@@ -34,8 +34,12 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
     func loadViews() {
         selectionStyle = .none
         cardView.layer.cornerRadius = 8.0
+        cardView.layer.shadowColor = UIColor.lightGray.cgColor
+        cardView.layer.shadowOpacity = 0.5
+        cardView.layer.shadowRadius = 3.0
+        cardView.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
         
-        progressViewContainer.layer.cornerRadius = 25
+        progressViewContainer.layer.cornerRadius = 10
         progressViewContainer.layer.borderWidth = 2
         progressViewContainer.layer.borderColor = AppColors.appBlue.cgColor
         progressViewContainer.clipsToBounds = true
@@ -47,8 +51,6 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
         percentLabel.textColor = AppColors.appBlack
         
         if progressView.frame.maxX > percentLabel.frame.maxX {
-            print("\(progressView.frame.maxX)")
-            print("\(percentLabel.frame.maxX)")
             percentLabel.textColor = AppColors.appWhite
         }
         
@@ -62,6 +64,7 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
         loadViews()
         percentComplete = round((task?.getPercentComplete())! * 100)
         taskNameLabel.text = task?.name
+        taskNameLabel.textColor = AppColors.appBlack
         progressConstraint.constant = getPercentCompleteWidth()
         loadImage()
         loadPercentLabelTextColors()
@@ -75,7 +78,7 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
         secondImageView.layer.cornerRadius = taskImageView.bounds.width / 2
         
         if percentComplete == 100 {
-            taskImageView.image = UIImage(named: "TaskIconChecked")
+            taskImageView.image = UIImage(named: "StepIconChecked")
             taskImageViewHeightConstraint.constant = 50
             TaskImageViewWidthConstraint.constant = 50
             TaskImageViewTrailingConstraint.constant = 2
