@@ -90,6 +90,7 @@ extension TaskCatalogDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: taskCellIdentifier, for: indexPath) as! TaskDetailTaskCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.task = self.task
             
             return cell

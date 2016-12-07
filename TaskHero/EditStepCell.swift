@@ -64,7 +64,7 @@ class EditStepCell: UITableViewCell {
         detailsField.textContainer.lineFragmentPadding = 0
         detailsField.textContainerInset = .zero
         
-        cardView.layer.cornerRadius = 8.0
+        cardView.layer.cornerRadius = 20.0
         cardView.layer.shadowColor = UIColor.lightGray.cgColor
         cardView.layer.shadowOpacity = 0.5
         cardView.layer.shadowRadius = 3.0

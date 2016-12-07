@@ -197,15 +197,15 @@
 			isa = PBXGroup;
 			children = (
 				6FFC30461DD8310200597B7A /* BottomBarLoader.swift */,
-				A89AFB621DD8CF0100141EEB /* TaskCardCell.xib */,
 				A89AFB641DD8D34900141EEB /* TaskCardCell.swift */,
-				A87425591DED70B400728D83 /* TaskDetailTaskCell.xib */,
+				A89AFB621DD8CF0100141EEB /* TaskCardCell.xib */,
 				A874255B1DED70EB00728D83 /* TaskDetailTaskCell.swift */,
-				A89AFB6E1DD9720F00141EEB /* StepDetailCell.xib */,
+				A87425591DED70B400728D83 /* TaskDetailTaskCell.xib */,
 				A89AFB701DD9722A00141EEB /* StepDetailCell.swift */,
-				ABD3904A1DD94C3E00F90197 /* EditStepCell.swift */,
+				A89AFB6E1DD9720F00141EEB /* StepDetailCell.xib */,
 				6FB712C61DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.swift */,
 				6FB712C71DEAC40D0000AD44 /* TaskInstanceCellTableViewCell.xib */,
+				ABD3904A1DD94C3E00F90197 /* EditStepCell.swift */,
 				ABD3904B1DD94C3E00F90197 /* EditStepCell.xib */,
 				ABD3905A1DD9951800F90197 /* UserPickerCell.swift */,
 				ABD3905B1DD9951800F90197 /* UserPickerCell.xib */,
@@ -406,7 +406,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
