@@ -24,6 +24,7 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
     @IBOutlet weak var taskImageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var TaskImageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var TaskImageViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var dateLabel: UILabel!
     
     var percentComplete: Double?
     
@@ -49,15 +50,6 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
     
     func loadPercentLabelTextColors() {
         percentLabel.textColor = AppColors.appBlack
-        
-        if progressView.frame.maxX > percentLabel.frame.maxX {
-            percentLabel.textColor = AppColors.appWhite
-        }
-        
-        let myMutableString = NSMutableAttributedString(string: "\(percentComplete!)%", attributes: nil)
-        //TODO: find the x value of each character and set only that portion to be white
-        //myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: NSRange(location:0,length:2))
-        percentLabel.attributedText = myMutableString
     }
     
     func loadData() {
@@ -65,7 +57,8 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
         percentComplete = round((task?.getPercentComplete())! * 100)
         taskNameLabel.text = task?.name
         taskNameLabel.textColor = AppColors.appBlack
-        progressConstraint.constant = getPercentCompleteWidth()
+        dateLabel.text = task?.updatedAt
+        //progressConstraint.constant = getPercentCompleteWidth()
         loadImage()
         loadPercentLabelTextColors()
     }
@@ -79,9 +72,9 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
         
         if percentComplete == 100 {
             taskImageView.image = UIImage(named: "StepIconChecked")
-            taskImageViewHeightConstraint.constant = 50
-            TaskImageViewWidthConstraint.constant = 50
-            TaskImageViewTrailingConstraint.constant = 2
+            //taskImageViewHeightConstraint.constant = 50
+            //TaskImageViewWidthConstraint.constant = 50
+            //TaskImageViewTrailingConstraint.constant = 2
         } else {
             let lastStep = task?.getNextStep()
             if let assignees = lastStep?.assignees {
