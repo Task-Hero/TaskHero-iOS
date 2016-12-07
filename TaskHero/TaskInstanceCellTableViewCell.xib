@@ -12,24 +12,24 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="134" id="KGk-i7-Jjw" customClass="TaskInstanceCellTableViewCell" customModule="TaskHero" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="349" height="134"/>
+            <rect key="frame" x="0.0" y="0.0" width="366" height="134"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="349" height="133.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="366" height="133.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hhj-GX-ezB">
-                        <rect key="frame" x="0.0" y="0.0" width="349" height="134"/>
+                        <rect key="frame" x="0.0" y="0.0" width="366" height="134"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTU-xb-EdP">
-                                <rect key="frame" x="12" y="12" width="325" height="110"/>
+                                <rect key="frame" x="12" y="12" width="342" height="110"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KYg-02-S1X">
-                                        <rect key="frame" x="0.0" y="60" width="209" height="40"/>
+                                        <rect key="frame" x="0.0" y="70" width="226" height="40"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txV-g0-vfn">
-                                                <rect key="frame" x="15" y="11" width="30" height="18"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <rect key="frame" x="15" y="10.5" width="32" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -62,16 +62,15 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hd-dq-F2b">
-                                        <rect key="frame" x="287.5" y="12" width="25.5" height="14"/>
+                                        <rect key="frame" x="304.5" y="12" width="25.5" height="14"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="MIu-bM-zo1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="j54-TE-4zG" secondAttribute="trailing" constant="12" id="0Co-1l-kFq"/>
-                                    <constraint firstAttribute="bottom" secondItem="KYg-02-S1X" secondAttribute="bottom" constant="10" id="4ND-n7-Lt4"/>
+                                    <constraint firstAttribute="bottom" secondItem="KYg-02-S1X" secondAttribute="bottom" id="4ND-n7-Lt4"/>
                                     <constraint firstItem="8hd-dq-F2b" firstAttribute="top" secondItem="cTU-xb-EdP" secondAttribute="top" constant="12" id="742-l9-vTb"/>
                                     <constraint firstItem="8hd-dq-F2b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MIu-bM-zo1" secondAttribute="trailing" constant="6" id="7OJ-Lt-Z0H"/>
                                     <constraint firstItem="zPa-ze-x5x" firstAttribute="leading" secondItem="j54-TE-4zG" secondAttribute="trailing" constant="-12" id="Cdr-Gp-mc4"/>
@@ -121,7 +120,7 @@
                 <outlet property="taskImageViewWidthConstraint" destination="j3K-Yb-in7" id="wmc-lk-LF3"/>
                 <outlet property="taskNameLabel" destination="MIu-bM-zo1" id="vvL-jK-DQH"/>
             </connections>
-            <point key="canvasLocation" x="52.5" y="84"/>
+            <point key="canvasLocation" x="61" y="84"/>
         </tableViewCell>
     </objects>
 </document>

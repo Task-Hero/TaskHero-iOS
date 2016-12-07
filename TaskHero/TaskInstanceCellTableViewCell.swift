@@ -79,6 +79,7 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
             taskImageTopConstraint.constant = 8
             taskImageLeadingConstraint.constant = 8
             secondImageViewWidthConstraint.constant = 0
+            progressView.layer.backgroundColor = AppColors.appGreen.cgColor
         } else {
             let lastStep = task?.getNextStep()
             if let assignees = lastStep?.assignees {
