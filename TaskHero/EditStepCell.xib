@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="377" height="302"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="377" height="301"/>
+                <rect key="frame" x="0.0" y="0.0" width="377" height="301.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MZq-Gk-fxJ">
@@ -40,7 +40,7 @@
                                         </connections>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Baf-so-5Qf" secondAttribute="bottom" constant="16" id="9Rb-LM-HLq"/>
                                     <constraint firstItem="igl-x6-n99" firstAttribute="leading" secondItem="Muf-qa-bDk" secondAttribute="leading" constant="23" id="JQR-u5-lid"/>
@@ -70,7 +70,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="NNO-K5-LO4" firstAttribute="top" secondItem="HIx-Dq-ChF" secondAttribute="top" constant="12" id="5ia-Pt-gPj"/>
                                     <constraint firstAttribute="bottom" secondItem="rlE-17-kRB" secondAttribute="bottom" constant="16" id="chd-Ki-8r6"/>
@@ -94,7 +94,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="aQO-LT-PRt" firstAttribute="top" secondItem="naM-oT-HAE" secondAttribute="top" constant="12" id="4gq-yr-bsB"/>
                                     <constraint firstAttribute="trailing" secondItem="qZv-tu-bKT" secondAttribute="trailing" id="DfF-qs-15L"/>
@@ -110,7 +110,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="aQO-LT-PRt" firstAttribute="leading" secondItem="igl-x6-n99" secondAttribute="leading" id="0G5-iU-e61"/>
                             <constraint firstAttribute="trailing" secondItem="naM-oT-HAE" secondAttribute="trailing" id="14b-F1-Yxg"/>
