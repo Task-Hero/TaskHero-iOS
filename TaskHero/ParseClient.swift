@@ -110,10 +110,15 @@ class ParseClient: NSObject {
         query.findObjectsInBackground(block: { (objects, error) -> Void in
             if (error == nil) {
                 var tasksInstances: [TaskInstance] = []
-                for object in objects! {
-                    tasksInstances.append(TaskInstance.init(taskInstance: object))
-                }
-                success(tasksInstances)
+                ParseClient.sharedInstance.getTeammates(success: { (users) -> () in
+                    for object in objects! {
+                        let taskInstance = TaskInstance.init(taskInstance: object, teammates: users)
+                        tasksInstances.append(taskInstance)
+                    }
+                    success(tasksInstances)
+                }, failure: { (error) -> () in
+                    failure(error)                    
+                })
             } else {
                 failure(error!)
             }
@@ -126,10 +131,15 @@ class ParseClient: NSObject {
         query.findObjectsInBackground(block: { (objects, error) -> Void in
             if (error == nil) {
                 var tasks: [Task] = []
-                for object in objects! {
-                    tasks.append(Task.init(task: object))
-                }
-                success(tasks)
+                ParseClient.sharedInstance.getTeammates(success: { (users) -> () in
+                    for object in objects! {
+                        let task = Task.init(task: object, teammates: users)
+                        tasks.append(task)
+                    }
+                    success(tasks)
+                }, failure: { (error) -> () in
+                    failure(error)
+                })
             } else {
                 failure(error!)
             }

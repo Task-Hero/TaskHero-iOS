@@ -27,7 +27,6 @@ class HomeViewController: UIViewController {
         loadNavigationBar()
         loadTableView()
         loadTasks()
-        reloadTableOnNotification()
     }
     
     func loadTasks() {
@@ -89,31 +88,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         performSegue(withIdentifier: "HomeToTaskDetail", sender: self)
     }
     
-    func reloadTableOnNotification() {
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Step.assigneeLoadedNotification), object: nil, queue: OperationQueue.main, using: {(notification: Notification) -> Void in
-                self.tableView.reloadData()
-        })
-    }
-    
     func presentTargetTaskDetailView(taskInstanceId: String) {
         ParseClient.sharedInstance.getAllTaskInstances(success: { (taskInstances) -> () in
             for taskInstance in taskInstances {
                 if taskInstance.id == taskInstanceId {
-                    _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
-                        var loading = true
-                        for step in taskInstance.steps! {
-                            if step.assigneesLoaded == true {
-                                loading = false
-                            } else {
-                                loading = true
-                            }
-                        }
-                        if loading == false {
-                            timer.invalidate()
-                            self.selectedTaskInstance = taskInstance
-                            self.performSegue(withIdentifier: "HomeToTaskDetail", sender: self)
-                        }
-                    }
+                    self.selectedTaskInstance = taskInstance
+                    self.performSegue(withIdentifier: "HomeToTaskDetail", sender: self)                    
                 }
             }
         }, failure: { (error) -> () in

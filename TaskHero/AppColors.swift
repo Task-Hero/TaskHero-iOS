@@ -13,7 +13,8 @@ class AppColors: NSObject {
     static let appBlue = UIColor.init(red: 0/255, green: 142/255, blue: 218/255, alpha: 1)
     static let appGreen = UIColor.init(red: 0/255, green: 205/255, blue: 52/255, alpha: 1)
     static let appGrey = UIColor.init(red: 249/255, green: 249/255, blue: 249/255, alpha: 1)
-    static let appMidGrey = UIColor.init(red: 127/255, green: 127/255, blue: 127/255, alpha: 1)
+    static let appMidGrey = UIColor.init(red: 203/255, green: 204/255, blue: 211/255, alpha: 1)
+    static let appDarkGrey = UIColor.init(red: 127/255, green: 127/255, blue: 127/255, alpha: 1)
     static let appWhite = UIColor.white
     static let appBlack = UIColor.black
     

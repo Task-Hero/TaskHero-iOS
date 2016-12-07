@@ -15,7 +15,6 @@ class TaskCatalogViewController: UIViewController {
     fileprivate let taskCardCellIdentifier = "TaskCardCell"
     var tasks: [Task]?
     var currentSelectedCellRowNum = -1
-    var isAssigneeLoaded = false
     
     private var lastActionView: ActionViewProtocol!
     
@@ -38,7 +37,6 @@ class TaskCatalogViewController: UIViewController {
         super.viewWillAppear(animated)
         
         BottomBar.instance.actionView = CreateTaskAction()
-        reloadTableOnNotification()
         loadTasks()
     }
     
@@ -58,13 +56,6 @@ class TaskCatalogViewController: UIViewController {
             self.tableView.reloadData()
         }, failure: {(error) -> () in
             NSLog("Error: \(error)")
-        })
-    }
-    
-    func reloadTableOnNotification() {
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Step.assigneeLoadedNotification), object: nil, queue: OperationQueue.main, using: {(notification: Notification) -> Void in
-            self.isAssigneeLoaded = true
-            self.tableView.reloadData()
         })
     }
     
@@ -109,7 +100,6 @@ extension TaskCatalogViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: taskCardCellIdentifier, for: indexPath) as! TaskCardCell
-        cell.isAssigneeLoaded = isAssigneeLoaded
         cell.task = tasks?[indexPath.row]
         cell.delegate = self
         

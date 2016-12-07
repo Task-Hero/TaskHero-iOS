@@ -43,12 +43,10 @@ class TaskCardCell: UITableViewCell {
                 estimatedTime.text = "\(et)"
             }
             
-            if isAssigneeLoaded {
-                setMemberIcons(users: task.getInvolvedUsers())
-            }
+            setMemberIcons(users: task.getInvolvedUsers())
+            
         }
     }
-    var isAssigneeLoaded = false
     
     override func awakeFromNib() {
         super.awakeFromNib()

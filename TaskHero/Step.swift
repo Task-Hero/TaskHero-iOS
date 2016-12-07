@@ -22,18 +22,17 @@ class Step: NSObject {
     var signoff: User?
     var completedBy: User?
     var completedAt: TimeInterval?
-    
-    static var assigneeLoadedNotification = "assignedLoaded"
-    var assigneesLoaded: Bool = false
+    var teammates: [User]?
     
     override init() {
         super.init()
     }
     
-    init(stepDictionary: [String: AnyObject]?) {
+    init(stepDictionary: [String: AnyObject]?, teammates: [User]?) {
         super.init()
         
         self.name = stepDictionary?["name"] as! String?
+        self.teammates = teammates
         self.getAssignees(assigneeIds: stepDictionary?["assignees"] as! [String])
         
         if let details = stepDictionary?["details"] as? String?  {
@@ -54,18 +53,12 @@ class Step: NSObject {
     }
     
     private func getAssignees(assigneeIds: [String]) {
-        ParseClient.sharedInstance.getTeammates(success: { (users) -> () in
-            self.assignees = [User]()
-            for user in users {
-                if assigneeIds.contains(user.id!) {                    
-                    self.assignees!.append(user)
-                }
+        self.assignees = [User]()
+        for user in teammates! {
+            if assigneeIds.contains(user.id!) {                    
+                self.assignees!.append(user)
             }
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Step.assigneeLoadedNotification), object: nil)
-            self.assigneesLoaded = true
-        }, failure: { error in
-            NSLog("Error getting users, error: \(error)")
-        })
+        }
     }
     
     private func getSignoff(signoff: String) {
