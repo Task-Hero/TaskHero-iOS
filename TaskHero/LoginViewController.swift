@@ -105,7 +105,7 @@ class LoginViewController: UIViewController {
     }
     
     private func animateLoginSignupButtons() {
-        appLogoImageViewTopConstraint.constant = 120
+        appLogoImageViewTopConstraint.constant = 90
         
         UIView.animate(withDuration: 0.3, animations: {
             self.userInputView.alpha = 0.1

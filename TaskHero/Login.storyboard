@@ -24,6 +24,13 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wCo-8j-IgC">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kqM-wJ-Fln">
+                                <rect key="frame" x="60" y="140" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="2v6-7b-feV"/>
+                                    <constraint firstAttribute="height" constant="200" id="YZa-3c-wYc"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="stk-Dk-gVw">
                                 <rect key="frame" x="35" y="393" width="250" height="150"/>
                                 <subviews>
@@ -62,7 +69,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9vs-N4-p0H">
-                                <rect key="frame" x="10" y="228" width="300" height="150"/>
+                                <rect key="frame" x="10" y="218" width="300" height="150"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ULV-3r-LkB">
                                         <rect key="frame" x="15" y="20" width="270" height="45"/>
@@ -108,13 +115,6 @@
                                     <constraint firstAttribute="height" constant="150" id="utq-Iw-Aog"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kqM-wJ-Fln">
-                                <rect key="frame" x="60.5" y="140" width="200" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="2v6-7b-feV"/>
-                                    <constraint firstAttribute="height" constant="200" id="YZa-3c-wYc"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -125,7 +125,7 @@
                             <constraint firstItem="kqM-wJ-Fln" firstAttribute="centerX" secondItem="KHv-NG-j46" secondAttribute="centerX" id="i7b-Os-VvN"/>
                             <constraint firstItem="QG2-30-ZQF" firstAttribute="top" secondItem="wCo-8j-IgC" secondAttribute="bottom" id="m6I-Qx-FXH"/>
                             <constraint firstItem="kqM-wJ-Fln" firstAttribute="top" secondItem="cbn-vk-hih" secondAttribute="bottom" constant="120" id="mfE-NQ-OFt"/>
-                            <constraint firstItem="QG2-30-ZQF" firstAttribute="top" secondItem="9vs-N4-p0H" secondAttribute="bottom" constant="190" id="sgG-BO-G5I"/>
+                            <constraint firstItem="QG2-30-ZQF" firstAttribute="top" secondItem="9vs-N4-p0H" secondAttribute="bottom" constant="200" id="sgG-BO-G5I"/>
                             <constraint firstAttribute="bottom" secondItem="stk-Dk-gVw" secondAttribute="bottom" constant="25" id="ter-Ev-8Ux"/>
                             <constraint firstItem="9vs-N4-p0H" firstAttribute="centerX" secondItem="KHv-NG-j46" secondAttribute="centerX" id="w1U-Rp-mki"/>
                         </constraints>

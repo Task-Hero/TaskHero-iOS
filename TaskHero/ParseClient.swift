@@ -14,7 +14,6 @@ class ParseClient: NSObject {
     static let sharedInstance = ParseClient()
     
     func loadStepImage(taskInstance: TaskInstance, step: Step, success: @escaping (UIImage) -> (), failure: @escaping (Error) -> ()) {
-        
         let taskInstanceObject = PFObject(className: "TaskInstance")
         taskInstanceObject.objectId = taskInstance.id
         
@@ -41,7 +40,6 @@ class ParseClient: NSObject {
     }
     
     func saveStepImage(taskInstance: TaskInstance, step: Step, image: UIImage, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
-        
         let taskInstanceObject = PFObject(className: "TaskInstance")
         taskInstanceObject.objectId = taskInstance.id
     

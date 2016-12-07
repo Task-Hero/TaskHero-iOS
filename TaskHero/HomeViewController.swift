@@ -16,23 +16,29 @@ class HomeViewController: UIViewController {
     var initialIndexPath: IndexPath?
     var cellSnapshot: UIView?
     
+    var refreshControl: UIRefreshControl!
+    var customView: UIView!
+    var refreshImageView: UIImageView!
+    var isRefreshControlAnimating = false
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         AppColors.loadNavigationBarColors(navigationController: navigationController!)
         loadNavigationBar()
         loadTableView()
         loadTasks()
+        loadCustomRefreshContents()
     }
     
-    func loadTasks() {
+    func loadTasks(refreshControl: UIRefreshControl? = nil) {
         ParseClient.sharedInstance.getAllTaskInstances(success: {(tasks) -> () in
             self.tasks = tasks
             self.tableView.reloadData()
+            if refreshControl != nil {
+                refreshControl?.endRefreshing()
+            }
         }, failure: {(error) -> () in
             NSLog("Error: \(error)")
         })
@@ -43,7 +49,12 @@ class HomeViewController: UIViewController {
     }
     
     func loadNavigationBar() {
-        title = User.current?.name
+        //title = User.current?.name        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
+        imageView.contentMode = .scaleAspectFit
+        let image = UIImage(named: "Emblem")
+        imageView.image = image
+        navigationItem.titleView = imageView
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -52,6 +63,20 @@ class HomeViewController: UIViewController {
             let taskDetailViewController = segue.destination as! TaskDetailViewController
             taskDetailViewController.taskInstance = taskInstance
         }
+    }
+    
+    func presentTargetTaskDetailView(taskInstanceId: String) {
+        ParseClient.sharedInstance.getAllTaskInstances(success: { (taskInstances) -> () in
+            for taskInstance in taskInstances {
+                if taskInstance.id == taskInstanceId {
+                    self.tableView.reloadData()
+                    self.selectedTaskInstance = taskInstance
+                    self.performSegue(withIdentifier: "HomeToTaskDetail", sender: self)
+                }
+            }
+        }, failure: { (error) -> () in
+            NSLog("Error: \(error)")
+        })
     }
 }
 
@@ -67,6 +92,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.separatorStyle = .none
         tableView.registerNib(with: "TaskInstanceCellTableViewCell")
         addLongPressGesture()
+        refreshControl = UIRefreshControl()
+        refreshControl.backgroundColor = UIColor.clear
+        refreshControl.tintColor = UIColor.clear
+        refreshControl.addTarget(self, action: #selector(loadTasks(refreshControl:)), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,19 +116,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         selectedTaskInstance = tasks![indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "HomeToTaskDetail", sender: self)
-    }
-    
-    func presentTargetTaskDetailView(taskInstanceId: String) {
-        ParseClient.sharedInstance.getAllTaskInstances(success: { (taskInstances) -> () in
-            for taskInstance in taskInstances {
-                if taskInstance.id == taskInstanceId {
-                    self.selectedTaskInstance = taskInstance
-                    self.performSegue(withIdentifier: "HomeToTaskDetail", sender: self)                    
-                }
-            }
-        }, failure: { (error) -> () in
-            NSLog("Error: \(error)")
-        })
     }
     
 }
@@ -181,4 +198,42 @@ extension HomeViewController {
         cellSnapshot.layer.shadowOpacity = 0.4
         return cellSnapshot
     }
+}
+
+// MARK: custom refresh menu
+
+extension HomeViewController {
+    
+    func loadCustomRefreshContents() {
+        let refreshContents = Bundle.main.loadNibNamed("RefreshContent", owner: self, options: nil)
+        customView = refreshContents?[0] as! UIView
+        customView.frame = refreshControl.bounds
+        refreshImageView = customView.viewWithTag(1) as! UIImageView
+        refreshControl.addSubview(customView)
+    }
+    
+    func animateRefreshControl() {
+        isRefreshControlAnimating = true
+        
+        UIView.animate(withDuration: 2, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
+            self.refreshImageView.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI))
+            self.refreshImageView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+        }, completion: { (finished) -> Void in
+            if (self.refreshControl!.isRefreshing) {
+                self.animateRefreshControl()
+            } else {
+                self.isRefreshControlAnimating = false
+                self.refreshImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+            }
+        })
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if refreshControl.isRefreshing {
+            if !isRefreshControlAnimating {
+                animateRefreshControl()
+            }
+        }
+    }
+    
 }
