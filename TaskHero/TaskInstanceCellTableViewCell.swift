@@ -20,10 +20,12 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
     @IBOutlet weak var progressViewContainer: UIView!
     @IBOutlet weak var progressView: UIView!
     @IBOutlet weak var secondImageView: UIImageView!
+    @IBOutlet weak var secondImageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var taskImageView: UIImageView!
     @IBOutlet weak var taskImageViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var TaskImageViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var TaskImageViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var taskImageViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var taskImageTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var taskImageLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var dateLabel: UILabel!
     
     var percentComplete: Double?
@@ -48,19 +50,16 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
         progressView.layer.backgroundColor = AppColors.appBlue.cgColor
     }
     
-    func loadPercentLabelTextColors() {
-        percentLabel.textColor = AppColors.appBlack
-    }
-    
     func loadData() {
         loadViews()
         percentComplete = round((task?.getPercentComplete())! * 100)
         taskNameLabel.text = task?.name
         taskNameLabel.textColor = AppColors.appBlack
         dateLabel.text = task?.updatedAt
-        //progressConstraint.constant = getPercentCompleteWidth()
+        progressConstraint.constant = getPercentCompleteWidth()
+        percentLabel.text = "\(percentComplete!)%"
+        percentLabel.textColor = AppColors.appBlack
         loadImage()
-        loadPercentLabelTextColors()
     }
     
     func loadImage() {
@@ -69,12 +68,17 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
         secondImageView.isHidden = true
         secondImageView.clipsToBounds = true
         secondImageView.layer.cornerRadius = taskImageView.bounds.width / 2
+        taskImageTopConstraint.constant = 12
+        taskImageLeadingConstraint.constant = 12
+        secondImageViewWidthConstraint.constant = 40
         
         if percentComplete == 100 {
             taskImageView.image = UIImage(named: "StepIconChecked")
-            //taskImageViewHeightConstraint.constant = 50
-            //TaskImageViewWidthConstraint.constant = 50
-            //TaskImageViewTrailingConstraint.constant = 2
+            taskImageViewHeightConstraint.constant = 45
+            taskImageViewWidthConstraint.constant = 45
+            taskImageTopConstraint.constant = 8
+            taskImageLeadingConstraint.constant = 8
+            secondImageViewWidthConstraint.constant = 0
         } else {
             let lastStep = task?.getNextStep()
             if let assignees = lastStep?.assignees {
@@ -84,6 +88,8 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
                     secondImageView.isHidden = false
                     let assigneeProfileUrl = assignees[1].profileImageUrl!
                     secondImageView.setImageWith(assigneeProfileUrl)
+                } else {
+                    secondImageViewWidthConstraint.constant = 0
                 }
             } else {
                 taskImageView.image = UIImage(named: "QuestionMark")

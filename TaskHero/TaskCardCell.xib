@@ -16,40 +16,40 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xfi-fW-9sS">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                    <rect key="frame" x="8" y="8" width="359" height="184"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Estimated Time: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9g-FM-sXj">
-                            <rect key="frame" x="230" y="79.5" width="102" height="16"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="255" verticalCompressionResistancePriority="751" text="Estimated Time: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9g-FM-sXj">
+                            <rect key="frame" x="214" y="98.5" width="102" height="16"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="4h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYT-sa-O7Z">
-                            <rect key="frame" x="336" y="77.5" width="19" height="18"/>
+                            <rect key="frame" x="320" y="96.5" width="19" height="18"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Server Deploy" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOf-KW-iut">
-                            <rect key="frame" x="8" y="8" width="135" height="24"/>
+                            <rect key="frame" x="50" y="8" width="135" height="24"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Deploy new version of code to server, and make sure all documents are updated." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xjd-RK-gr4">
-                            <rect key="frame" x="18" y="36" width="349" height="38.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="752" text="Deploy new version of code to server, and make sure all documents are updated." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xjd-RK-gr4">
+                            <rect key="frame" x="50" y="36" width="276.5" height="57.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Members:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMA-Fl-WYs">
-                            <rect key="frame" x="18" y="104.5" width="97" height="42.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="244" text="Team Members:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMA-Fl-WYs">
+                            <rect key="frame" x="18" y="123.5" width="97" height="7.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jsk-f8-LxO">
-                            <rect key="frame" x="14" y="155" width="347" height="37"/>
+                            <rect key="frame" x="14" y="139" width="331" height="37"/>
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oh1-g3-qp1">
                                     <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
@@ -120,22 +120,31 @@
                                 <constraint firstItem="Tb0-sr-RqW" firstAttribute="top" secondItem="Jsk-f8-LxO" secondAttribute="top" id="yT4-W5-yth"/>
                             </constraints>
                         </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TaskIcon" translatesAutoresizingMaskIntoConstraints="NO" id="uI0-fk-88h">
+                            <rect key="frame" x="-2" y="-2" width="44" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="Lgh-tB-9gg"/>
+                                <constraint firstAttribute="width" constant="44" id="iIH-vd-s4f"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LOf-KW-iut" secondAttribute="trailing" constant="8" id="44y-e5-tpe"/>
                         <constraint firstAttribute="bottom" secondItem="Jsk-f8-LxO" secondAttribute="bottom" constant="8" id="4EC-rM-3N3"/>
+                        <constraint firstItem="uI0-fk-88h" firstAttribute="leading" secondItem="xfi-fW-9sS" secondAttribute="leading" constant="-2" id="4NF-NQ-ght"/>
                         <constraint firstItem="Xjd-RK-gr4" firstAttribute="top" secondItem="LOf-KW-iut" secondAttribute="bottom" constant="4" id="4Xz-8h-1pP"/>
                         <constraint firstItem="Jsk-f8-LxO" firstAttribute="top" secondItem="sMA-Fl-WYs" secondAttribute="bottom" constant="8" id="6YT-qv-VmC"/>
-                        <constraint firstItem="LOf-KW-iut" firstAttribute="leading" secondItem="xfi-fW-9sS" secondAttribute="leading" constant="8" id="6dA-TI-MA9"/>
-                        <constraint firstItem="Xjd-RK-gr4" firstAttribute="leading" secondItem="xfi-fW-9sS" secondAttribute="leading" constant="18" id="7w7-xt-L5S"/>
+                        <constraint firstItem="Xjd-RK-gr4" firstAttribute="leading" secondItem="xfi-fW-9sS" secondAttribute="leading" constant="50" id="7w7-xt-L5S"/>
                         <constraint firstItem="Jsk-f8-LxO" firstAttribute="leading" secondItem="xfi-fW-9sS" secondAttribute="leading" constant="14" id="Hro-QU-Cu0"/>
                         <constraint firstAttribute="trailing" secondItem="qYT-sa-O7Z" secondAttribute="trailing" constant="20" id="IvF-7O-qvF"/>
                         <constraint firstItem="LOf-KW-iut" firstAttribute="top" secondItem="xfi-fW-9sS" secondAttribute="top" constant="8" id="J5H-FA-HRK"/>
+                        <constraint firstItem="uI0-fk-88h" firstAttribute="top" secondItem="xfi-fW-9sS" secondAttribute="top" constant="-2" id="NoN-an-tgS"/>
                         <constraint firstItem="sMA-Fl-WYs" firstAttribute="top" secondItem="V9g-FM-sXj" secondAttribute="bottom" constant="9" id="PUd-ER-lDf"/>
                         <constraint firstItem="qYT-sa-O7Z" firstAttribute="leading" secondItem="V9g-FM-sXj" secondAttribute="trailing" constant="4" id="SjN-24-BZD"/>
                         <constraint firstItem="V9g-FM-sXj" firstAttribute="top" secondItem="Xjd-RK-gr4" secondAttribute="bottom" constant="5" id="VOE-5w-aVj"/>
                         <constraint firstItem="V9g-FM-sXj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xfi-fW-9sS" secondAttribute="leading" constant="160" id="ZLr-l0-u69"/>
+                        <constraint firstItem="LOf-KW-iut" firstAttribute="leading" secondItem="uI0-fk-88h" secondAttribute="trailing" constant="8" id="dee-Z4-oja"/>
                         <constraint firstAttribute="trailing" secondItem="Jsk-f8-LxO" secondAttribute="trailing" constant="14" id="gc3-tK-KTB"/>
                         <constraint firstItem="sMA-Fl-WYs" firstAttribute="leading" secondItem="xfi-fW-9sS" secondAttribute="leading" constant="18" id="jub-N9-SPQ"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Xjd-RK-gr4" secondAttribute="trailing" constant="8" id="vQI-YF-klP"/>
@@ -151,10 +160,10 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="xfi-fW-9sS" secondAttribute="bottom" id="6sY-7x-5jr"/>
-                <constraint firstAttribute="trailing" secondItem="xfi-fW-9sS" secondAttribute="trailing" id="FS3-zq-VoR"/>
-                <constraint firstItem="xfi-fW-9sS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="K3X-tq-5iH"/>
-                <constraint firstItem="xfi-fW-9sS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gxU-fL-8I2"/>
+                <constraint firstAttribute="bottom" secondItem="xfi-fW-9sS" secondAttribute="bottom" constant="8" id="6sY-7x-5jr"/>
+                <constraint firstAttribute="trailing" secondItem="xfi-fW-9sS" secondAttribute="trailing" constant="8" id="FS3-zq-VoR"/>
+                <constraint firstItem="xfi-fW-9sS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="K3X-tq-5iH"/>
+                <constraint firstItem="xfi-fW-9sS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="gxU-fL-8I2"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
@@ -175,4 +184,7 @@
             <point key="canvasLocation" x="0.5" y="-195"/>
         </view>
     </objects>
+    <resources>
+        <image name="TaskIcon" width="48" height="48"/>
+    </resources>
 </document>

@@ -31,17 +31,17 @@ class SimpleDateFormatter: NSObject {
             if ((currentDateComponents.day! - components.day!) > 21) {
                 // do nothing
             } else if ((currentDateComponents.day! - components.day!) > 14) {
-                return "3wk ago"
+                return "3wk"
             } else if ((currentDateComponents.day! - components.day!) > 7) {
-                return "2wk ago"
+                return "2wk"
             } else {
                 if (currentDateComponents.day! == components.day) {
                     if (currentDateComponents.hour! == components.hour) {
-                        return "\(currentDateComponents.minute! - components.minute!)m ago"
+                        return "\(currentDateComponents.minute! - components.minute!)m"
                     }
-                    return "\(currentDateComponents.hour! - components.hour!)h ago"
+                    return "\(currentDateComponents.hour! - components.hour!)h"
                 } else {
-                    return "\(currentDateComponents.day! - components.day!)d ago"
+                    return "\(currentDateComponents.day! - components.day!)d"
                 }
             }
         }

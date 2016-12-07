@@ -42,7 +42,7 @@ class TaskInstance: NSObject {
         }
         
         let date = taskInstance.updatedAt
-        self.updatedAt = "last updated \(SimpleDateFormatter.getTimeAgoSimple(date: date!))"
+        self.updatedAt = SimpleDateFormatter.getTimeAgoSimple(date: date!)
     }
     
     private func getSteps(steps: String) {
