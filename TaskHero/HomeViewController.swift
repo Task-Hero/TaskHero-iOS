@@ -49,7 +49,12 @@ class HomeViewController: UIViewController {
     }
     
     func loadNavigationBar() {
-        title = User.current?.name
+        //title = User.current?.name        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
+        imageView.contentMode = .scaleAspectFit
+        let image = UIImage(named: "Emblem")
+        imageView.image = image
+        navigationItem.titleView = imageView
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

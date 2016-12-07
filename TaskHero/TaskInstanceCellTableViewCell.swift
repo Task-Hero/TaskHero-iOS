@@ -71,6 +71,7 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
         taskImageTopConstraint.constant = 12
         taskImageLeadingConstraint.constant = 12
         secondImageViewWidthConstraint.constant = 40
+        progressViewContainer.layer.backgroundColor = AppColors.appWhite.cgColor
         
         if percentComplete == 100 {
             taskImageView.image = UIImage(named: "StepIconChecked")
@@ -92,6 +93,13 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
                 } else {
                     secondImageViewWidthConstraint.constant = 0
                 }
+                
+                for assignee in assignees {
+                    if assignee.email == User.current?.email {
+                        progressViewContainer.layer.backgroundColor = AppColors.appMidGrey.cgColor
+                    }
+                }
+                
             } else {
                 taskImageView.image = UIImage(named: "QuestionMark")
             }
