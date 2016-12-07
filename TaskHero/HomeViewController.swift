@@ -15,14 +15,12 @@ class HomeViewController: UIViewController {
     var selectedCell: Int?
     var initialIndexPath: IndexPath?
     var cellSnapshot: UIView?
+    var refreshControl: UIRefreshControl!
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         AppColors.loadNavigationBarColors(navigationController: navigationController!)
         loadNavigationBar()
         loadTableView()
@@ -67,6 +65,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.separatorStyle = .none
         tableView.registerNib(with: "TaskInstanceCellTableViewCell")
         addLongPressGesture()
+        refreshControl = UIRefreshControl()
+        tableView.addSubview(refreshControl)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
