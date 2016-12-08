@@ -31,6 +31,7 @@ class TaskCatalogViewController: UIViewController {
         super.viewDidLoad()
         AppColors.loadNavigationBarColors(navigationController: navigationController!)
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160
         tableView.registerNib(with: taskCardCellIdentifier)
@@ -40,7 +41,7 @@ class TaskCatalogViewController: UIViewController {
         refreshControl = UIRefreshControl()
         refreshControl.backgroundColor = UIColor.clear
         refreshControl.tintColor = UIColor.clear
-        refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(loadTasks(refreshControl:)), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl)
         
         loadCustomRefreshContents()
@@ -73,10 +74,6 @@ class TaskCatalogViewController: UIViewController {
         }, failure: {(error) -> () in
             NSLog("Error: \(error)")
         })
-    }
-    
-    func refreshControlAction(refreshControl: UIRefreshControl) {
-        loadTasks()
     }
     
     // MARK: - Navigation
@@ -118,7 +115,8 @@ class TaskCatalogViewController: UIViewController {
 
 // MARK: custom refresh menu
 
-extension TaskCatalogViewController {
+extension TaskCatalogViewController: UITableViewDelegate {
+    
     func loadCustomRefreshContents() {
         let refreshContents = Bundle.main.loadNibNamed("RefreshContent", owner: self, options: nil)
         customView = refreshContents?[0] as! UIView
@@ -150,6 +148,7 @@ extension TaskCatalogViewController {
             }
         }
     }
+    
 }
 
 extension TaskCatalogViewController: UITableViewDataSource {
