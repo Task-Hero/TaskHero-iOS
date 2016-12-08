@@ -40,12 +40,14 @@ The following **additional** features are implemented:
 ## Video Walkthrough
 Here's a walkthrough of implemented user stories:
 Final version:
+
 <img src='http://i.imgur.com/UmX9W5t.gif' title='Video Walkthrough - Login to Task Detail' width='' alt='Video Walkthrough - Login to Task Detail' />
 <img src='http://i.imgur.com/MfMpYZB.gif' title='Video Walkthrough - Create Task and Steps' width='' alt='Video Walkthrough - Create Task and Steps' />
 <img src='http://i.imgur.com/VzEqqi7.gif' title='Video Walkthrough - Task Start and Chat' width='' alt='Video Walkthrough - Task Start and Chat' />
 
 
 Mockup version (From Sprint 2):
+
 <img src='http://i.imgur.com/EcjbCe5.gif' title='Video Walkthrough - Login to Step Detail' width='' alt='Video Walkthrough - Login to Step Detail' />
 <img src='http://i.giphy.com/l3vRnZNQPpNMV1ar6.gif' title='Video Walkthrough - Create Task and Steps' width='' alt='Video Walkthrough - Create Task and Steps' />
 
