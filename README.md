@@ -8,21 +8,21 @@ Time spent: **20** hours spent in total
 
 The following **required** functionality are implemented:
 
-- [ ] Users can create Tasks with associated Steps
-- [ ] Tasks should be able to be created from templates
-- [ ] Users can view Tasks currently in progress
-- [ ] Users can view Steps assigned to them
-- [ ] Users can check off completed Steps (should have fun animation)
-- [ ] Steps can be assigned to people
+- [x] Users can create Tasks with associated Steps
+- [x] Tasks should be able to be created from templates in Catalog
+- [x] Users can view Tasks currently in progress
+- [x] Users can view Steps assigned to them
+- [x] Users can check off completed Steps (should have fun animation)
+- [x] Steps can be assigned to people
 - [ ] Steps can required signoff from people
 - [ ] User can view profiles and edit their own (add photo)
-- [ ] Poke the Steps; associated users get notifications
+- [x] Poke the Steps; associated users get notifications
 
 The following **optional** features are implemented:
 
-- [ ] User gets notification when it is their turn to do Steps
-- [ ] User gets notification when their signoff is required
-- [ ] User can add media to Steps
+- [x] User gets notification when it is their turn to do Steps
+- [x] User gets notification when their signoff is required
+- [x] User can add media to Steps
 - [ ] User can be a part of groups and create them
 - [ ] Tasks/Steps can be viewed in history
 
