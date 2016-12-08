@@ -17,6 +17,9 @@ class TaskCatalogViewController: UIViewController {
     var currentSelectedCellRowNum = -1
     
     var refreshControl: UIRefreshControl!
+    var customView: UIView!
+    var refreshImageView: UIImageView!
+    var isRefreshControlAnimating = false
     
     private var lastActionView: ActionViewProtocol!
     
@@ -34,9 +37,13 @@ class TaskCatalogViewController: UIViewController {
         
         lastActionView = BottomBar.instance.actionView
         
-        self.refreshControl = UIRefreshControl()
+        refreshControl = UIRefreshControl()
+        refreshControl.backgroundColor = UIColor.clear
+        refreshControl.tintColor = UIColor.clear
         refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
-        tableView.insertSubview(refreshControl, at: 0)
+        tableView.addSubview(refreshControl)
+        
+        loadCustomRefreshContents()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,13 +63,13 @@ class TaskCatalogViewController: UIViewController {
         }
     }
 
-    func loadTasks() {
+    func loadTasks(refreshControl: UIRefreshControl? = nil) {
         ParseClient.sharedInstance.getAllTasks(success: {(tasks) -> () in
             self.tasks = tasks
             self.tableView.reloadData()
-            self.refreshControl.endRefreshing()
-            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.none, animated: false)
-            
+            if self.refreshControl != nil {
+                self.refreshControl?.endRefreshing()
+            }  
         }, failure: {(error) -> () in
             NSLog("Error: \(error)")
         })
@@ -106,6 +113,42 @@ class TaskCatalogViewController: UIViewController {
         alertController.addAction(startTaskAction)
         
         present(alertController, animated: true, completion: nil)
+    }
+}
+
+// MARK: custom refresh menu
+
+extension TaskCatalogViewController {
+    func loadCustomRefreshContents() {
+        let refreshContents = Bundle.main.loadNibNamed("RefreshContent", owner: self, options: nil)
+        customView = refreshContents?[0] as! UIView
+        customView.frame = refreshControl.bounds
+        refreshImageView = customView.viewWithTag(1) as! UIImageView
+        refreshControl.addSubview(customView)
+    }
+    
+    func animateRefreshControl() {
+        isRefreshControlAnimating = true
+        
+        UIView.animate(withDuration: 2, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
+            self.refreshImageView.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI))
+            self.refreshImageView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+        }, completion: { (finished) -> Void in
+            if (self.refreshControl!.isRefreshing) {
+                self.animateRefreshControl()
+            } else {
+                self.isRefreshControlAnimating = false
+                self.refreshImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+            }
+        })
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if refreshControl.isRefreshing {
+            if !isRefreshControlAnimating {
+                animateRefreshControl()
+            }
+        }
     }
 }
 

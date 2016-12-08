@@ -12,6 +12,7 @@ import UIKit
 class TaskCatalogDetailViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     fileprivate var selectedStep: Step!
     fileprivate let taskCellIdentifier = "TaskDetailTaskCell"
@@ -29,6 +30,8 @@ class TaskCatalogDetailViewController: UIViewController {
         tableView.registerNib(with: taskCellIdentifier)
         tableView.registerNib(with: stepCellIdentifier)
         tableView.reloadData()
+        
+        doneButton.isEnabled = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -130,12 +133,14 @@ extension TaskCatalogDetailViewController: EditStepCellDelegate {
     func stepCellWasUpdated(_ stepCell: EditStepCell, updatedStep: Step) {
         let indexPath = tableView.indexPath(for: stepCell)
         task.steps![indexPath!.row - 1] = updatedStep
+        doneButton.isEnabled = true
     }
 }
 
 extension TaskCatalogDetailViewController: TaskDetailTaskCellDelegate {
     func taskDetailCellWasUpdated(_ updatedTask: Task) {
         self.task = updatedTask
+        doneButton.isEnabled = true
     }
 }
 
@@ -144,6 +149,7 @@ extension TaskCatalogDetailViewController: UserPickerDelegate {
         selectedStep.assignees = users
         selectedStep = nil
         
+        doneButton.isEnabled = true
         tableView.reloadData()
     }
 }
