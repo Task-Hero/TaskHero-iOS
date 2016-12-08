@@ -29,6 +29,7 @@ class TaskCatalogViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160
         tableView.registerNib(with: taskCardCellIdentifier)
+        tableView.allowsSelection = false
         
         lastActionView = BottomBar.instance.actionView
     }

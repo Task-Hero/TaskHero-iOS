@@ -14,6 +14,15 @@ class Task: NSObject {
     var name: String?
     var details: String?
     var estimatedTime: TimeInterval?
+    var estimatedTimeInHours: Int? {
+        get {
+            if let estimatedTime = estimatedTime {
+                return Int(estimatedTime / 60)
+            } else {
+                return nil
+            }
+        }
+    }
     var steps: [Step]?
     var taskId: String?
     var teammates: [User]?
