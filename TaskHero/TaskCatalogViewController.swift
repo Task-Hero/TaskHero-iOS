@@ -110,7 +110,6 @@ class TaskCatalogViewController: UIViewController {
 }
 
 extension TaskCatalogViewController: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: taskCardCellIdentifier, for: indexPath) as! TaskCardCell
         cell.task = tasks?[indexPath.row]
@@ -122,7 +121,6 @@ extension TaskCatalogViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks?.count ?? 0
     }
-    
 }
 
 extension TaskCatalogViewController: TaskCardCellDelegate {
@@ -139,7 +137,6 @@ extension TaskCatalogViewController: TaskCardCellDelegate {
 }
 
 extension TaskCatalogViewController: PopoverViewDelegate {
-
     func popoverViewDidSelectPrimaryAction(popoverView: PopoverView) {
         dismissPopover { 
             self.dismiss(animated: true, completion: nil)

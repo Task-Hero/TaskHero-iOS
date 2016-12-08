@@ -8,29 +8,59 @@
 
 import UIKit
 
+
+protocol TaskDetailTaskCellDelegate {
+    func taskDetailCellWasUpdated(_ updatedTask: Task)
+}
+
+
 class TaskDetailTaskCell: UITableViewCell {
 
-    @IBOutlet weak var taskNameLabel: UILabel!
-    @IBOutlet weak var taskDetailLabel: UILabel!
-    @IBOutlet weak var taskEstimatedTimeLabel: UILabel!
+    @IBOutlet weak var taskNameField: UITextField!
+    @IBOutlet weak var taskDetailTextView: UITextView!
+    @IBOutlet weak var taskEstimatedField: UITextField!
+    
+    var delegate: TaskDetailTaskCellDelegate?
     
     var task:Task! {
         didSet{
-            taskNameLabel.text = task.name
-            taskDetailLabel.text = task.details
+            taskNameField.text = task.name
+            taskDetailTextView.text = task.details
             
             if let et = task.estimatedTime {
-                taskEstimatedTimeLabel.text = "\(et)"
+                taskEstimatedField.text = "\(et)"
             }
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        taskDetailTextView.delegate = self
+        taskDetailTextView.isScrollEnabled = false
+        taskDetailTextView.textContainer.lineFragmentPadding = 0
+        taskDetailTextView.textContainerInset = .zero
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 
+    @IBAction func onNameUpdated(_ sender: Any) {
+        task.name = taskNameField.text
+        delegate?.taskDetailCellWasUpdated(task)
+    }
+    @IBAction func estimatedTimeUpdated(_ sender: Any) {
+        if let estimatedTime = Double(taskEstimatedField.text ?? "") {
+            task.estimatedTime = estimatedTime * 60
+        }
+        delegate?.taskDetailCellWasUpdated(task)
+    }
+}
+
+extension TaskDetailTaskCell: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        task.details = taskDetailTextView.text
+        delegate?.taskDetailCellWasUpdated(task)
+    }
 }
