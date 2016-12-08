@@ -96,7 +96,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         refreshControl.backgroundColor = UIColor.clear
         refreshControl.tintColor = UIColor.clear
         refreshControl.addTarget(self, action: #selector(loadTasks(refreshControl:)), for: UIControlEvents.valueChanged)
-        tableView.addSubview(refreshControl)
+        tableView.insertSubview(refreshControl, at: 0)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
