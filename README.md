@@ -14,9 +14,9 @@ The following **required** functionality are implemented:
 - [x] Users can view Steps assigned to them
 - [x] Users can check off completed Steps (should have fun animation)
 - [x] Steps can be assigned to people
-- [ ] Steps can required signoff from people
-- [ ] User can view profiles and edit their own (add photo)
 - [x] Poke the Steps; associated users get notifications
+- [x] Users can chat on the Task
+- [x] Users can update Tasks in catalog
 
 The following **optional** features are implemented:
 
