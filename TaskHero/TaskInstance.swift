@@ -17,7 +17,7 @@ class TaskInstance: NSObject {
     var steps: [Step]?
     var chatId: String?
     var completed: Bool?
-    var lastUpdated: Date?
+    var updatedAt: String?
     var teammates: [User]?
     
     init(taskInstance: PFObject, teammates: [User]) {
@@ -40,9 +40,9 @@ class TaskInstance: NSObject {
         if let completed = taskInstance["completed"] {
             self.completed = (completed as? Bool)!
         }
-        if let date = taskInstance["updatedAt"] {
-            self.lastUpdated = date as? Date
-        }
+        
+        let date = taskInstance.updatedAt
+        self.updatedAt = SimpleDateFormatter.getTimeAgoSimple(date: date!)
     }
     
     private func getSteps(steps: String) {

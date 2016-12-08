@@ -20,10 +20,13 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
     @IBOutlet weak var progressViewContainer: UIView!
     @IBOutlet weak var progressView: UIView!
     @IBOutlet weak var secondImageView: UIImageView!
+    @IBOutlet weak var secondImageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var taskImageView: UIImageView!
     @IBOutlet weak var taskImageViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var TaskImageViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var TaskImageViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var taskImageViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var taskImageTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var taskImageLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var dateLabel: UILabel!
     
     var percentComplete: Double?
     
@@ -47,27 +50,16 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
         progressView.layer.backgroundColor = AppColors.appBlue.cgColor
     }
     
-    func loadPercentLabelTextColors() {
-        percentLabel.textColor = AppColors.appBlack
-        
-        if progressView.frame.maxX > percentLabel.frame.maxX {
-            percentLabel.textColor = AppColors.appWhite
-        }
-        
-        let myMutableString = NSMutableAttributedString(string: "\(percentComplete!)%", attributes: nil)
-        //TODO: find the x value of each character and set only that portion to be white
-        //myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: NSRange(location:0,length:2))
-        percentLabel.attributedText = myMutableString
-    }
-    
     func loadData() {
         loadViews()
         percentComplete = round((task?.getPercentComplete())! * 100)
         taskNameLabel.text = task?.name
         taskNameLabel.textColor = AppColors.appBlack
+        dateLabel.text = task?.updatedAt
         progressConstraint.constant = getPercentCompleteWidth()
+        percentLabel.text = "\(percentComplete!)%"
+        percentLabel.textColor = AppColors.appBlack
         loadImage()
-        loadPercentLabelTextColors()
     }
     
     func loadImage() {
@@ -76,12 +68,19 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
         secondImageView.isHidden = true
         secondImageView.clipsToBounds = true
         secondImageView.layer.cornerRadius = taskImageView.bounds.width / 2
+        taskImageTopConstraint.constant = 12
+        taskImageLeadingConstraint.constant = 12
+        secondImageViewWidthConstraint.constant = 40
+        progressViewContainer.layer.backgroundColor = AppColors.appWhite.cgColor
         
         if percentComplete == 100 {
             taskImageView.image = UIImage(named: "StepIconChecked")
-            taskImageViewHeightConstraint.constant = 50
-            TaskImageViewWidthConstraint.constant = 50
-            TaskImageViewTrailingConstraint.constant = 2
+            taskImageViewHeightConstraint.constant = 45
+            taskImageViewWidthConstraint.constant = 45
+            taskImageTopConstraint.constant = 8
+            taskImageLeadingConstraint.constant = 8
+            secondImageViewWidthConstraint.constant = 0
+            progressView.layer.backgroundColor = AppColors.appGreen.cgColor
         } else {
             let lastStep = task?.getNextStep()
             if let assignees = lastStep?.assignees {
@@ -91,7 +90,16 @@ class TaskInstanceCellTableViewCell: UITableViewCell {
                     secondImageView.isHidden = false
                     let assigneeProfileUrl = assignees[1].profileImageUrl!
                     secondImageView.setImageWith(assigneeProfileUrl)
+                } else {
+                    secondImageViewWidthConstraint.constant = 0
                 }
+                
+                for assignee in assignees {
+                    if assignee.email == User.current?.email {
+                        progressViewContainer.layer.backgroundColor = AppColors.appMidGrey.cgColor
+                    }
+                }
+                
             } else {
                 taskImageView.image = UIImage(named: "QuestionMark")
             }
