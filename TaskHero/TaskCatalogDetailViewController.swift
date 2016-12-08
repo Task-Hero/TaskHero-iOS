@@ -12,6 +12,7 @@ import UIKit
 class TaskCatalogDetailViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     fileprivate var selectedStep: Step!
     fileprivate let taskCellIdentifier = "TaskDetailTaskCell"
@@ -29,8 +30,9 @@ class TaskCatalogDetailViewController: UIViewController {
         tableView.registerNib(with: taskCellIdentifier)
         tableView.registerNib(with: stepCellIdentifier)
         tableView.reloadData()
+        
+        doneButton.isEnabled = false
     }
-    
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -45,9 +47,11 @@ class TaskCatalogDetailViewController: UIViewController {
     }
     
     @IBAction func onDoneButton(_ sender: Any) {
-        ParseClient.sharedInstance.updateTask(task: task, success: {}, failure: {error in print(error) })
-        
-        _ = navigationController?.popViewController(animated: true)
+        ParseClient.sharedInstance.updateTask(task: task, success: { () -> () in
+            _ = self.navigationController?.popViewController(animated: true)
+        }, failure: { (error) -> () in
+            print(error)
+        })
     }
     
     @IBAction func onAddTapped(_ sender: Any) {
@@ -92,6 +96,7 @@ extension TaskCatalogDetailViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: taskCellIdentifier, for: indexPath) as! TaskDetailTaskCell
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.task = self.task
+            cell.delegate = self
             
             return cell
         } else {
@@ -124,6 +129,19 @@ extension TaskCatalogDetailViewController: EditStepCellDelegate {
         selectedStep = task.steps![indexPath!.row - 1]
         performSegue(withIdentifier: "TaskCatalogDetailToPickUsers", sender: stepCell)
     }
+    
+    func stepCellWasUpdated(_ stepCell: EditStepCell, updatedStep: Step) {
+        let indexPath = tableView.indexPath(for: stepCell)
+        task.steps![indexPath!.row - 1] = updatedStep
+        doneButton.isEnabled = true
+    }
+}
+
+extension TaskCatalogDetailViewController: TaskDetailTaskCellDelegate {
+    func taskDetailCellWasUpdated(_ updatedTask: Task) {
+        self.task = updatedTask
+        doneButton.isEnabled = true
+    }
 }
 
 extension TaskCatalogDetailViewController: UserPickerDelegate {
@@ -131,10 +149,8 @@ extension TaskCatalogDetailViewController: UserPickerDelegate {
         selectedStep.assignees = users
         selectedStep = nil
         
+        doneButton.isEnabled = true
         tableView.reloadData()
     }
 }
-
-
-
 

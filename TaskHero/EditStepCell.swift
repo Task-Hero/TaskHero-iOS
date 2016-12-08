@@ -12,6 +12,7 @@ protocol EditStepCellDelegate {
     func stepCellWasRemoved(_ stepCell: EditStepCell)
     func stepCellCanBeRemoved(_ stepCell: EditStepCell) -> Bool
     func stepCellDidSelectAssignees(_ stepCell: EditStepCell)
+    func stepCellWasUpdated(_ stepCell: EditStepCell, updatedStep: Step)
 }
 
 class EditStepCell: UITableViewCell {
@@ -88,6 +89,7 @@ class EditStepCell: UITableViewCell {
     
     @IBAction func onNameChanged(_ sender: Any) {
         step.name = nameField.text
+        delegate?.stepCellWasUpdated(self, updatedStep: step)
     }
     
     @objc fileprivate func onAssigneesTap(sender: UITapGestureRecognizer) {
@@ -146,5 +148,6 @@ class EditStepCell: UITableViewCell {
 extension EditStepCell: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         step.details = detailsField.text
+        delegate?.stepCellWasUpdated(self, updatedStep: step)
     }
 }

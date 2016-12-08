@@ -132,6 +132,11 @@ extension CreateStepsViewController: EditStepCellDelegate {
         selectedStep = task.steps![indexPath!.row]
         performSegue(withIdentifier: "CreateStepsToPickUsers", sender: stepCell)
     }
+    
+    func stepCellWasUpdated(_ stepCell: EditStepCell, updatedStep: Step) {
+        let indexPath = tableView.indexPath(for: stepCell)
+        task.steps![indexPath!.row] = updatedStep
+    }
 }
 
 extension CreateStepsViewController: UserPickerDelegate {

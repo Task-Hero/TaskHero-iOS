@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="377" height="302"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="377" height="301.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="377" height="301"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MZq-Gk-fxJ">
@@ -36,7 +36,7 @@
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <action selector="onNameChanged:" destination="KGk-i7-Jjw" eventType="editingDidEnd" id="0vT-GW-e1B"/>
+                                            <action selector="onNameChanged:" destination="KGk-i7-Jjw" eventType="editingChanged" id="4yI-dT-tn6"/>
                                         </connections>
                                     </textField>
                                 </subviews>

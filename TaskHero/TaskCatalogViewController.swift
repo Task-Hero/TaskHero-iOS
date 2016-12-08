@@ -16,6 +16,11 @@ class TaskCatalogViewController: UIViewController {
     var tasks: [Task]?
     var currentSelectedCellRowNum = -1
     
+    var refreshControl: UIRefreshControl!
+    var customView: UIView!
+    var refreshImageView: UIImageView!
+    var isRefreshControlAnimating = false
+    
     private var lastActionView: ActionViewProtocol!
     
     fileprivate var popover: PopoverView!
@@ -26,11 +31,20 @@ class TaskCatalogViewController: UIViewController {
         super.viewDidLoad()
         AppColors.loadNavigationBarColors(navigationController: navigationController!)
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160
         tableView.registerNib(with: taskCardCellIdentifier)
         
         lastActionView = BottomBar.instance.actionView
+        
+        refreshControl = UIRefreshControl()
+        refreshControl.backgroundColor = UIColor.clear
+        refreshControl.tintColor = UIColor.clear
+        refreshControl.addTarget(self, action: #selector(loadTasks(refreshControl:)), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl)
+        
+        loadCustomRefreshContents()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,10 +64,13 @@ class TaskCatalogViewController: UIViewController {
         }
     }
 
-    func loadTasks() {
+    func loadTasks(refreshControl: UIRefreshControl? = nil) {
         ParseClient.sharedInstance.getAllTasks(success: {(tasks) -> () in
             self.tasks = tasks
             self.tableView.reloadData()
+            if self.refreshControl != nil {
+                self.refreshControl?.endRefreshing()
+            }  
         }, failure: {(error) -> () in
             NSLog("Error: \(error)")
         })
@@ -96,8 +113,45 @@ class TaskCatalogViewController: UIViewController {
     }
 }
 
-extension TaskCatalogViewController: UITableViewDataSource {
+// MARK: custom refresh menu
+
+extension TaskCatalogViewController: UITableViewDelegate {
     
+    func loadCustomRefreshContents() {
+        let refreshContents = Bundle.main.loadNibNamed("RefreshContent", owner: self, options: nil)
+        customView = refreshContents?[0] as! UIView
+        customView.frame = refreshControl.bounds
+        refreshImageView = customView.viewWithTag(1) as! UIImageView
+        refreshControl.addSubview(customView)
+    }
+    
+    func animateRefreshControl() {
+        isRefreshControlAnimating = true
+        
+        UIView.animate(withDuration: 2, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
+            self.refreshImageView.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI))
+            self.refreshImageView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+        }, completion: { (finished) -> Void in
+            if (self.refreshControl!.isRefreshing) {
+                self.animateRefreshControl()
+            } else {
+                self.isRefreshControlAnimating = false
+                self.refreshImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+            }
+        })
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if refreshControl.isRefreshing {
+            if !isRefreshControlAnimating {
+                animateRefreshControl()
+            }
+        }
+    }
+    
+}
+
+extension TaskCatalogViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: taskCardCellIdentifier, for: indexPath) as! TaskCardCell
         cell.task = tasks?[indexPath.row]
@@ -109,7 +163,6 @@ extension TaskCatalogViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks?.count ?? 0
     }
-    
 }
 
 extension TaskCatalogViewController: TaskCardCellDelegate {
@@ -126,7 +179,6 @@ extension TaskCatalogViewController: TaskCardCellDelegate {
 }
 
 extension TaskCatalogViewController: PopoverViewDelegate {
-
     func popoverViewDidSelectPrimaryAction(popoverView: PopoverView) {
         dismissPopover { 
             self.dismiss(animated: true, completion: nil)
@@ -189,7 +241,7 @@ extension TaskCatalogViewController: PopoverViewDelegate {
             completion: { _ in
                 self.dimView.removeFromSuperview()
                 complete?()
-        }
+            }
         )
     }
 }
