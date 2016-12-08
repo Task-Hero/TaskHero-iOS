@@ -16,6 +16,8 @@ class TaskCatalogViewController: UIViewController {
     var tasks: [Task]?
     var currentSelectedCellRowNum = -1
     
+    var refreshControl: UIRefreshControl!
+    
     private var lastActionView: ActionViewProtocol!
     
     fileprivate var popover: PopoverView!
@@ -31,6 +33,10 @@ class TaskCatalogViewController: UIViewController {
         tableView.registerNib(with: taskCardCellIdentifier)
         
         lastActionView = BottomBar.instance.actionView
+        
+        self.refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,9 +60,16 @@ class TaskCatalogViewController: UIViewController {
         ParseClient.sharedInstance.getAllTasks(success: {(tasks) -> () in
             self.tasks = tasks
             self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.none, animated: false)
+            
         }, failure: {(error) -> () in
             NSLog("Error: \(error)")
         })
+    }
+    
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+        loadTasks()
     }
     
     // MARK: - Navigation
@@ -189,7 +202,7 @@ extension TaskCatalogViewController: PopoverViewDelegate {
             completion: { _ in
                 self.dimView.removeFromSuperview()
                 complete?()
-        }
+            }
         )
     }
 }
