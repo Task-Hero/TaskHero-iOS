@@ -670,28 +670,28 @@
                                 </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Stopwatch" translatesAutoresizingMaskIntoConstraints="NO" id="8jg-Jw-1kG">
-                                <rect key="frame" x="16" y="135" width="24" height="24"/>
+                                <rect key="frame" x="16" y="135" width="30" height="30"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="5UF-pq-ZUF"/>
-                                    <constraint firstAttribute="width" constant="24" id="qe3-FT-fSL"/>
+                                    <constraint firstAttribute="height" constant="30" id="5UF-pq-ZUF"/>
+                                    <constraint firstAttribute="width" constant="30" id="qe3-FT-fSL"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8dg-sa-E47">
-                                <rect key="frame" x="46" y="138" width="13" height="19"/>
+                                <rect key="frame" x="52" y="140" width="14.5" height="21"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Describe the task at a high level" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xQH-hN-lqB">
-                                <rect key="frame" x="16" y="187" width="343" height="464"/>
+                                <rect key="frame" x="16" y="181" width="343" height="470"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hour(s)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wnm-Lx-egD">
-                                <rect key="frame" x="61" y="138" width="49" height="19"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <rect key="frame" x="68.5" y="140" width="55" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -706,7 +706,7 @@
                             <constraint firstItem="Wnm-Lx-egD" firstAttribute="leading" secondItem="8dg-sa-E47" secondAttribute="trailing" constant="2" id="KwS-ya-uZv"/>
                             <constraint firstItem="8dg-sa-E47" firstAttribute="centerY" secondItem="8jg-Jw-1kG" secondAttribute="centerY" id="TbQ-o5-Lgp"/>
                             <constraint firstItem="8dg-sa-E47" firstAttribute="leading" secondItem="8jg-Jw-1kG" secondAttribute="trailing" constant="6" id="VsF-GJ-sfb"/>
-                            <constraint firstItem="xQH-hN-lqB" firstAttribute="top" secondItem="8jg-Jw-1kG" secondAttribute="bottom" constant="28" id="Yae-w6-OAO"/>
+                            <constraint firstItem="xQH-hN-lqB" firstAttribute="top" secondItem="8jg-Jw-1kG" secondAttribute="bottom" constant="16" id="Yae-w6-OAO"/>
                             <constraint firstItem="xQH-hN-lqB" firstAttribute="leading" secondItem="99P-MU-Pq0" secondAttribute="leading" id="cFE-sp-wgZ"/>
                             <constraint firstAttribute="trailing" secondItem="99P-MU-Pq0" secondAttribute="trailing" constant="16" id="hKe-Qr-vfS"/>
                             <constraint firstItem="Wnm-Lx-egD" firstAttribute="baseline" secondItem="8dg-sa-E47" secondAttribute="baseline" id="qzU-qL-6d0"/>
