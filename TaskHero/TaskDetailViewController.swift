@@ -91,7 +91,7 @@ class TaskDetailViewController: UIViewController {
         progressBarContainerView.layer.borderWidth = 2
         progressBarContainerView.layer.cornerRadius = 5
         progressBarContainerView.clipsToBounds = true
-        progressBarContainerView.layer.borderColor = AppColors.appBlack.cgColor
+        progressBarContainerView.layer.borderColor = AppColors.appBlue.cgColor
         progressBarView.backgroundColor = AppColors.appBlue
         progressBarTrailingConstraint.constant = (viewMaxWidth! - (CGFloat(percentComplete) / 100 * viewMaxWidth!))
     }
