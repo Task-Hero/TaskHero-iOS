@@ -19,6 +19,8 @@ class TaskCardCell: UITableViewCell {
     @IBOutlet weak var taskName: UILabel!
     @IBOutlet weak var taskDescription: UILabel!
     @IBOutlet weak var estimatedTime: UILabel!
+    @IBOutlet weak var estimatedTimeView: UIView!
+    @IBOutlet weak var headerView: UIView!
     
     @IBOutlet weak var memberIcon1: UIImageView!
     @IBOutlet weak var memberIcon2: UIImageView!
@@ -38,9 +40,13 @@ class TaskCardCell: UITableViewCell {
         didSet{
             taskName.text = task.name
             taskDescription.text = task.details
-            
-            if let et = task.estimatedTime {
-                estimatedTime.text = "\(et)"
+            estimatedTimeView.isHidden = true
+
+            if let et = task.estimatedTimeInHours {
+                if et > 0 {
+                    estimatedTime.text = "\(et) hours"
+                    estimatedTimeView.isHidden = false
+                }
             }
             
             setMemberIcons(users: task.getInvolvedUsers())
@@ -51,7 +57,7 @@ class TaskCardCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        cardView.layer.cornerRadius = 20.0
+        cardView.layer.cornerRadius = 8.0
         cardView.layer.shadowColor = UIColor.lightGray.cgColor
         cardView.layer.shadowOpacity = 0.5
         cardView.layer.shadowRadius = 3.0
@@ -73,7 +79,7 @@ class TaskCardCell: UITableViewCell {
             iconImageView.layer.cornerRadius = iconImageView.bounds.width / 2
         }
     }
-    
+
     @objc fileprivate func onTaskTap(sender: UITapGestureRecognizer) {
         delegate?.taskTapped(self)
     }
@@ -112,10 +118,6 @@ class TaskCardCell: UITableViewCell {
         }
         
         return super.gestureRecognizerShouldBegin(gestureRecognizer)
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
     
     func animateBackToOriginalPosition() {
