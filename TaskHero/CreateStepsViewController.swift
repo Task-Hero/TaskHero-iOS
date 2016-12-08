@@ -11,10 +11,13 @@ import UIKit
 class CreateStepsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addStepView: UIView!
+    @IBOutlet weak var addStepImageView: UIImageView!
     
     var task: Task!
     fileprivate var selectedStep: Step!
-    
+    fileprivate var originalContentInset: UIEdgeInsets!
+
     var delegate: TaskCreationDelegate?
 
     override func viewDidLoad() {
@@ -30,6 +33,50 @@ class CreateStepsViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .none
         tableView.registerNib(with: "EditStepCell")
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(onAddTapped))
+        addStepView.layer.cornerRadius = addStepView.bounds.height / 2
+        addStepView.addGestureRecognizer(tap)
+        
+        addStepImageView.tintColor = UIColor.white
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        tableView.contentInset.bottom += 20
+        originalContentInset = tableView.contentInset
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc fileprivate func keyboardWillShow(note: Notification) {
+        let kbSize = (note.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? CGRect)!.size
+        
+        var newInset = tableView.contentInset
+        newInset.bottom += kbSize.height
+        
+        tableView.contentInset = newInset
+        tableView.scrollIndicatorInsets = newInset
+    }
+    
+    @objc fileprivate func keyboardWillHide(note: Notification) {
+        if let originalContentInset = originalContentInset {
+            tableView.contentInset = originalContentInset
+            tableView.scrollIndicatorInsets = originalContentInset
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,7 +114,7 @@ class CreateStepsViewController: UIViewController {
         })
     }
     
-    @IBAction func onAddTapped(_ sender: Any) {
+    @objc fileprivate func onAddTapped(_ sender: UITapGestureRecognizer) {
         addNewStep(animated: true)
     }
     
@@ -101,7 +148,6 @@ class CreateStepsViewController: UIViewController {
 }
 
 extension CreateStepsViewController: UITableViewDelegate {
-    
 }
 
 extension CreateStepsViewController: UITableViewDataSource {

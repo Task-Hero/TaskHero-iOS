@@ -757,18 +757,39 @@
                                     <rect key="frame" x="0.0" y="64" width="375" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxv-Uy-QZE">
-                                            <rect key="frame" x="172" y="5" width="30" height="30"/>
-                                            <state key="normal" title="Add"/>
-                                            <connections>
-                                                <action selector="onAddTapped:" destination="BC4-KT-VCb" eventType="touchUpInside" id="89m-QA-XfT"/>
-                                            </connections>
-                                        </button>
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFU-pV-lq2">
+                                            <rect key="frame" x="40" y="0.0" width="295" height="40"/>
+                                            <subviews>
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddStep" translatesAutoresizingMaskIntoConstraints="NO" id="sgU-Ha-3t7">
+                                                    <rect key="frame" x="64" y="2" width="36" height="36"/>
+                                                    <color key="tintColor" red="1" green="0.23848446170000001" blue="0.30796442000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="hf2-Kq-9gg"/>
+                                                        <constraint firstAttribute="width" constant="36" id="vSF-Q9-XIi"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Step" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qsh-Lm-IN3">
+                                                    <rect key="frame" x="112" y="10" width="70" height="19"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.23549840007377931" green="0.55964340441418259" blue="0.84877804487179487" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="sgU-Ha-3t7" firstAttribute="centerY" secondItem="Qsh-Lm-IN3" secondAttribute="centerY" id="Eys-r1-mEp"/>
+                                                <constraint firstItem="Qsh-Lm-IN3" firstAttribute="centerY" secondItem="eFU-pV-lq2" secondAttribute="centerY" id="HGB-MH-oSa"/>
+                                                <constraint firstItem="Qsh-Lm-IN3" firstAttribute="leading" secondItem="sgU-Ha-3t7" secondAttribute="trailing" constant="12" id="PK9-fu-zC1"/>
+                                                <constraint firstItem="Qsh-Lm-IN3" firstAttribute="centerX" secondItem="eFU-pV-lq2" secondAttribute="centerX" id="RQL-Cf-Kli"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="Oxv-Uy-QZE" firstAttribute="centerY" secondItem="7dP-dU-ijw" secondAttribute="centerY" id="lm6-Z0-c6B"/>
-                                        <constraint firstItem="Oxv-Uy-QZE" firstAttribute="centerX" secondItem="7dP-dU-ijw" secondAttribute="centerX" id="pOj-hY-mP5"/>
+                                        <constraint firstItem="eFU-pV-lq2" firstAttribute="leading" secondItem="7dP-dU-ijw" secondAttribute="leading" constant="40" id="Ssz-z4-0g3"/>
+                                        <constraint firstAttribute="bottom" secondItem="eFU-pV-lq2" secondAttribute="bottom" id="SxA-fA-uvr"/>
+                                        <constraint firstItem="eFU-pV-lq2" firstAttribute="top" secondItem="7dP-dU-ijw" secondAttribute="top" id="oLL-Ea-41K"/>
+                                        <constraint firstAttribute="trailing" secondItem="eFU-pV-lq2" secondAttribute="trailing" constant="40" id="vB2-QY-hq3"/>
                                     </constraints>
                                 </view>
                             </tableView>
@@ -794,13 +815,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addStepImageView" destination="sgU-Ha-3t7" id="Iok-9O-TDG"/>
+                        <outlet property="addStepView" destination="eFU-pV-lq2" id="HLp-EK-RG0"/>
                         <outlet property="tableView" destination="mT1-bB-8gn" id="lnk-b1-26f"/>
                         <segue destination="0jy-kY-vXi" kind="presentation" identifier="CreateStepsToPickUsers" id="typ-hw-nhL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VC0-QO-MUm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3230" y="946"/>
+            <point key="canvasLocation" x="3229.5999999999999" y="945.87706146926541"/>
         </scene>
         <!--Select Users-->
         <scene sceneID="hyZ-Lo-XOJ">
@@ -950,6 +973,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AddStep" width="36" height="36"/>
         <image name="BarItemAddTask" width="48" height="48"/>
         <image name="BarItemProgressView" width="48" height="48"/>
         <image name="BarItemTaskCatalog" width="48" height="48"/>
@@ -957,6 +981,6 @@
         <image name="cameraButton" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dIS-mt-g39"/>
+        <segue reference="typ-hw-nhL"/>
     </inferredMetricsTieBreakers>
 </document>
