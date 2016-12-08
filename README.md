@@ -8,6 +8,7 @@ Time spent: **20** hours spent in total
 
 The following **required** functionality are implemented:
 
+- [x] Users can sign in / log out
 - [x] Users can create Tasks with associated Steps
 - [x] Tasks should be able to be created from templates in Catalog
 - [x] Users can view Tasks currently in progress
@@ -22,7 +23,7 @@ The following **optional** features are implemented:
 
 - [x] User gets notification when it is their turn to do Steps
 - [x] User gets notification when their signoff is required
-- [x] User can add media to Steps
+- [x] User can add photo images to Steps
 - [ ] User can be a part of groups and create them
 - [ ] Tasks/Steps can be viewed in history
 
