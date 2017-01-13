@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="HAP-jE-hjp">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="HAP-jE-hjp">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -69,7 +69,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9vs-N4-p0H">
-                                <rect key="frame" x="10" y="218" width="300" height="150"/>
+                                <rect key="frame" x="10" y="193" width="300" height="150"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ULV-3r-LkB">
                                         <rect key="frame" x="15" y="20" width="270" height="45"/>
@@ -125,14 +125,16 @@
                             <constraint firstItem="kqM-wJ-Fln" firstAttribute="centerX" secondItem="KHv-NG-j46" secondAttribute="centerX" id="i7b-Os-VvN"/>
                             <constraint firstItem="QG2-30-ZQF" firstAttribute="top" secondItem="wCo-8j-IgC" secondAttribute="bottom" id="m6I-Qx-FXH"/>
                             <constraint firstItem="kqM-wJ-Fln" firstAttribute="top" secondItem="cbn-vk-hih" secondAttribute="bottom" constant="120" id="mfE-NQ-OFt"/>
-                            <constraint firstItem="QG2-30-ZQF" firstAttribute="top" secondItem="9vs-N4-p0H" secondAttribute="bottom" constant="200" id="sgG-BO-G5I"/>
+                            <constraint firstItem="QG2-30-ZQF" firstAttribute="top" secondItem="9vs-N4-p0H" secondAttribute="bottom" constant="225" id="sgG-BO-G5I"/>
                             <constraint firstAttribute="bottom" secondItem="stk-Dk-gVw" secondAttribute="bottom" constant="25" id="ter-Ev-8Ux"/>
                             <constraint firstItem="9vs-N4-p0H" firstAttribute="centerX" secondItem="KHv-NG-j46" secondAttribute="centerX" id="w1U-Rp-mki"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="appLogoImageView" destination="kqM-wJ-Fln" id="IXI-fp-lSZ"/>
+                        <outlet property="appLogoImageViewHeight" destination="YZa-3c-wYc" id="uYp-35-Q8D"/>
                         <outlet property="appLogoImageViewTopConstraint" destination="mfE-NQ-OFt" id="qFh-Fc-3Wb"/>
+                        <outlet property="appLogoImageViewWidth" destination="2v6-7b-feV" id="nDX-Rp-Gbz"/>
                         <outlet property="backgroundImageView" destination="wCo-8j-IgC" id="CEJ-uv-aJv"/>
                         <outlet property="buttonsView" destination="stk-Dk-gVw" id="cwR-CN-mwG"/>
                         <outlet property="loginButton" destination="Ggk-Vb-tos" id="AOK-Wi-LPK"/>

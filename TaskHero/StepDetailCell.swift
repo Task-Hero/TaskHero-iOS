@@ -72,6 +72,8 @@ class StepDetailCell: UITableViewCell {
             stateImageView.image = UIImage(named: "StepIconChecked")
         } else if nextStep {
             stateImageView.image = UIImage(named: "Attention")
+        } else {
+            stateImageView.image = nil
         }
     }
     

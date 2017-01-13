@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class HomeViewController: UIViewController {
     
@@ -78,6 +79,24 @@ class HomeViewController: UIViewController {
             NSLog("Error: \(error)")
         })
     }
+    
+}
+
+extension HomeViewController: MFMessageComposeViewControllerDelegate {
+    
+    @IBAction func onInviteButton(_ sender: Any) {
+        if (MFMessageComposeViewController.canSendText()) {
+            let controller = MFMessageComposeViewController()
+            controller.body = "Let's get productive together! Download TaskHero"
+            controller.messageComposeDelegate = self
+            self.present(controller, animated: true, completion: nil)
+        }
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 // MARK: TableView functions

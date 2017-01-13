@@ -108,7 +108,6 @@ class TaskDetailViewController: UIViewController {
 }
 
 extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func loadTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -137,11 +136,9 @@ extension TaskDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return steps?.count ?? 0
     }
-
 }
 
 extension TaskDetailViewController: TaskInstanceUpdateDelegate {
-    
     func taskInstanceUpdated() {
         if taskInstance!.getPercentComplete() >= 1.0 {
             taskInstance?.completed = true

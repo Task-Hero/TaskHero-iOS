@@ -20,6 +20,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var appLogoImageView: UIImageView!
     @IBOutlet weak var appLogoImageViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var appLogoImageViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var appLogoImageViewWidth: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +63,8 @@ class LoginViewController: UIViewController {
     
     private func animateInputFields() {
         self.appLogoImageViewTopConstraint.constant = 50
+        self.appLogoImageViewHeight.constant = 130
+        self.appLogoImageViewWidth.constant = 130
         
         UIView.animate(withDuration: 0.4, animations: {
             self.userInputView.alpha = 1
@@ -106,6 +110,8 @@ class LoginViewController: UIViewController {
     
     private func animateLoginSignupButtons() {
         appLogoImageViewTopConstraint.constant = 90
+        self.appLogoImageViewHeight.constant = 200
+        self.appLogoImageViewWidth.constant = 200
         
         UIView.animate(withDuration: 0.3, animations: {
             self.userInputView.alpha = 0.1

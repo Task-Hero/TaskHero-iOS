@@ -103,15 +103,21 @@ class CreateStepsViewController: UIViewController {
     }
     
     @IBAction func onDoneTapped(_ sender: Any) {
-        ParseClient.sharedInstance.createTask(task: task, success: {() -> () in
-            self.dismiss(animated: true) {
-                BottomBar.instance.switchToRightViewController()
-                self.resetNavigationStackToNewTask()
-                self.delegate?.taskWasCreated(self.task)
+        for step in task.steps! {
+            if step.name == nil || step.assignees == nil {
+                showAlert(message: "Every step needs a name and at least one assignee.")
+            } else {
+                ParseClient.sharedInstance.createTask(task: task, success: {() -> () in
+                    self.dismiss(animated: true) {
+                        BottomBar.instance.switchToRightViewController()
+                        self.resetNavigationStackToNewTask()
+                        self.delegate?.taskWasCreated(self.task)
+                    }
+                }, failure: { (error) -> () in
+                    print(error)
+                })                
             }
-        }, failure: { (error) -> () in
-            print(error)
-        })
+        }
     }
     
     @objc fileprivate func onAddTapped(_ sender: UITapGestureRecognizer) {
