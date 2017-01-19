@@ -18,6 +18,7 @@ class TaskInstance: NSObject {
     var chatId: String?
     var completed: Bool?
     var updatedAt: String?
+    var team: String?
     var teammates: [User]?
     
     init(taskInstance: PFObject, teammates: [User]) {
@@ -26,6 +27,7 @@ class TaskInstance: NSObject {
         self.id = taskInstance.objectId
         self.name = taskInstance["name"] as? String
         self.details = taskInstance["details"] as? String
+        self.team = taskInstance["team"] as? String
         self.teammates = teammates
         self.getSteps(steps: (taskInstance["steps"] as? String)!)
         

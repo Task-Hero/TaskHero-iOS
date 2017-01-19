@@ -102,6 +102,7 @@ class ParseClient: NSObject {
     func getAllTaskInstances(success: @escaping ([TaskInstance]) -> (), failure: @escaping (Error) -> ()) {
         let query = PFQuery(className: "TaskInstance")
         
+        query.whereKey("team", equalTo: User.current?.team! as Any)
         query.order(byAscending: "completed")
         query.addDescendingOrder("updatedAt")
         
@@ -125,6 +126,7 @@ class ParseClient: NSObject {
     
     func getAllTasks(success: @escaping ([Task]) -> (), failure: @escaping (Error) -> ()) {
         let query = PFQuery(className: "Task")
+        query.whereKey("team", equalTo: User.current?.team! as Any)
         
         query.findObjectsInBackground(block: { (objects, error) -> Void in
             if (error == nil) {
@@ -161,6 +163,10 @@ class ParseClient: NSObject {
         
         if let estimatedTime = task.estimatedTime {
             t["estimated_time"] = estimatedTime
+        }
+        
+        if let team = task.team {
+            t["team"] = team
         }
     
         if let steps = task.steps {
@@ -260,6 +266,7 @@ class ParseClient: NSObject {
         t["author"] = u
         t["name"] = task.name
         t["details"] = task.details
+        t["team"] = task.team
         t["estimated_time"] = task.estimatedTime
         t["task"] = original
         t["completed"] = false
@@ -292,8 +299,8 @@ class ParseClient: NSObject {
     }
     
     func getTeammates(success: @escaping ([User]) -> (), failure: @escaping (Error) -> ()) {
-        // TODO: this could easily be constrained to teams later on
         let query = PFUser.query()
+        query?.whereKey("team", equalTo: User.current?.team! as Any)
         query?.order(byAscending: "name")
         query?.findObjectsInBackground { (users, error) in
             if let error = error {
@@ -378,13 +385,13 @@ class ParseClient: NSObject {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: User.didLogoutNotification), object: nil)
     }
     
-    func signup(name: String, email: String, password: String, success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
+    func signup(name: String, email: String, team: String, password: String, success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
         let user = PFUser()
         user.username = email
         user.email = email
         user.password = password
         user["name"] = name
-        user["team"] = "codepath"
+        user["team"] = team
         
         user.signUpInBackground { (isSuccess, error) in
             if let error = error {

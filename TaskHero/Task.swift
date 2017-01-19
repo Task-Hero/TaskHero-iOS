@@ -25,6 +25,7 @@ class Task: NSObject {
     }
     var steps: [Step]?
     var taskId: String?
+    var team: String?
     var teammates: [User]?
     
     override init() {
@@ -37,6 +38,7 @@ class Task: NSObject {
         self.id = task.objectId
         self.name = task["name"] as? String
         self.details = task["details"] as? String
+        self.team = task["team"] as? String
         self.teammates = teammates
         self.getSteps(steps: (task["steps"] as? String)!)
         

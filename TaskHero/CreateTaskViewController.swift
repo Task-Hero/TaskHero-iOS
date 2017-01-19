@@ -59,6 +59,7 @@ class CreateTaskViewController: UIViewController {
     private func newTask() -> Task {
         let task = Task()
         task.name = taskNameField.text
+        task.team = User.current?.team
         task.details = taskDescriptionField.text
         
         if let duration = Double(taskDurationField.text ?? "") {

@@ -76,15 +76,8 @@ class LoginViewController: UIViewController {
         })
     }
     
-    @IBAction func onSignupTouch(_ sender: Any) {        
-        ParseClient.sharedInstance.login(
-            email: "taskheroapp@gmail.com",
-            password: "admin",
-            success: { (user) in
-                self.transitionToApp()
-        }, failure: { (error) in
-            self.showAlert(message: "Username or Password is not valid")
-        })
+    @IBAction func onSignupTouch(_ sender: Any) {
+        performSegue(withIdentifier: "signUpSegue", sender: self)
     }
     
     @IBAction func onOkTouch(_ sender: Any) {

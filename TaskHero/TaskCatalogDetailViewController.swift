@@ -19,7 +19,7 @@ class TaskCatalogDetailViewController: UIViewController {
     fileprivate let stepCellIdentifier = "EditStepCell"
     var currentSelectedCellRowNum = -1
     
-    var task:Task!
+    var task: Task!
         
     override func viewDidLoad() {
         super.viewDidLoad()

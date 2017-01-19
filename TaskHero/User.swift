@@ -38,7 +38,6 @@ class User: NSObject {
         self.email = user["email"] as? String
         self.name = user["name"] as? String
         self.team = user["team"] as? String
-        
         self.setProfileImageUrl()
     }
     
