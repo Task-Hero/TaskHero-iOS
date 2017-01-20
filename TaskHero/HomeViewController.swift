@@ -11,12 +11,12 @@ import MessageUI
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var instructionalView: UIView!
     var tasks: [TaskInstance]?
     var selectedTaskInstance: TaskInstance?
     var selectedCell: Int?
     var initialIndexPath: IndexPath?
     var cellSnapshot: UIView?
-    
     var refreshControl: UIRefreshControl!
     var customView: UIView!
     var refreshImageView: UIImageView!
@@ -37,6 +37,13 @@ class HomeViewController: UIViewController {
         ParseClient.sharedInstance.getAllTaskInstances(success: {(tasks) -> () in
             self.tasks = tasks
             self.tableView.reloadData()
+            
+            if tasks.count == 0 {
+                self.instructionalView.isHidden = false
+            } else {
+                self.instructionalView.isHidden = true
+            }
+            
             if refreshControl != nil {
                 refreshControl?.endRefreshing()
             }
@@ -88,7 +95,7 @@ extension HomeViewController: MFMessageComposeViewControllerDelegate {
     @IBAction func onInviteButton(_ sender: Any) {
         if (MFMessageComposeViewController.canSendText()) {
             let controller = MFMessageComposeViewController()
-            controller.body = "Let's get productive together! Download TaskHero"
+            controller.body = "Let's get productive together! Download TaskHero today at https://github.com/Task-Hero/TaskHero-iOS."
             controller.messageComposeDelegate = self
             self.present(controller, animated: true, completion: nil)
         }

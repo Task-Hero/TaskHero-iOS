@@ -182,12 +182,13 @@ extension TaskCatalogViewController: TaskCardCellDelegate {
 extension TaskCatalogViewController: PopoverViewDelegate {
     func popoverViewDidSelectPrimaryAction(popoverView: PopoverView) {
         dismissPopover { 
-            self.dismiss(animated: true, completion: nil)
             let task = self.tasks![self.currentSelectedCellRowNum]
 
-            ParseClient.sharedInstance.createTaskInstance(task: task, success: { (instanceObjectId) -> () in
+            ParseClient.sharedInstance.createTaskInstance(task: task, success: { (instanceObjectId) -> () in                
                 BottomBar.instance.switchToLeftViewController()
+                (BottomBar.instance.leftItemViewController.childViewControllers[0] as! HomeViewController).loadTasks()
                 (BottomBar.instance.leftItemViewController.childViewControllers[0] as! HomeViewController).presentTargetTaskDetailView(taskInstanceId: instanceObjectId)
+                
             }, failure: {(error) -> () in
                 print("start task failed : error = \(error)")
             })
