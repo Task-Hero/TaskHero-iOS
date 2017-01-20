@@ -10,6 +10,7 @@ import UIKit
 
 class SignupViewController: UIViewController {
 
+    @IBOutlet weak var userInputView: UIView!
     @IBOutlet weak var appLogoImageView: UIImageView!
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var emailField: UITextField!
@@ -44,12 +45,22 @@ class SignupViewController: UIViewController {
         } else {
             
             ParseClient.sharedInstance.signup(name: name, email: username, team: team, password: password, success: { (user) in
-                // Log into the app
+                self.transitionToApp()
             }, failure: { (error) in
                 self.view.endEditing(true)
                 self.showAlert(message: "Username is not valid")
             })
         }
+    }
+    
+    private func transitionToApp() {
+        UIView.animate(withDuration: 1.5, animations: ({
+            self.userInputView.isHidden = true
+            self.appLogoImageView.transform = CGAffineTransform(scaleX: 25,y: 25)
+        }), completion: ({ finish in
+            ParseClient.sharedInstance.connectCurrentUserAndInstallation()
+            self.present(BottomBar.instance, animated: true, completion: nil)
+        }))
     }
     
 }

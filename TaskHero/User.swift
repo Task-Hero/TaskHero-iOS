@@ -44,10 +44,7 @@ class User: NSObject {
     private static var _current: User?
     class var current: User? {
         get {
-            if _current != nil {
-                return _current
-            }
-            
+
             if let user = PFUser.current() {
                 _current = User(user: user)
             }

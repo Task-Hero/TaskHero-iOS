@@ -263,6 +263,7 @@
                         <outlet property="okButton" destination="qhE-b0-yzH" id="zZY-IB-ixd"/>
                         <outlet property="passwordField" destination="50M-57-1Bf" id="uqI-p4-Kcr"/>
                         <outlet property="teamField" destination="YIH-gE-bHz" id="m13-US-Ryn"/>
+                        <outlet property="userInputView" destination="rc2-Bv-ynJ" id="hpy-vP-fEC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cJl-Oi-lKD" userLabel="First Responder" sceneMemberID="firstResponder"/>

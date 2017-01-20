@@ -47,6 +47,7 @@ class HomeViewController: UIViewController {
     
     @IBAction func logoutButton(_ sender: UIBarButtonItem) {
         ParseClient.sharedInstance.logout()
+        
     }
     
     func loadNavigationBar() {

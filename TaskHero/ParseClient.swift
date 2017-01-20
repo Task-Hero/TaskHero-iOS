@@ -382,6 +382,7 @@ class ParseClient: NSObject {
     
     func logout() {
         PFUser.logOut()
+        BottomBar.instance = nil
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: User.didLogoutNotification), object: nil)
     }
     

@@ -33,6 +33,10 @@ class BottomBar {
             
             return _instance
         }
+        
+        set {
+            _instance = newValue
+        }
     }
     
     private class func loadBottomBar() -> BottomBarViewController {
