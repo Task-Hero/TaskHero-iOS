@@ -95,7 +95,7 @@ extension HomeViewController: MFMessageComposeViewControllerDelegate {
     @IBAction func onInviteButton(_ sender: Any) {
         if (MFMessageComposeViewController.canSendText()) {
             let controller = MFMessageComposeViewController()
-            controller.body = "Let's get productive together! Download TaskHero today at https://github.com/Task-Hero/TaskHero-iOS."
+            controller.body = "Let's get productive together! Download TaskHero today at https://itunes.apple.com/us/app/task-hero-app/id1197267347."
             controller.messageComposeDelegate = self
             self.present(controller, animated: true, completion: nil)
         }
