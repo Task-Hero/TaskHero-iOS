@@ -2,6 +2,8 @@
 
 **Task Hero** is productivity tool. It enables a team to manage tasks and progress with chat and notification. A team can manage single task with multiple steps which are assigned to each team members.
 
+You can find the latest version of the app on the iOS store here: https://itunes.apple.com/us/app/task-hero-app/id1197267347?ls=1&mt=8.
+
 ## User Stories
 
 The following **required** functionality are implemented:
