@@ -130,7 +130,7 @@ extension TaskCatalogViewController: UITableViewDelegate {
         isRefreshControlAnimating = true
         
         UIView.animate(withDuration: 2, delay: 0.0, options: UIViewAnimationOptions.curveLinear, animations: { () -> Void in
-            self.refreshImageView.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI))
+            self.refreshImageView.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi)
             self.refreshImageView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
         }, completion: { (finished) -> Void in
             if (self.refreshControl!.isRefreshing) {
