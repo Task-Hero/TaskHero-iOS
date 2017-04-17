@@ -22,12 +22,15 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var appLogoImageViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var appLogoImageViewHeight: NSLayoutConstraint!
     @IBOutlet weak var appLogoImageViewWidth: NSLayoutConstraint!
+    let logoTapRecognizer = UITapGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         buttonConfigs()
         backgroundImageView.backgroundColor = AppColors.appWhite
         appLogoImageView.image = UIImage(named: "appLogo")
+        logoTapRecognizer.addTarget(self, action: #selector(tappedLogo))
+        appLogoImageView.addGestureRecognizer(logoTapRecognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,6 +128,10 @@ class LoginViewController: UIViewController {
             ParseClient.sharedInstance.connectCurrentUserAndInstallation()
             self.present(BottomBar.instance, animated: true, completion: nil)
         }))
+    }
+    
+    @objc private func tappedLogo() {
+        self.performSegue(withIdentifier: "flappyHero", sender: self)
     }
     
 }
